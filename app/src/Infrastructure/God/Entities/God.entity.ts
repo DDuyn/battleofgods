@@ -1,0 +1,15 @@
+import { Schema, Document } from 'mongoose';
+
+export const GodModel = new Schema({
+  name: { type: String, required: true },
+  origen: { type: String, required: true },
+  history: { type: String, required: true },
+  photo: { type: String, required: true },
+});
+
+export interface IGodEntity extends Document {
+  readonly name: string;
+  readonly origen: string;
+  readonly history: string;
+  readonly photo: string;
+}
