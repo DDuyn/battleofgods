@@ -11,7 +11,6 @@ export class GodController {
   @Get('/gods')
   async getAllGods(@Res() res) {
     const gods = await this.godService.findAll();
-    console.log(gods);
     res.status(HttpStatus.OK).json(gods);
   }
 }
