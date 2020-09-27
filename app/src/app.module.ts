@@ -1,13 +1,35 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
+import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
+import { DomainModule } from './Domain/domain.module';
+import { InfrastructureModule } from './Infrastructure/Infrastructure.module';
+import { ApplicationModule } from './Application/Application.module';
+import { ConfigModule } from '@nestjs/config';
+import { DatabaseConnectionService } from './Config/Database/DatabaseConnection.service';
+import { DatabaseModule } from './Config/Database/Database.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://admin20:<password>@cluster0.cj6ks.mongodb.net/<dbname>?retryWrites=true&w=majority',
-    ),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: './src/Enviroment/.env.development',
+    }),
+    MongooseModule.forRootAsync({
+      imports: [DatabaseModule],
+      useFactory: (database: DatabaseConnectionService) => {
+        return <MongooseModuleOptions>{
+          uri: database.connectionString,
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useFindAndModify: true,
+        };
+      },
+      inject: [DatabaseConnectionService],
+    }),
+    DomainModule,
+    InfrastructureModule,
+    ApplicationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
