@@ -10,4 +10,7 @@ export class GodRepository implements IGodRepository {
   async findAll(): Promise<IGodEntity[]> {
     return await this.GodModel.find();
   }
+  async findById(godId: string): Promise<IGodEntity> {
+    return await this.GodModel.findById(godId);
+  }
 }
