@@ -8,6 +8,7 @@ export const GodModel = new Schema({
 });
 
 export interface IGodEntity extends Document {
+  readonly id: string;
   readonly name: string;
   readonly origen: string;
   readonly history: string;
