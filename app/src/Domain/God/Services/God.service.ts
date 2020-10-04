@@ -17,4 +17,8 @@ export class GodService implements IGodService {
   async findById(godId: string): Promise<God> {
     return await this.GodRepository.findById(godId);
   }
+
+  async findByName(godName: string): Promise<God> {
+    return await this.GodRepository.findByName(godName);
+  }
 }
