@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Controller, Inject, Get, Res, HttpStatus, Post } from '@nestjs/common';
 import { IRankingService } from 'src/Domain/Ranking/Services/Interfaces/IRanking.service';
-import RankingDto from '../Dto/Ranking.dto';
 import { RankingMapper } from '../Mappers/Ranking.mapper';
 
 @Controller('ranking')
