@@ -22,12 +22,6 @@ export class GodController {
     res.status(HttpStatus.OK).json(GodMapper.fromEntityListToDto(gods));
   }
 
-  @Get('/god/:godId')
-  async getGodById(@Res() res, @Param('godId') godId: string) {
-    const god = await this.godService.findById(godId);
-    res.status(HttpStatus.OK).json(GodMapper.fromEntityToDto(god));
-  }
-
   @Get('/:godName')
   async getGodByName(@Res() res, @Param('godName') godName: string) {
     const god = await this.godService.findByName(godName);
