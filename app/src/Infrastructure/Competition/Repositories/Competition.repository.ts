@@ -12,10 +12,12 @@ export class CompetitionRepository implements ICompetitionRepository {
   ) {}
 
   async findAll(): Promise<ICompetitionEntity[]> {
-    return this.competitionModel.find();
+    return await this.competitionModel.find();
   }
 
   async findById(competitionId: number): Promise<ICompetitionEntity> {
-    return this.competitionModel.findOne({ idCompetition: competitionId });
+    return await this.competitionModel.findOne({
+      idCompetition: competitionId,
+    });
   }
 }

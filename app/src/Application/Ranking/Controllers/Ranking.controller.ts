@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { Controller, Inject, Get, Res, HttpStatus, Post } from '@nestjs/common';
-import { IRankingService } from 'src/Domain/Ranking/Services/Interfaces/IRanking.service';
-import { RankingMapper } from '../Mappers/Ranking.mapper';
+import { Controller, Inject, Get, Post } from '@nestjs/common';
+import RankingDto from '../Dto/Ranking.dto';
+import { IRankingService } from '../Services/Interfaces/IRanking.service';
 
 @Controller('ranking')
 export class RankingController {
@@ -10,15 +9,13 @@ export class RankingController {
   ) {}
 
   @Get('/')
-  async getAllRanking(@Res() res) {
-    const ranking = await this.rankingService.findAll();
-    res.status(HttpStatus.OK).json(RankingMapper.fromEntityListToDto(ranking));
+  async getAllRanking(): Promise<RankingDto[]> {
+    return await this.rankingService.findAll();
   }
 
   @Post('/')
-  async createRanking(@Res() res) {
-    const ranking = await this.rankingService.createRanking();
-    res.status(HttpStatus.OK).json(RankingMapper.fromEntityListToDto(ranking));
+  async createRanking(): Promise<RankingDto[]> {
+    return await this.rankingService.createRanking();
   }
 
   // TODO: Realizar servicio update ranking

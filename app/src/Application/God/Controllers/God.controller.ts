@@ -1,14 +1,6 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import {
-  Controller,
-  Inject,
-  Get,
-  Res,
-  HttpStatus,
-  Param,
-} from '@nestjs/common';
-import { IGodService } from 'src/Domain/God/Services/Interfaces/IGod.service';
-import { GodMapper } from '../Mappers/God.mapper';
+import { Controller, Inject, Get, Param } from '@nestjs/common';
+import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
+import GodDto from '../Dto/God.dto';
 
 @Controller('god')
 export class GodController {
@@ -17,14 +9,12 @@ export class GodController {
   ) {}
 
   @Get('/gods')
-  async getAllGods(@Res() res) {
-    const gods = await this.godService.findAll();
-    res.status(HttpStatus.OK).json(GodMapper.fromEntityListToDto(gods));
+  async getAllGods(): Promise<GodDto[]> {
+    return await this.godService.findAll();
   }
 
   @Get('/:godName')
-  async getGodByName(@Res() res, @Param('godName') godName: string) {
-    const god = await this.godService.findByName(godName);
-    res.status(HttpStatus.OK).json(GodMapper.fromEntityToDto(god));
+  async getGodByName(@Param('godName') godName: string): Promise<GodDto> {
+    return await this.godService.findByName(godName);
   }
 }

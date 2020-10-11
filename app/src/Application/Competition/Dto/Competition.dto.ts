@@ -1,5 +1,4 @@
-export type Competition = {
-  readonly _id?: string;
+export default class CompetitionDto {
   readonly idCompetition: number;
   readonly description: string;
-};
+}
