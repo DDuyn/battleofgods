@@ -20,4 +20,10 @@ export class CompetitionRepository implements ICompetitionRepository {
       idCompetition: competitionId,
     });
   }
+
+  async createCompetition(
+    competition: ICompetitionEntity,
+  ): Promise<ICompetitionEntity> {
+    return await this.competitionModel.create(competition);
+  }
 }
