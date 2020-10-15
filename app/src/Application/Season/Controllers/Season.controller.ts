@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Param } from "@nestjs/common";
+import { Controller, Get, Inject, Param, Post, Put } from "@nestjs/common";
 import SeasonDto from "../Dto/Season.dto";
 import { ISeasonService } from "../Services/Interfaces/ISeasonService";
 
@@ -14,7 +14,17 @@ export class SeasonController {
     }
 
     @Get('/:season')
-    async getSeason(@Param() season: number): Promise<SeasonDto> {
+    async getSeason(@Param('season') season: number): Promise<SeasonDto> {
         return await this.seasonService.findBySeason(season);
+    }
+
+    @Post('/create')
+    async createNewSeason(): Promise<SeasonDto> {
+        return await this.seasonService.createNewSeason();
+    }
+
+    @Put('/updateSeason/:seasonId')
+    async updateSeason(@Param('seasonId') seasonId: number): Promise<SeasonDto> {
+        return await this.seasonService.updateSeason(seasonId);
     }
 }

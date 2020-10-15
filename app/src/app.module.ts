@@ -22,7 +22,7 @@ import { DatabaseModule } from './Config/Database/Database.module';
           uri: database.connectionString,
           useNewUrlParser: true,
           useUnifiedTopology: true,
-          useFindAndModify: true,
+          useFindAndModify: false,
         };
       },
       inject: [DatabaseConnectionService],

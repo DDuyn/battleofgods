@@ -12,6 +12,7 @@ export class GodRepository implements IGodRepository {
   }
 
   async findByName(godName: string): Promise<IGodEntity> {
+    console.log(godName)
     return await this.GodModel.findOne({ name: godName });
   }
 }

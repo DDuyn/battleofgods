@@ -16,7 +16,7 @@ export class CompetitionController {
 
   @Get('/:competitionId')
   async getCompetition(
-    @Param() competitionId: number,
+    @Param('competitionId') competitionId: number,
   ): Promise<CompetitionDto> {
     return await this.competitionService.findById(competitionId);
   }

@@ -17,4 +17,16 @@ export class SeasonRepository implements ISeasonRepository {
     async findBySeason(season: number): Promise<ISeasonEntity> {
         return await this.seasonModel.findOne({ season: season });
     }
+
+    async findLastSeason(): Promise<ISeasonEntity> {
+        return await this.seasonModel.findOne().sort({ season: 'desc' });
+    }
+
+    async createNewSeason(season: ISeasonEntity): Promise<ISeasonEntity> {
+        return await this.seasonModel.create(season);
+    }
+
+    async updateSeason(season: ISeasonEntity): Promise<ISeasonEntity> {
+        return await this.seasonModel.findOneAndUpdate({ season: season.season }, season, { new: true });
+    }
 }
