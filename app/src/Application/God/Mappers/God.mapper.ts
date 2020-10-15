@@ -4,7 +4,6 @@ import GodDto from '../Dto/God.dto';
 export class GodMapper {
   public static fromEntityToDto(godEntity: God): GodDto {
     const godDto: GodDto = {
-      id: godEntity.id,
       name: godEntity.name,
       history: godEntity.history,
       origen: godEntity.origen,
