@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 import { DomainModule } from './Domain/domain.module';
 import { InfrastructureModule } from './Infrastructure/Infrastructure.module';
@@ -31,7 +29,5 @@ import { DatabaseModule } from './Config/Database/Database.module';
     InfrastructureModule,
     ApplicationModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
