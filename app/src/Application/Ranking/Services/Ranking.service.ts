@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import GodDto from 'src/Application/God/Dto/God.dto';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
 import { Ranking } from 'src/Domain/Ranking/Model/Ranking';
-import { IRankingRepository } from 'src/Domain/Ranking/Repositories/IRanking.respository';
+import { IRankingRepository } from 'src/Domain/Ranking/Repositories/IRanking.repository';
 import RankingDto from '../Dto/Ranking.dto';
 import { RankingMapper } from '../Mappers/Ranking.mapper';
 import { IRankingService } from './Interfaces/IRanking.service';

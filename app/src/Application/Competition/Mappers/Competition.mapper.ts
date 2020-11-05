@@ -5,11 +5,11 @@ export class CompetitionMapper {
   public static fromEntityToDto(
     competitionEntity: Competition,
   ): CompetitionDto {
-    const godDto: CompetitionDto = {
+    const competitionDto: CompetitionDto = {
       idCompetition: competitionEntity.idCompetition,
       description: competitionEntity.description,
     };
-    return godDto;
+    return competitionDto;
   }
 
   public static fromEntityListToDto(
