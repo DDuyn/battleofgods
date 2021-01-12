@@ -1,7 +1,7 @@
-import { Controller, Inject, Get, Post } from '@nestjs/common';
+import { Controller, Inject, Get, Post, Put, Body } from '@nestjs/common';
 import RankingDto from '../Dto/Ranking.dto';
 import { IRankingService } from '../Services/Interfaces/IRanking.service';
-import { ApiTags, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
 
 @ApiTags('ranking')
 @Controller('ranking')
@@ -22,5 +22,16 @@ export class RankingController {
     return await this.rankingService.createRanking();
   }
 
-  // TODO: Realizar servicio update ranking
+  @ApiBody({ description: 'Ranking list', type: RankingDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Ranking Updated',
+    type: RankingDto,
+  })
+  @Put('/')
+  async updateRankingByGod(
+    @Body() rankingList: RankingDto[],
+  ): Promise<RankingDto[]> {
+    return await this.rankingService.updateRankingByGod(rankingList);
+  }
 }

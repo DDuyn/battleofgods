@@ -17,20 +17,17 @@ export class CompetitionService implements ICompetitionService {
     );
   }
   async findById(competitionId: number): Promise<CompetitionDto> {
-    return CompetitionMapper.fromEntityToDto(
-      await this.CompetitionRepository.findById(competitionId),
+    const competition: Competition = await this.CompetitionRepository.findById(
+      competitionId,
     );
+    return !!competition
+      ? CompetitionMapper.fromEntityToDto(competition)
+      : new CompetitionDto();
   }
 
   async createCompetition(
     competition: CompetitionDto,
   ): Promise<CompetitionDto> {
-    const competitionEntity: Competition = {
-      idCompetition: competition.idCompetition,
-      description: competition.description,
-    };
-    return await this.CompetitionRepository.createCompetition(
-      competitionEntity,
-    );
+    return await this.CompetitionRepository.createCompetition(competition);
   }
 }

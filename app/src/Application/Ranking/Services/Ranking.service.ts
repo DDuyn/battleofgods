@@ -31,6 +31,16 @@ export class RankingService implements IRankingService {
     );
   }
 
+  async updateRankingByGod(rankingGod: RankingDto[]): Promise<RankingDto[]> {
+    rankingGod.forEach(ranking => {
+      this.rankingRepository.updateRankingByGod(ranking);
+    });
+
+    return RankingMapper.fromEntityListToDto(
+      await this.rankingRepository.findAll(),
+    );
+  }
+
   private createInitialRanking(gods: GodDto[]): Ranking[] {
     const rankingCreated: Ranking[] = [];
     gods.forEach(god => {
