@@ -20,4 +20,14 @@ export class RankingRepository implements IRankingRepository {
   ): Promise<IRankingEntity[]> {
     return await this.rankingModel.create(listRanking);
   }
+
+  async updateRankingByGod(
+    rankingGod: IRankingEntity,
+  ): Promise<IRankingEntity> {
+    return await this.rankingModel.findOneAndUpdate(
+      { god: rankingGod.god },
+      rankingGod,
+      { new: true },
+    );
+  }
 }

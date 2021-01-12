@@ -6,13 +6,16 @@ import { IGodEntity } from '../Entities/God.entity';
 
 @Injectable()
 export class GodRepository implements IGodRepository {
-  constructor(@InjectModel('God') private GodModel: Model<IGodEntity>) {}
+  constructor(@InjectModel('God') private godModel: Model<IGodEntity>) {}
   async findAll(): Promise<IGodEntity[]> {
-    return await this.GodModel.find();
+    return await this.godModel.find();
   }
 
   async findByName(godName: string): Promise<IGodEntity> {
-    console.log(godName)
-    return await this.GodModel.findOne({ name: godName });
+    return await this.godModel.findOne({ name: godName });
+  }
+
+  async createGod(god: IGodEntity): Promise<IGodEntity> {
+    return await this.godModel.create(god);
   }
 }
