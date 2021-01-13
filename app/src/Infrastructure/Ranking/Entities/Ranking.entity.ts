@@ -1,12 +1,13 @@
 import { Schema, Document } from 'mongoose';
+import { IGodEntity } from 'src/Infrastructure/God/Entities/God.entity';
 
 export const RankingModel = new Schema({
-  god: { type: String, required: true },
+  god: { type: Schema.Types.ObjectId, ref: 'god', required: true },
   points: { type: Number, required: true, default: 0 },
   wins: { type: Number, required: true, default: 0 },
 });
 export interface IRankingEntity extends Document {
   readonly wins: number;
-  readonly god: string;
+  readonly god: IGodEntity;
   readonly points: number;
 }
