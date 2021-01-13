@@ -1,0 +1,87 @@
+
+Create entity Matches:
+  ☐ Create Domain
+    ☐ Create Interface Repository
+      ☐ GetMatches
+      ☐ GetMatch
+      ☐ CreateMatch
+      ☐ UpdateMatch
+    ☐ Create Model
+    ☐ Create Module
+  ☐ Create Infrastructure
+    ☐ Create Entity 
+    ☐ Create Implement Repository
+      ☐ GetMatches
+      ☐ GetMatch
+      ☐ CreateMatch
+      ☐ UpdateMatch
+    ☐ Create Repository Module
+  ☐ Create Application
+    ☐ Create Controller
+      ☐ GetMatches
+      ☐ GetMatch
+      ☐ CreateMatch
+      ☐ UpdateMatch
+    ☐ Create Dto
+    ☐ Create Mapper
+    ☐ Create Service
+      ☐ Create Interface
+        ☐ GetMatches
+        ☐ GetMatch
+        ☐ CreateMatch
+        ☐ UpdateMatch
+      ☐ Create Implement Service
+        ☐ GetMatches
+        ☐ GetMatch
+        ☐ CreateMatch
+        ☐ UpdateMatch
+    ☐ Create Application Module for Entity
+
+Create entity Position-Competitions:
+    ☐ Create Domain
+      ☐ Create Interface Repository
+        ☐ GetPositionCompetitions
+        ☐ GetPositionCompetition
+        ☐ CreatePositionCompetition
+        ☐ UpdatePositionCompetition
+      ☐ Create Model
+      ☐ Create Module
+    ☐ Create Infrastructure
+      ☐ Create Entity
+      ☐ Create Implement Repository
+        ☐ GetPositionCompetitions
+        ☐ GetPositionCompetition
+        ☐ CreatePositionCompetition
+        ☐ UpdatePositionCompetition
+      ☐ Create Repository Module
+    ☐ Create Application
+      ☐ Create Controller
+        ☐ GetPositionCompetitions
+        ☐ GetPositionCompetition
+        ☐ CreatePositionCompetition
+        ☐ UpdatePositionCompetition
+      ☐ Create Dto
+      ☐ Create Mapper
+      ☐ Create Service
+        ☐ Create Interface
+          ☐ GetPositionCompetitions
+          ☐ GetPositionCompetition
+          ☐ CreatePositionCompetition
+          ☐ UpdatePositionCompetition
+        ☐ Create Implement Service
+          ☐ GetPositionCompetitions
+          ☐ GetPositionCompetition
+          ☐ CreatePositionCompetition
+          ☐ UpdatePositionCompetition
+      ☐ Create Application Module for Entity
+    
+  Analyze:
+     ☐ Analyze what services are needed
+      ☐ Gods
+      ☐ Rankings
+      ☐ Competitions
+      ☐ Seasons
+      ☐ Rounds
+      ☐ Matches
+      ☐ Position-Competitions
+    ☐ Analyze query populate mongoose @high @4h

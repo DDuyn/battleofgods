@@ -20,7 +20,7 @@ export class RoundController {
     return await this.roundService.findAll();
   }
 
-  @ApiParam({ name: 'Description of Round', type: 'string' })
+  @ApiParam({ name: 'description', type: 'string' })
   @ApiResponse({ status: 200, description: 'Return a Round', type: RoundDto })
   @Get('/:description')
   async getRoundByDescription(
