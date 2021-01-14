@@ -22,10 +22,6 @@ export class RankingService implements IRankingService {
     );
   }
 
-  async createNewRanking(rankingDto: RankingDto): Promise<RankingDto> {
-    return await this.rankingRepository.createNewRanking(rankingDto);
-  }
-
   async createRanking(): Promise<RankingDto[]> {
     const gods: GodDto[] = await this.godService.findAll();
     return RankingMapper.fromEntityListToDto(
