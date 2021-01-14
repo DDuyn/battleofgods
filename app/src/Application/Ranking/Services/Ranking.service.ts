@@ -16,7 +16,7 @@ export class RankingService implements IRankingService {
     private readonly godService: IGodService,
   ) {}
 
-  async findAll(): Promise<RankingDto[]> {
+  async findAll(): Promise<RankingDto[]> {  
     return RankingMapper.fromEntityListToDto(
       await this.rankingRepository.findAll(),
     );
@@ -44,7 +44,7 @@ export class RankingService implements IRankingService {
   private createInitialRanking(gods: GodDto[]): Ranking[] {
     const rankingCreated: Ranking[] = [];
     gods.forEach(god => {
-      rankingCreated.push({ god: god.name, points: 0, wins: 0 });
+      rankingCreated.push({ god: god, points: 0, wins: 0 });
     });
 
     return rankingCreated;

@@ -18,16 +18,19 @@ export class RankingRepository implements IRankingRepository {
   async createRanking(
     listRanking: IRankingEntity[],
   ): Promise<IRankingEntity[]> {
-    return await this.rankingModel.create(listRanking);
+    return await this.rankingModel.create(listRanking);  
   }
 
   async updateRankingByGod(
     rankingGod: IRankingEntity,
   ): Promise<IRankingEntity> {
     return await this.rankingModel.findOneAndUpdate(
-      { god: rankingGod.god },
+      { god: rankingGod.god._id },
       rankingGod,
       { new: true },
-    );
+    ).catch((err) => {      
+      console.error('Error:', err)
+      return null;
+    });
   }
 }

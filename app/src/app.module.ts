@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Module } from '@nestjs/common';
 import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 import { DomainModule } from './Domain/domain.module';
@@ -21,7 +22,11 @@ import { DatabaseModule } from './Config/Database/Database.module';
           useNewUrlParser: true,
           useUnifiedTopology: true,
           useFindAndModify: false,
-        };
+          connectionFactory: (connection) => {
+            connection.plugin(require('mongoose-autopopulate'));
+            return connection;
+          }
+        };      
       },
       inject: [DatabaseConnectionService],
     }),
