@@ -1,4 +1,7 @@
 
+Refactoring Entities with Populate:
+  ☐ Refactoring @high 
+
 Create entity Matches:
   ☐ Create Domain
     ☐ Create Interface Repository
@@ -84,4 +87,4 @@ Create entity Position-Competitions:
       ☐ Rounds
       ☐ Matches
       ☐ Position-Competitions
-    ☐ Analyze query populate mongoose @high @4h
+    ✔ Analyze query populate mongoose @high @done(21-01-14 01:22)
