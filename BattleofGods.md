@@ -180,3 +180,15 @@ Entidad que contendrá las posiciones finales de cada dios en una competición s
 
 > Esta representación indica la posición final de cada Dios en una competición y temporada
 > y la puntuación que obtiene en esa competición.
+
+### PROCEDIMIENTO ACTUALIZACIÓN RANKING
+
+---
+
+El proceso para actualizar el ranking será el siguiente:
+
+- Termina una competición
+
+  - Se obtiene las posiciones y puntuaciones de todos los dioses para esa competición y temporada.
+
+  - Se envia un objeto con un listado de dioses y sus puntuaciones. Luego en el servicio se cálcula dichas puntuaciones y se actualizada cada registro.

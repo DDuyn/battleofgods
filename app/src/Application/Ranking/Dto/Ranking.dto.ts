@@ -5,7 +5,7 @@ export default class RankingDto {
   @ApiProperty()
   readonly god: GodDto;
   @ApiProperty()
-  readonly points: number;
+  points: number;
   @ApiProperty()
-  readonly wins: number;
+  wins: number;
 }

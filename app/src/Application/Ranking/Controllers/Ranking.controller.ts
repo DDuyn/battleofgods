@@ -1,7 +1,10 @@
-import { Controller, Inject, Get, Post, Put, Body } from '@nestjs/common';
+import { Controller, Inject, Get, Post, Put, Body, HttpStatus } from '@nestjs/common';
 import RankingDto from '../Dto/Ranking.dto';
+import RankingUpdateDto from '../Dto/RankingUpdate.dto';
 import { IRankingService } from '../Services/Interfaces/IRanking.service';
 import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { CONSTANTS } from 'src/Utils/Constants/Constants';
+
 
 @ApiTags('ranking')
 @Controller('ranking')
@@ -22,16 +25,22 @@ export class RankingController {
     return await this.rankingService.createRanking();
   }
 
-  @ApiBody({ description: 'Ranking list', type: [RankingDto] })
+  @ApiBody({ description: 'Ranking list', type: [RankingUpdateDto] })
   @ApiResponse({
     status: 200,
     description: 'Ranking Updated',
-    type: [RankingDto],
+    type: HttpStatus.OK.toString(),
+  })  
+  @ApiResponse({
+    status: 404,
+    description: 'Ranking Not Updated',
+    type: HttpStatus.NOT_FOUND.toString(),
   })
   @Put('/')
   async updateRankingByGod(
-    @Body() rankingList: RankingDto[],
-  ): Promise<RankingDto[]> {
-    return await this.rankingService.updateRankingByGod(rankingList);
+    @Body() rankingList: RankingUpdateDto[],
+  ): Promise<number> {    
+    const status: HttpStatus = await this.rankingService.updateRankingByGod(rankingList);
+    return (status === HttpStatus.OK) ? CONSTANTS.NUMBER_ONE : CONSTANTS.NUMBER_ZERO;
   }
 }

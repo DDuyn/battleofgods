@@ -1,9 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common/enums';
 import GodDto from 'src/Application/God/Dto/God.dto';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
 import { Ranking } from 'src/Domain/Ranking/Model/Ranking';
 import { IRankingRepository } from 'src/Domain/Ranking/Repositories/IRanking.repository';
+import { CONSTANTS } from 'src/Utils/Constants/Constants';
 import RankingDto from '../Dto/Ranking.dto';
+import RankingUpdateDto from '../Dto/RankingUpdate.dto';
 import { RankingMapper } from '../Mappers/Ranking.mapper';
 import { IRankingService } from './Interfaces/IRanking.service';
 
@@ -31,14 +34,27 @@ export class RankingService implements IRankingService {
     );
   }
 
-  async updateRankingByGod(rankingGod: RankingDto[]): Promise<RankingDto[]> {
-    rankingGod.forEach(ranking => {
-      this.rankingRepository.updateRankingByGod(ranking);
-    });
+  async updateRankingByGod(rankingGod: RankingUpdateDto[]): Promise<HttpStatus> {
+    try {
+      let rankingList: RankingDto[] = await this.findAll();
 
-    return RankingMapper.fromEntityListToDto(
-      await this.rankingRepository.findAll(),
-    );
+      rankingList = rankingList.map(godToUpdate => {     
+        const updatedGod = rankingGod.filter(x =>x.god._id === godToUpdate.god._id.toString());
+          godToUpdate.wins += updatedGod[0].isWinner ? CONSTANTS.NUMBER_ONE : CONSTANTS.NUMBER_ZERO;
+          godToUpdate.points += updatedGod[0].pointsEarned;
+          return godToUpdate;
+      });
+  
+      rankingList.forEach(async ranking => {
+       await this.rankingRepository.updateRankingByGod(ranking);          
+      });
+      return HttpStatus.OK;
+    } catch (error) {
+      console.error('Error', error)
+      return HttpStatus.NOT_FOUND;
+    }
+
+
   }
 
   private createInitialRanking(gods: GodDto[]): Ranking[] {
