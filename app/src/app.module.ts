@@ -7,6 +7,7 @@ import { ApplicationModule } from './Application/Application.module';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseConnectionService } from './Config/Database/DatabaseConnection.service';
 import { DatabaseModule } from './Config/Database/Database.module';
+import { APIModule } from './API/API.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { DatabaseModule } from './Config/Database/Database.module';
     DomainModule,
     InfrastructureModule,
     ApplicationModule,
+    APIModule
   ],
 })
 export class AppModule {}
