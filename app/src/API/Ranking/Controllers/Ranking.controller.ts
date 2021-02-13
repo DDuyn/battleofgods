@@ -1,8 +1,8 @@
 import { Controller, Inject, Get, Post, Put, Body, HttpStatus } from '@nestjs/common';
-import RankingDto from '../Dto/Ranking.dto';
-import RankingUpdateDto from '../Dto/RankingUpdate.dto';
-import { IRankingService } from '../Services/Interfaces/IRanking.service';
 import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
+import RankingDto from 'src/Application/Ranking/Dto/Ranking.dto';
+import RankingUpdateDto from 'src/Application/Ranking/Dto/RankingUpdate.dto';
+import { IRankingService } from 'src/Application/Ranking/Services/Interfaces/IRanking.service';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
 
 

@@ -1,7 +1,7 @@
 import { Controller, Inject, Get, Param, Post, Body } from '@nestjs/common';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
-import GodDto from '../Dto/God.dto';
 import { ApiTags, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
+import GodDto from 'src/Application/God/Dto/God.dto';
 
 @ApiTags('god')
 @Controller('god')
