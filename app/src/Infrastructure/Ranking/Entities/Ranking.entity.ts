@@ -1,5 +1,6 @@
 import { Schema, Document } from 'mongoose';
-import { IGodEntity } from 'src/Infrastructure/God/Entities/God.entity';
+import { IGodEntity } from 'src/Domain/God/Model/God';
+
 
 export const RankingModel = new Schema({
   god: { type: Schema.Types.ObjectId, ref: 'God', required: true, autopopulate: true },

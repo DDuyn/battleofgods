@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { GodModel } from './Entities/God.entity';
+import { GodModel } from 'src/Domain/God/Model/God';
 import { GodRepository } from './Repositories/God.repository';
 
 @Module({
@@ -25,4 +25,4 @@ import { GodRepository } from './Repositories/God.repository';
     },
   ],
 })
-export class GodRepositoryModule {}
+export class GodInfrastructureModule {}

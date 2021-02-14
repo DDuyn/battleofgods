@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { GodRepositoryModule } from '../God/GodRepository.module';
+import { GodInfrastructureModule } from '../God/GodInfrastructure.module';
 import { RankingModel } from './Entities/Ranking.entity';
 import { RankingRepository } from './Repositories/Ranking.repository';
 
@@ -12,7 +12,7 @@ import { RankingRepository } from './Repositories/Ranking.repository';
         schema: RankingModel,
       },
     ]),
-    GodRepositoryModule
+    GodInfrastructureModule
   ],
   providers: [
     {

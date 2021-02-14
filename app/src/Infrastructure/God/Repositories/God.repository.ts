@@ -2,7 +2,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Injectable } from '@nestjs/common';
 import { IGodRepository } from 'src/Domain/God/Repositories/IGod.repository';
-import { IGodEntity } from '../Entities/God.entity';
+import { IGodEntity } from 'src/Domain/God/Model/God';
 
 @Injectable()
 export class GodRepository implements IGodRepository {

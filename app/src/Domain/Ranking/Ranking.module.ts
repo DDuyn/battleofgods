@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { GodRepositoryModule } from 'src/Infrastructure/God/GodRepository.module';
+import { GodInfrastructureModule } from 'src/Infrastructure/God/GodInfrastructure.module';
 import { RankingRepositoryModule } from 'src/Infrastructure/Ranking/RankingRepository.module';
 
 @Module({
-  imports: [RankingRepositoryModule, GodRepositoryModule],
+  imports: [RankingRepositoryModule, GodInfrastructureModule],
 })
 export class RankingModule {}

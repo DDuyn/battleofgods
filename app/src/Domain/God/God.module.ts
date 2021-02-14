@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { GodRepositoryModule } from 'src/Infrastructure/God/GodRepository.module';
+import { GodInfrastructureModule } from 'src/Infrastructure/God/GodInfrastructure.module';
 
 @Module({
-  imports: [GodRepositoryModule],
+  imports: [GodInfrastructureModule],
 })
 export class GodModule {}

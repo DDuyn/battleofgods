@@ -1,20 +1,20 @@
 import { Module } from '@nestjs/common';
 import { CompetitionInfrastructureModule } from './Competition/CompetitionInfrastructure.module';
-import { GodRepositoryModule } from './God/GodRepository.module';
+import { GodInfrastructureModule } from './God/GodInfrastructure.module';
 import { RankingRepositoryModule } from './Ranking/RankingRepository.module';
 import { RoundRepositoryModule } from './Round/RoundRepository.module';
 import { SeasonRepositoryModule } from './Season/SeasonRepository.module';
 
 @Module({
   imports: [
-    GodRepositoryModule,
+    GodInfrastructureModule,
     RankingRepositoryModule,
     CompetitionInfrastructureModule,
     SeasonRepositoryModule,
     RoundRepositoryModule,
   ],
   exports: [
-    GodRepositoryModule,
+    GodInfrastructureModule,
     RankingRepositoryModule,
     CompetitionInfrastructureModule,
     SeasonRepositoryModule,
