@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { CompetitionModule } from 'src/Domain/Competition/Competition.module';
-import { CompetitionRepositoryModule } from 'src/Infrastructure/Competition/CompetitionRepository.module';
+import { CompetitionInfrastructureModule } from 'src/Infrastructure/Competition/CompetitionInfrastructure.module';
 import { CompetitionService } from './Services/Competition.service';
 
 @Module({
-  imports: [CompetitionModule, CompetitionRepositoryModule],
+  imports: [CompetitionModule, CompetitionInfrastructureModule],
   providers: [
     {
       provide: 'ICompetitionService',

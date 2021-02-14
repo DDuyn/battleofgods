@@ -1,5 +1,5 @@
-import { Competition } from 'src/Domain/Competition/Model/Competition';
 import CompetitionDto from '../Dto/Competition.dto';
+import { Competition } from '../../../Domain/Competition/Model/Competition';
 
 export class CompetitionMapper {
   public static fromEntityToDto(

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CompetitionModel } from './Entities/Competition.entity';
+import { CompetitionModel } from 'src/Domain/Competition/Model/Competition';
 import { CompetitionRepository } from './Repositories/Competition.repository';
 
 @Module({
@@ -25,4 +25,4 @@ import { CompetitionRepository } from './Repositories/Competition.repository';
     },
   ],
 })
-export class CompetitionRepositoryModule {}
+export class CompetitionInfrastructureModule {}

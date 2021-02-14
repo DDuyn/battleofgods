@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { ICompetitionEntity } from 'src/Domain/Competition/Model/Competition';
 import { ICompetitionRepository } from 'src/Domain/Competition/Repositories/ICompetition.repository';
-import { ICompetitionEntity } from '../Entities/Competition.entity';
+
 
 @Injectable()
 export class CompetitionRepository implements ICompetitionRepository {
