@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { RoundModel } from './Entities/Round.repository';
 import { RoundRepository } from './Repositories/Round.repository';
+import { RoundModel } from '../../Domain/Round/Model/Round';
 
 @Module({
   imports: [
@@ -25,4 +25,4 @@ import { RoundRepository } from './Repositories/Round.repository';
     },
   ],
 })
-export class RoundRepositoryModule {}
+export class RoundInfrastructureModule {}

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { IRoundEntity } from 'src/Domain/Round/Model/Round';
 import { IRoundRepository } from 'src/Domain/Round/Repositories/IRound.repository';
-import { IRoundEntity } from '../Entities/Round.repository';
 
 @Injectable()
 export class RoundRepository implements IRoundRepository {

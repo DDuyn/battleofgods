@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { GodController } from './Controllers/God.controller';
 import { GodApplicationModule } from 'src/Application/God/GodApplication.module';
-import { GodInfrastructureModule } from '../../Infrastructure/God/GodInfrastructure.module';
+import { GodInfrastructureModule } from 'src/Infrastructure/God/GodInfrastructure.module';
+
 
 
 @Module({

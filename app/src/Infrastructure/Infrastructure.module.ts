@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CompetitionInfrastructureModule } from './Competition/CompetitionInfrastructure.module';
 import { GodInfrastructureModule } from './God/GodInfrastructure.module';
 import { RankingInfrastructureModule } from './Ranking/RankingInfrastructure.module';
-import { RoundRepositoryModule } from './Round/RoundRepository.module';
+import { RoundInfrastructureModule } from './Round/RoundInfrastructure.module';
 import { SeasonRepositoryModule } from './Season/SeasonRepository.module';
 
 @Module({
@@ -11,14 +11,14 @@ import { SeasonRepositoryModule } from './Season/SeasonRepository.module';
     RankingInfrastructureModule,
     CompetitionInfrastructureModule,
     SeasonRepositoryModule,
-    RoundRepositoryModule,
+    RoundInfrastructureModule,
   ],
   exports: [
     GodInfrastructureModule,
     RankingInfrastructureModule,
     CompetitionInfrastructureModule,
     SeasonRepositoryModule,
-    RoundRepositoryModule,
+    RoundInfrastructureModule,
   ],
 })
 export class InfrastructureModule {}

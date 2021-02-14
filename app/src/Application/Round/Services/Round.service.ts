@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Round } from 'src/Domain/Round/Model/Round';
 import { IRoundRepository } from 'src/Domain/Round/Repositories/IRound.repository';
 import RoundDto from '../Dto/Round.dto';
 import { RoundMapper } from '../Mappers/Round.mapper';

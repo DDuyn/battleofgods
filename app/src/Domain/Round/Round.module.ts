@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
-import { RoundRepositoryModule } from 'src/Infrastructure/Round/RoundRepository.module';
 
 @Module({
-  imports: [RoundRepositoryModule],
+  exports: [RoundModule],
 })
 export class RoundModule {}
