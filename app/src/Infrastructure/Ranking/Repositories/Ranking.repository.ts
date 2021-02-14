@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { IRankingEntity } from 'src/Domain/Ranking/Model/Ranking';
 import { IRankingRepository } from 'src/Domain/Ranking/Repositories/IRanking.repository';
-import { IRankingEntity } from '../Entities/Ranking.entity';
 
 @Injectable()
 export class RankingRepository implements IRankingRepository {

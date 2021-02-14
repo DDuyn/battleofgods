@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { RankingController } from './Controllers/Ranking.controller';
 import { RankingApplicationModule } from '../../Application/Ranking/RankingApplication.module';
-import { RankingRepositoryModule } from '../../Infrastructure/Ranking/RankingRepository.module';
+import { RankingInfrastructureModule } from '../../Infrastructure/Ranking/RankingInfrastructure.module';
 
 
 
 @Module({
   controllers: [RankingController],
-  imports: [RankingApplicationModule, RankingRepositoryModule],
+  imports: [RankingApplicationModule, RankingInfrastructureModule],
 
 })
 export class RankingAPIModule {}

@@ -39,8 +39,7 @@ export class RankingController {
   @Put('/')
   async updateRankingByGod(
     @Body() rankingList: RankingUpdateDto[],
-  ): Promise<number> {    
-    const status: HttpStatus = await this.rankingService.updateRankingByGod(rankingList);
-    return (status === HttpStatus.OK) ? CONSTANTS.NUMBER_ONE : CONSTANTS.NUMBER_ZERO;
+  ): Promise<HttpStatus> {    
+    return await this.rankingService.updateRankingByGod(rankingList);
   }
 }
