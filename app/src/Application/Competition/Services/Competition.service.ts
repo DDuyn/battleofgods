@@ -30,6 +30,6 @@ export class CompetitionService implements ICompetitionService {
     competition: CompetitionCreateDto,
   ): Promise<CompetitionDto> {
     competition.idCompetition = (await this.competitionRepository.findLastCompetition()).idCompetition + 1;
-    return await this.competitionRepository.createCompetition(competition);
+    return CompetitionMapper.fromEntityToDto(await this.competitionRepository.createCompetition(competition));
   }
 }
