@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { ISeasonEntity } from 'src/Domain/Season/Model/Season';
 import { ISeasonRepository } from 'src/Domain/Season/Repositories/ISeason.repository';
-import { ISeasonEntity } from '../Entities/Season.entity';
 
 @Injectable()
 export class SeasonRepository implements ISeasonRepository {

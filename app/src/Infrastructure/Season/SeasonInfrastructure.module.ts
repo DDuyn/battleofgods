@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { SeasonModel } from "./Entities/Season.entity";
+import { SeasonModel } from "src/Domain/Season/Model/Season";
 import { SeasonRepository } from "./Repositories/Season.repository";
 
 @Module({
@@ -26,4 +26,4 @@ import { SeasonRepository } from "./Repositories/Season.repository";
     ],
 })
 
-export class SeasonRepositoryModule { }
+export class SeasonInfrastructureModule { }

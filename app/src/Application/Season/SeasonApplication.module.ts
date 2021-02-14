@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { SeasonModule } from "src/Domain/Season/Season.module";
-import { SeasonRepositoryModule } from "src/Infrastructure/Season/SeasonRepository.module";
+import { SeasonInfrastructureModule } from "src/Infrastructure/Season/SeasonInfrastructure.module";
 import { SeasonController } from "./Controllers/Season.controller";
 import { SeasonService } from "./Services/Season.service";
 
@@ -19,7 +19,7 @@ import { SeasonService } from "./Services/Season.service";
             useClass: SeasonService
         }
     ],
-    imports: [SeasonModule, SeasonRepositoryModule]
+    imports: [SeasonModule, SeasonInfrastructureModule]
 })
 
 export class SeasonApplicationModule { }
