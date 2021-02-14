@@ -12,6 +12,10 @@ export class CompetitionRepository implements ICompetitionRepository {
     private competitionModel: Model<ICompetitionEntity>,
   ) {}
 
+  async findLastCompetition(): Promise<ICompetitionEntity> {
+    return await this.competitionModel.findOne().sort({ idCompetition: 'desc' }).limit(1);
+  }
+
   async findAll(): Promise<ICompetitionEntity[]> {
     return await this.competitionModel.find();
   }

@@ -1,7 +1,9 @@
 import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { ApiTags, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
 import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
+import CompetitionCreateDto from 'src/Application/Competition/Dto/CompetitionCreate.dto';
 import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetitionService';
+
 
 @ApiTags('competition')
 @Controller('competition')
@@ -42,15 +44,15 @@ export class CompetitionController {
   @ApiResponse({
     status: 200,
     description: 'Create a competition',
-    type: CompetitionDto,
+    type: CompetitionCreateDto,
   })
   @ApiBody({
     description: 'A competition',
-    type: CompetitionDto,
+    type: CompetitionCreateDto,
   })
   async createCompetition(
-    @Body() competition: CompetitionDto,
-  ): Promise<CompetitionDto> {
+    @Body() competition: CompetitionCreateDto,
+  ): Promise<CompetitionCreateDto> {
     return this.competitionService.createCompetition(competition);
   }
 

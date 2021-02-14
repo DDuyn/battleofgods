@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Competition } from 'src/Domain/Competition/Model/Competition';
 import { ICompetitionRepository } from 'src/Domain/Competition/Repositories/ICompetition.repository';
 import CompetitionDto from '../Dto/Competition.dto';
+import CompetitionCreateDto from '../Dto/CompetitionCreate.dto';
 import { CompetitionMapper } from '../Mappers/Competition.mapper';
 import { ICompetitionService } from './Interfaces/ICompetitionService';
 
@@ -9,15 +10,15 @@ import { ICompetitionService } from './Interfaces/ICompetitionService';
 export class CompetitionService implements ICompetitionService {
   constructor(
     @Inject('ICompetitionRepository')
-    private readonly CompetitionRepository: ICompetitionRepository,
+    private readonly competitionRepository: ICompetitionRepository,
   ) {}
   async findAll(): Promise<CompetitionDto[]> {
     return CompetitionMapper.fromEntityListToDto(
-      await this.CompetitionRepository.findAll(),
+      await this.competitionRepository.findAll(),
     );
   }
   async findById(competitionId: number): Promise<CompetitionDto> {
-    const competition: Competition = await this.CompetitionRepository.findById(
+    const competition: Competition = await this.competitionRepository.findById(
       competitionId,
     );
     return !!competition
@@ -26,8 +27,9 @@ export class CompetitionService implements ICompetitionService {
   }
 
   async createCompetition(
-    competition: CompetitionDto,
+    competition: CompetitionCreateDto,
   ): Promise<CompetitionDto> {
-    return await this.CompetitionRepository.createCompetition(competition);
+    competition.idCompetition = (await this.competitionRepository.findLastCompetition()).idCompetition + 1;
+    return await this.competitionRepository.createCompetition(competition);
   }
 }
