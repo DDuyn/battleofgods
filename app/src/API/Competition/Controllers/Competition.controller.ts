@@ -2,7 +2,7 @@ import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { ApiTags, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
 import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
 import CompetitionCreateDto from 'src/Application/Competition/Dto/CompetitionCreate.dto';
-import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetitionService';
+import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetition.service';
 
 
 @ApiTags('competition')

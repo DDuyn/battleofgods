@@ -1,7 +1,7 @@
 import { Controller, Get, Inject, Param, Post, Put } from '@nestjs/common';
 import { ApiTags, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
 import SeasonDto from 'src/Application/Season/Dto/Season.dto';
-import { ISeasonService } from 'src/Application/Season/Services/Interfaces/ISeasonService';
+import { ISeasonService } from 'src/Application/Season/Services/Interfaces/ISeason.service';
 
 @ApiTags('season')
 @Controller('season')

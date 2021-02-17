@@ -7,11 +7,13 @@ export type Competition = {
 }
 
 export const CompetitionModel = new Schema({
-  idCompetition: { type: Number, required: true,},
+  idCompetition: { type: Number, required: true},
   description: { type: String, required: true },
 });
+
 export interface ICompetitionEntity extends Document {
   readonly id: string;
   readonly idCompetition: number;
   readonly description: string;
 }
+

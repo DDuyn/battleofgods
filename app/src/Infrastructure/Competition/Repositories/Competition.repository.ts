@@ -3,8 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ICompetitionEntity } from 'src/Domain/Competition/Model/Competition';
 import { ICompetitionRepository } from 'src/Domain/Competition/Repositories/ICompetition.repository';
-
-
 @Injectable()
 export class CompetitionRepository implements ICompetitionRepository {
   constructor(
@@ -28,7 +26,7 @@ export class CompetitionRepository implements ICompetitionRepository {
 
   async createCompetition(
     competition: ICompetitionEntity,
-  ): Promise<ICompetitionEntity> {
+  ): Promise<ICompetitionEntity> {  
     return await this.competitionModel.create(competition);
   }
 }
