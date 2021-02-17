@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-
 @Module({
-  exports: [CompetitionModule]
+  exports: [CompetitionModule],
 })
 export class CompetitionModule {}
