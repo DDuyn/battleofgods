@@ -3,8 +3,6 @@ import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
 import RankingDto from 'src/Application/Ranking/Dto/Ranking.dto';
 import RankingUpdateDto from 'src/Application/Ranking/Dto/RankingUpdate.dto';
 import { IRankingService } from 'src/Application/Ranking/Services/Interfaces/IRanking.service';
-import { CONSTANTS } from 'src/Utils/Constants/Constants';
-
 
 @ApiTags('ranking')
 @Controller('ranking')
