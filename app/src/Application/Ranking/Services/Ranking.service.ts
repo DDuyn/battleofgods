@@ -36,15 +36,15 @@ export class RankingService implements IRankingService {
 
   async updateRankingByGod(rankingGod: RankingUpdateDto[]): Promise<HttpStatus> {
     try {
-      let rankingList: RankingDto[] = await this.findAll();
-      rankingList = rankingList.map(godToUpdate => {     
-        const updatedGod = rankingGod.filter(x =>x.god._id === godToUpdate.god._id.toString());          
-          godToUpdate.wins += updatedGod[0].isWinner ? CONSTANTS.NUMBER_ONE : CONSTANTS.NUMBER_ZERO;
-          godToUpdate.points += updatedGod[0].pointsEarned;
+      let rankingToUpdateList: Ranking[] = await this.rankingRepository.findAll();
+      rankingToUpdateList = rankingToUpdateList.map(godToUpdate => {     
+        const god = rankingGod.find(x =>x.godId === godToUpdate.god.godId);          
+          godToUpdate.wins += god.isWinner ? CONSTANTS.NUMBER_ONE : CONSTANTS.NUMBER_ZERO;
+          godToUpdate.points += god.pointsEarned;
           return godToUpdate;
       });
   
-      rankingList.forEach(async ranking => {
+      rankingToUpdateList.forEach(async ranking => {
        await this.rankingRepository.updateRankingByGod(ranking);          
       });
       return HttpStatus.OK;
@@ -52,8 +52,6 @@ export class RankingService implements IRankingService {
       console.error('Error', error)
       return HttpStatus.NOT_FOUND;
     }
-
-
   }
 
   private createInitialRanking(gods: GodDto[]): Ranking[] {

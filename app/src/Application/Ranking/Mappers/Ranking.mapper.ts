@@ -4,7 +4,8 @@ import RankingDto from '../Dto/Ranking.dto';
 export class RankingMapper {
   public static fromEntityToDto(rankingEntity: Ranking): RankingDto {
     const rankingDto: RankingDto = {       
-      god: rankingEntity.god,
+      godId: rankingEntity.god.godId,
+      godName: rankingEntity.god.name,
       points: rankingEntity.points,
       wins: rankingEntity.wins,
     };

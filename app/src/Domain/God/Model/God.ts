@@ -1,7 +1,7 @@
 import { Schema, Document } from 'mongoose';
 
 export type God = {
-  readonly _id?: string;
+  readonly godId: number;
   readonly name: string;
   readonly origen: string;
   readonly history: string;
@@ -9,6 +9,7 @@ export type God = {
 };
 
 export const GodModel = new Schema({
+  godId: { type: Number, required: true},
   name: { type: String, required: true },
   origen: { type: String, required: true },
   history: { type: String, required: true },
@@ -16,7 +17,7 @@ export const GodModel = new Schema({
 });
 
 export interface IGodEntity extends Document {
-  readonly id: string;
+  readonly godId: number;
   readonly name: string;
   readonly origen: string;
   readonly history: string;

@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export default class CompetitionDto {
   @ApiProperty()
-  readonly idCompetition: number;
+  readonly competitionId: number;
   @ApiProperty()
   readonly description: string;
 }

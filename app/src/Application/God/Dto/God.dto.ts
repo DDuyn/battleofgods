@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export default class GodDto {
   @ApiProperty()
-  readonly _id?: string;
+  readonly godId: number;
   @ApiProperty()
   readonly name: string;
   @ApiProperty()

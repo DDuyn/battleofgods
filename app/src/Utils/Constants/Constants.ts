@@ -3,6 +3,3 @@ export const CONSTANTS = {
     NUMBER_ONE: 1 
 }
 
-export const MODELS = {
-    COMPETITION: 'Competition'
-}
