@@ -1,7 +1,8 @@
 import GodDto from '../../Dto/God.dto';
+import GodCreateDto from 'src/Application/God/Dto/GodCreate.dto';
 
 export interface IGodService {
   findAll(): Promise<GodDto[]>;
   findByName(godName: string): Promise<GodDto>;
-  createGod(god: GodDto): Promise<GodDto>;
+  createGod(god: GodCreateDto): Promise<GodDto>;
 }

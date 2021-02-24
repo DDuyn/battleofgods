@@ -44,7 +44,7 @@ export class CompetitionController {
   @ApiResponse({
     status: 200,
     description: 'Create a competition',
-    type: CompetitionCreateDto,
+    type: CompetitionDto,
   })
   @ApiBody({
     description: 'A competition',
@@ -52,7 +52,7 @@ export class CompetitionController {
   })
   async createCompetition(
     @Body() competition: CompetitionCreateDto,
-  ): Promise<CompetitionCreateDto> {
+  ): Promise<CompetitionDto> {
     return this.competitionService.createCompetition(competition);
   }
 
