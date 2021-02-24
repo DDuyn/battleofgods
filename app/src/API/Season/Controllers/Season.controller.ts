@@ -49,7 +49,7 @@ export class SeasonController {
 
   @ApiParam({ name: 'seasonId', description: 'Id of Season', type: 'number' })
   @ApiResponse({ status: 200, description: 'Updated Season', type: SeasonDto })
-  @Put('/updateSeason/:seasonId')
+  @Put('/:seasonId')
   async updateSeason(@Param('seasonId') seasonId: number): Promise<SeasonDto> {
     return await this.seasonService.updateSeason(seasonId);
   }

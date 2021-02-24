@@ -2,10 +2,10 @@ import { ApiProperty, ApiHideProperty } from '@nestjs/swagger';
 export default class SeasonCreateDto {
   @ApiHideProperty()
   season: number;
-  @ApiProperty()
+  @ApiHideProperty()
   readonly competitionPlayed: number;
   @ApiProperty()
   readonly totalCompetition: number;
-  @ApiProperty()
+  @ApiHideProperty()
   readonly isFinished: boolean;
 }
