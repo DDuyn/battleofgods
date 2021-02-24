@@ -5,4 +5,6 @@ export default class CompetitionCreateDto {
     competitionId: number;
     @ApiProperty()
     readonly description: string;
+    @ApiProperty()
+    readonly name: string;
 }

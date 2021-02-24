@@ -4,6 +4,7 @@ import RoundDto from '../Dto/Round.dto';
 export class RoundMapper {
   public static fromEntityToDto(roundEntity: Round): RoundDto {
     const roundDto: RoundDto = {
+      roundId: roundEntity.roundId,
       description: roundEntity.description,
     };
     return roundDto;

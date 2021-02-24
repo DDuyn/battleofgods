@@ -16,7 +16,7 @@ export class RoundRepository implements IRoundRepository {
     return await this.roundModel.findOne({ description: roundDescription });
   }
 
-  async createRound(roundList: IRoundEntity[]): Promise<IRoundEntity[]> {
-    return await this.roundModel.create(roundList);
+  async createRound(round: IRoundEntity): Promise<IRoundEntity> {
+    return await this.roundModel.create(round);
   }
 }

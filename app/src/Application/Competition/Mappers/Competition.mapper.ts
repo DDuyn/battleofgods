@@ -7,6 +7,7 @@ export class CompetitionMapper {
   ): CompetitionDto {
     const competitionDto: CompetitionDto = {
       competitionId: competitionEntity.competitionId,
+      name: competitionEntity.name,
       description: competitionEntity.description,
     };
     return competitionDto;
