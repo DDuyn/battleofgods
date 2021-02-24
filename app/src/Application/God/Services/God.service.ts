@@ -12,24 +12,24 @@ import { MODELS } from '../../../Utils/Constants/Enum/Models.Enum';
 export class GodService implements IGodService {
   constructor(
     @Inject('IGodRepository')
-    private readonly GodRepository: IGodRepository,
+    private readonly godRepository: IGodRepository,
     @Inject('ICounterService')
-    private readonly CounterService: ICounterService
+    private readonly counterService: ICounterService
   ) {}
 
   async findAll(): Promise<GodDto[]> {
-    const godList: God[] = await this.GodRepository.findAll();
+    const godList: God[] = await this.godRepository.findAll();
     return !!godList ? GodMapper.fromEntityListToDto(godList) : [];
   }
 
   async findByName(godName: string): Promise<GodDto> {
-    return this.isGodNull(await this.GodRepository.findByName(godName));
+    return this.isGodNull(await this.godRepository.findByName(godName));
   }
 
   async createGod(god: GodCreateDto): Promise<GodDto> {
     //TODO: Validaciones
-    god.godId = await this.CounterService.getNextSequenceValue(MODELS.GOD);
-    return this.isGodNull(await this.GodRepository.createGod(god));
+    god.godId = await this.counterService.getNextSequenceValue(MODELS.GOD);
+    return this.isGodNull(await this.godRepository.createGod(god));
   }
 
   private isGodNull(god: God): GodDto {

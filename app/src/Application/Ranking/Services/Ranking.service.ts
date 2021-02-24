@@ -36,6 +36,7 @@ export class RankingService implements IRankingService {
 
   async updateRankingByGod(rankingGod: RankingUpdateDto[]): Promise<HttpStatus> {
     try {
+      //TODO: Mejorar actualización del ranking 
       let rankingToUpdateList: Ranking[] = await this.rankingRepository.findAll();
       rankingToUpdateList = rankingToUpdateList.map(godToUpdate => {     
         const god = rankingGod.find(x =>x.godId === godToUpdate.god.godId);          
