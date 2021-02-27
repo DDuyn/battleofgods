@@ -5,6 +5,7 @@ import { RankingModule } from './Ranking/Ranking.module';
 import { RoundModule } from './Round/Round.module';
 import { SeasonModule } from './Season/Season.module';
 import { CounterModule } from './Counter/Counter.module';
+import { MatchModule } from './Match/Match.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { CounterModule } from './Counter/Counter.module';
     CompetitionModule,
     SeasonModule,
     RoundModule,
-    CounterModule
+    CounterModule,
+    MatchModule
   ],
   exports: [
     GodModule,
@@ -21,7 +23,8 @@ import { CounterModule } from './Counter/Counter.module';
     CompetitionModule,
     SeasonModule,
     RoundModule,
-    CounterModule
+    CounterModule,
+    MatchModule
   ],
 })
 export class DomainModule {}
