@@ -1,4 +1,4 @@
-import { Controller, Inject, Get, Post, Put, Body, HttpStatus } from '@nestjs/common';
+import { Controller, Inject, Get, Post, Put, Body, HttpStatus, NotFoundException } from '@nestjs/common';
 import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
 import RankingDto from 'src/Application/Ranking/Dto/Ranking.dto';
 import RankingUpdateDto from 'src/Application/Ranking/Dto/RankingUpdate.dto';
@@ -37,7 +37,8 @@ export class RankingController {
   @Put('/')
   async updateRankingByGod(
     @Body() rankingList: RankingUpdateDto[],
-  ): Promise<HttpStatus> {    
-    return await this.rankingService.updateRankingByGod(rankingList);
+  ): Promise<void> {    
+    const status: HttpStatus = await this.rankingService.updateRankingByGod(rankingList);
+    if(status === HttpStatus.NOT_FOUND) throw NotFoundException;
   }
 }

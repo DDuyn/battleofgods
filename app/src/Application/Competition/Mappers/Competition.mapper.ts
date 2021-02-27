@@ -9,6 +9,7 @@ export class CompetitionMapper {
       competitionId: competitionEntity.competitionId,
       name: competitionEntity.name,
       description: competitionEntity.description,
+      totalCompetitors: competitionEntity.totalCompetitors
     };
     return competitionDto;
   }

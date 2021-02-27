@@ -7,5 +7,7 @@ export default class CompetitionDto {
   readonly description: string;
   @ApiProperty()
   readonly name: string;
+  @ApiProperty()
+  readonly totalCompetitors: number;
 
 }
