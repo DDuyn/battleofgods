@@ -1,5 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
-
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 export default class GodDto {
   @ApiProperty()
   readonly godId: number;
@@ -11,4 +10,7 @@ export default class GodDto {
   readonly history: string;
   @ApiProperty()
   readonly photo: string;
+  @ApiHideProperty()
+  _id?: string;
+
 }

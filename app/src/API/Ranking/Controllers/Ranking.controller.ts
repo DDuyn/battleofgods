@@ -38,7 +38,7 @@ export class RankingController {
   async updateRankingByGod(
     @Body() rankingList: RankingUpdateDto[],
   ): Promise<void> {    
-    const status: HttpStatus = await this.rankingService.updateRankingByGod(rankingList);
-    if(status === HttpStatus.NOT_FOUND) throw NotFoundException;
+    const status: HttpStatus = await this.rankingService.updateRankingByGod(rankingList);    
+    if(status === HttpStatus.NOT_FOUND) throw new NotFoundException;
   }
 }

@@ -7,7 +7,6 @@ import GodCreateDto from '../Dto/GodCreate.dto';
 import { GodMapper } from '../Mappers/God.mapper';
 import { IGodService } from './Interfaces/IGod.service';
 import { MODELS } from '../../../Utils/Constants/Enum/Models.Enum';
-
 @Injectable()
 export class GodService implements IGodService {
   constructor(
@@ -17,9 +16,9 @@ export class GodService implements IGodService {
     private readonly counterService: ICounterService
   ) {}
 
-  async findAll(): Promise<GodDto[]> {
+  async findAll(isForRanking: boolean): Promise<GodDto[]> {
     const godList: God[] = await this.godRepository.findAll();
-    return !!godList ? GodMapper.fromEntityListToDto(godList) : [];
+    return !!godList ? GodMapper.fromEntityListToDto(godList, isForRanking) : [];
   }
 
   async findByName(godName: string): Promise<GodDto> {

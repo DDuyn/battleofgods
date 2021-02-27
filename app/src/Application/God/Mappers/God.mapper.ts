@@ -1,22 +1,22 @@
 import { God } from 'src/Domain/God/Model/God';
 import GodDto from '../Dto/God.dto';
-
 export class GodMapper {
-  public static fromEntityToDto(godEntity: God): GodDto {
-    const godDto: GodDto = {
+  public static fromEntityToDto(godEntity: God, isForRanking = false): GodDto  {
+    const godDto: GodDto = {      
       godId: godEntity.godId,
       name: godEntity.name,
       history: godEntity.history,
       origen: godEntity.origen,
       photo: godEntity.photo,
     };
+    if (isForRanking) godDto._id = godEntity._id;
     return godDto;
   }
 
-  public static fromEntityListToDto(godEntityList: God[]): GodDto[] {
+  public static fromEntityListToDto(godEntityList: God[], isForRanking = false): GodDto[] {
     const godDtoList: GodDto[] = [];
-    godEntityList.forEach(x => {
-      godDtoList.push(GodMapper.fromEntityToDto(x));
+    godEntityList.forEach(x => {      
+      godDtoList.push(GodMapper.fromEntityToDto(x, isForRanking));
     });
     return godDtoList;
   }

@@ -26,7 +26,7 @@ export class RankingService implements IRankingService {
   }
 
   async createRanking(): Promise<RankingDto[]> {
-    const gods: GodDto[] = await this.godService.findAll();
+    const gods: GodDto[] = await this.godService.findAll(true);    
     return RankingMapper.fromEntityListToDto(
       await this.rankingRepository.createRanking(
         this.createInitialRanking(gods),
@@ -35,30 +35,32 @@ export class RankingService implements IRankingService {
   }
 
   async updateRankingByGod(rankingGod: RankingUpdateDto[]): Promise<HttpStatus> {
-    try {
-      //TODO: Mejorar actualización del ranking 
+    try {    
       let rankingToUpdateList: Ranking[] = await this.rankingRepository.findAll();
       rankingToUpdateList = rankingToUpdateList.map(godToUpdate => {     
-        const god = rankingGod.find(x =>x.godId === godToUpdate.god.godId);          
-          godToUpdate.wins += god.isWinner ? CONSTANTS.NUMBER_ONE : CONSTANTS.NUMBER_ZERO;
-          godToUpdate.points += god.pointsEarned;
-          return godToUpdate;
+        const god = rankingGod.find(x =>x.godId === godToUpdate.god.godId);
+        if(!!god) return this.updateRankingOfGod(god, godToUpdate);
       });
-  
+      ;
       rankingToUpdateList.forEach(async ranking => {
-       await this.rankingRepository.updateRankingByGod(ranking);          
+       if (!!ranking) await this.rankingRepository.updateRankingByGod(ranking);      
       });
       return HttpStatus.OK;
-    } catch (error) {
-      console.error('Error', error)
+    } catch (error) {    
       return HttpStatus.NOT_FOUND;
     }
+  }
+
+  private updateRankingOfGod(rankingOfGod: RankingUpdateDto, rankingToUpdate: Ranking ): Ranking {
+    rankingToUpdate.wins += rankingOfGod.isWinner ? CONSTANTS.NUMBER_ONE : CONSTANTS.NUMBER_ZERO;
+    rankingToUpdate.points += rankingOfGod.pointsEarned;
+    return rankingToUpdate;
   }
 
   private createInitialRanking(gods: GodDto[]): Ranking[] {
     const rankingCreated: Ranking[] = [];
     gods.forEach(god => {
-      rankingCreated.push({ god: god, points: 0, wins: 0 });
+      rankingCreated.push({god: god, points: 0, wins: 0 });
     });
 
     return rankingCreated;

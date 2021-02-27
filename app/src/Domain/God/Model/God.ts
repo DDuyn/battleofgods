@@ -1,6 +1,7 @@
 import { Schema, Document } from 'mongoose';
 
 export type God = {
+  readonly _id?: string;
   readonly godId: number;
   readonly name: string;
   readonly origen: string;

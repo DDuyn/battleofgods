@@ -18,7 +18,7 @@ export class GodController {
   })
   @Get('/')
   async getAllGods(): Promise<GodDto[]> {
-    return await this.godService.findAll();
+    return await this.godService.findAll(false);
   }
 
   @ApiParam({ name: 'godName', description: 'Name of God', type: 'string' })
