@@ -1,6 +1,7 @@
 import { Schema, Document } from 'mongoose';
 
 export type Competition = {
+  readonly _id?: string;
   readonly competitionId: number;
   readonly name: string;
   readonly description: string;

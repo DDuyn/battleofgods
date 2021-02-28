@@ -14,7 +14,7 @@ import { ISeasonService } from "src/Application/Season/Services/Interfaces/ISeas
 @Injectable()
 export class MatchHelper implements IHelperService {
     constructor(
-        @Inject('ICounterService') private readonly helperService: IHelperService,
+        @Inject('IHelperService') private readonly helperService: IHelperService,
         @Inject('IGodService') private readonly godService: IGodService,
         @Inject('ICompetitionService') private readonly competitionService: ICompetitionService,
         @Inject('IRoundService') private readonly roundService: IRoundService,
@@ -25,11 +25,19 @@ export class MatchHelper implements IHelperService {
         return this.helperService.getNextSequenceValue(model);
     }
     private async getGodBattler(godId: number): Promise<GodDto> {
-        return await this.godService.findByGodId(godId);
+        return await this.godService.findByGodId(godId, true);
     }
 
     private async getCompetition(competionId: number): Promise<CompetitionDto> {
-        return await this.competitionService.findById(competionId);
+        return await this.competitionService.findById(competionId, true);
+    }
+
+    private async getRound(roundId: number): Promise<RoundDto> {
+        return await this.roundService.findByRoundId(roundId);
+    }
+
+    private async getSeason(seasonId: number): Promise<SeasonDto> {
+        return await this.seasonService.findBySeason(seasonId);
     }
 
     private whoIsWinner(idFirstBattler: number, idSecondBattler: number, idWinner: number): number {
@@ -40,8 +48,8 @@ export class MatchHelper implements IHelperService {
         const firstBattler: GodDto = await this.getGodBattler(matchDto.idFirstBattler);
         const secondBattler: GodDto = await this.getGodBattler(matchDto.idSecondBattler);
         const competition: CompetitionDto = await this.getCompetition(matchDto.idCompetition);
-        const round: RoundDto = new RoundDto();
-        const season: SeasonDto = new SeasonDto();
+        const round: RoundDto = await this.getRound(matchDto.idRound);
+        const season: SeasonDto = await this.getSeason(matchDto.idSeason);
         const idWinner: number = this.whoIsWinner(matchDto.idFirstBattler, matchDto.idSecondBattler, matchDto.idWinner);
         const winner: GodDto = ( idWinner === matchDto.idFirstBattler) ? firstBattler : secondBattler;
         const matchEntity: Match = {

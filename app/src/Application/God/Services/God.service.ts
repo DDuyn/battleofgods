@@ -16,17 +16,17 @@ export class GodService implements IGodService {
     private readonly helperService: IHelperService
   ) {}
 
-  async findAll(isForRanking: boolean): Promise<GodDto[]> {
+  async findAll(showId: boolean): Promise<GodDto[]> {
     const godList: God[] = await this.godRepository.findAll();
-    return !!godList ? GodMapper.fromEntityListToDto(godList, isForRanking) : [];
+    return !!godList ? GodMapper.fromEntityListToDto(godList, showId) : [];
   }
 
   async findByName(godName: string): Promise<GodDto> {
     return this.isGodNull(await this.godRepository.findByName(godName));
   }
 
-  async findByGodId(godId: number): Promise<GodDto> {
-    return this.isGodNull(await this.godRepository.findByGodId(godId));
+  async findByGodId(godId: number, showId: boolean): Promise<GodDto> {
+    return this.isGodNull(await this.godRepository.findByGodId(godId), showId);
   }
 
   async createGod(god: GodCreateDto): Promise<GodDto> {
@@ -35,7 +35,7 @@ export class GodService implements IGodService {
     return this.isGodNull(await this.godRepository.createGod(god));
   }
 
-  private isGodNull(god: God): GodDto {
-    return !!god ? GodMapper.fromEntityToDto(god) : new GodDto();
+  private isGodNull(god: God, showId = false): GodDto {
+    return !!god ? GodMapper.fromEntityToDto(god, showId) : new GodDto();
   }
 }

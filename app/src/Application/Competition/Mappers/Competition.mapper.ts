@@ -4,6 +4,7 @@ import { Competition } from '../../../Domain/Competition/Model/Competition';
 export class CompetitionMapper {
   public static fromEntityToDto(
     competitionEntity: Competition,
+    showId = false
   ): CompetitionDto {
     const competitionDto: CompetitionDto = {
       competitionId: competitionEntity.competitionId,
@@ -11,6 +12,7 @@ export class CompetitionMapper {
       description: competitionEntity.description,
       totalCompetitors: competitionEntity.totalCompetitors
     };
+    if (showId) competitionDto._id = competitionEntity._id;
     return competitionDto;
   }
 

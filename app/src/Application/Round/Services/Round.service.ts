@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IHelperService } from 'src/Application/Utils/Services/Interfaces/IHelper.service';
+import { Round } from 'src/Domain/Round/Model/Round';
 import { IRoundRepository } from 'src/Domain/Round/Repositories/IRound.repository';
 import { MODELS } from 'src/Utils/Constants/Enum/Models.Enum';
 import RoundDto from '../Dto/Round.dto';
@@ -26,6 +27,11 @@ export class RoundService implements IRoundService {
     return RoundMapper.fromEntityToDto(
       await this.roundRepository.findByDescription(roundDescription),
     );
+  }
+
+  async findByRoundId(roundId: number): Promise<RoundDto> {
+    const round: Round = await this.roundRepository.findByRoundId(roundId);
+    return RoundMapper.fromEntityToDto(round);
   }
 
   async createRound(round: RoundCreateDto): Promise<RoundDto> {

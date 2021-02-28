@@ -4,6 +4,7 @@ import { GodAPIModule } from './God/GodAPI.module';
 import { RankingAPIModule } from './Ranking/RankingAPI.module';
 import { RoundAPIModule } from './Round/RoundAPI.module';
 import { SeasonAPIModule } from './Season/SeasonAPI.module';
+import { MatchAPIModule } from './Match/MatchAPI.module';
 
 @Module({
   imports: [
@@ -11,14 +12,16 @@ import { SeasonAPIModule } from './Season/SeasonAPI.module';
     GodAPIModule,
     RankingAPIModule,
     RoundAPIModule,
-    SeasonAPIModule
+    SeasonAPIModule,
+    MatchAPIModule
   ],
   exports: [
     CompetitionAPIModule,
     GodAPIModule,
     RankingAPIModule,
     RoundAPIModule,
-    SeasonAPIModule
+    SeasonAPIModule,
+    MatchAPIModule
   ],
 })
 export class APIModule {}

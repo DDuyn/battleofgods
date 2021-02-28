@@ -5,6 +5,7 @@ import { GodApplicationModule } from './God/GodApplication.module';
 import { RankingApplicationModule } from './Ranking/RankingApplication.module';
 import { RoundApplicationModule } from './Round/RoundApplication.module';
 import { SeasonApplicationModule } from './Season/SeasonApplication.module';
+import { MatchApplicationModule } from './Match/MatchApplication.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { SeasonApplicationModule } from './Season/SeasonApplication.module';
     CompetitionApplicationModule,
     SeasonApplicationModule,
     RoundApplicationModule,
+    MatchApplicationModule
   ],
   exports: [
     GodApplicationModule,
@@ -21,6 +23,7 @@ import { SeasonApplicationModule } from './Season/SeasonApplication.module';
     CompetitionApplicationModule,
     SeasonApplicationModule,
     RoundApplicationModule,
+    MatchApplicationModule
   ],
 })
 export class ApplicationModule {}

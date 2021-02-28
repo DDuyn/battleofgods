@@ -21,12 +21,12 @@ export class CompetitionService implements ICompetitionService {
       await this.competitionRepository.findAll(),
     );
   }
-  async findById(competitionId: number): Promise<CompetitionDto> {
+  async findById(competitionId: number, showId: boolean): Promise<CompetitionDto> {
     const competition: Competition = await this.competitionRepository.findById(
       competitionId,
     );
     return !!competition
-      ? CompetitionMapper.fromEntityToDto(competition)
+      ? CompetitionMapper.fromEntityToDto(competition, showId)
       : new CompetitionDto();
   }
 

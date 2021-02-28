@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 
 export default class CompetitionDto {
   @ApiProperty()
@@ -9,5 +9,6 @@ export default class CompetitionDto {
   readonly name: string;
   @ApiProperty()
   readonly totalCompetitors: number;
-
+  @ApiHideProperty()
+  _id?: string;
 }

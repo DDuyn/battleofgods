@@ -33,7 +33,7 @@ import { MatchHelper } from './Services/Helpers/Match.helper';
     {
       provide: 'IMatchService',
       useClass: MatchService,
-    },
+    }
   ],
 })
 export class MatchApplicationModule {}

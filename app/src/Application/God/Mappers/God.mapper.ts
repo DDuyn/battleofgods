@@ -1,7 +1,7 @@
 import { God } from 'src/Domain/God/Model/God';
 import GodDto from '../Dto/God.dto';
 export class GodMapper {
-  public static fromEntityToDto(godEntity: God, isForRanking = false): GodDto  {
+  public static fromEntityToDto(godEntity: God, showId = false): GodDto  {
     const godDto: GodDto = {      
       godId: godEntity.godId,
       name: godEntity.name,
@@ -9,14 +9,14 @@ export class GodMapper {
       origen: godEntity.origen,
       photo: godEntity.photo,
     };
-    if (isForRanking) godDto._id = godEntity._id;
+    if (showId) godDto._id = godEntity._id;
     return godDto;
   }
 
-  public static fromEntityListToDto(godEntityList: God[], isForRanking = false): GodDto[] {
+  public static fromEntityListToDto(godEntityList: God[], showId = false): GodDto[] {
     const godDtoList: GodDto[] = [];
     godEntityList.forEach(x => {      
-      godDtoList.push(GodMapper.fromEntityToDto(x, isForRanking));
+      godDtoList.push(GodMapper.fromEntityToDto(x, showId));
     });
     return godDtoList;
   }

@@ -37,7 +37,7 @@ export class CompetitionController {
   async getCompetition(
     @Param('competitionId') competitionId: number,
   ): Promise<CompetitionDto> {
-    return await this.competitionService.findById(competitionId);
+    return await this.competitionService.findById(competitionId, false);
   }
 
   @Post('/')
