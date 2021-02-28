@@ -18,4 +18,8 @@ export class GodRepository implements IGodRepository {
   async createGod(god: IGodEntity): Promise<IGodEntity> {
     return await this.godModel.create(god);
   }
+
+  async findByGodId(godId: number): Promise<IGodEntity> {
+    return await this.godModel.findOne({ godId: godId});
+  }
 }

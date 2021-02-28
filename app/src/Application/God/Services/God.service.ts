@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { ICounterService } from 'src/Application/Utils/Services/Interfaces/ICounter.service';
+import { IHelperService } from 'src/Application/Utils/Services/Interfaces/IHelper.service';
 import { God } from 'src/Domain/God/Model/God';
 import { IGodRepository } from 'src/Domain/God/Repositories/IGod.repository';
 import GodDto from '../Dto/God.dto';
@@ -12,8 +12,8 @@ export class GodService implements IGodService {
   constructor(
     @Inject('IGodRepository')
     private readonly godRepository: IGodRepository,
-    @Inject('ICounterService')
-    private readonly counterService: ICounterService
+    @Inject('IHelperService')
+    private readonly helperService: IHelperService
   ) {}
 
   async findAll(isForRanking: boolean): Promise<GodDto[]> {
@@ -25,9 +25,13 @@ export class GodService implements IGodService {
     return this.isGodNull(await this.godRepository.findByName(godName));
   }
 
+  async findByGodId(godId: number): Promise<GodDto> {
+    return this.isGodNull(await this.godRepository.findByGodId(godId));
+  }
+
   async createGod(god: GodCreateDto): Promise<GodDto> {
     //TODO: Validaciones
-    god.godId = await this.counterService.getNextSequenceValue(MODELS.GOD);
+    god.godId = await this.helperService.getNextSequenceValue(MODELS.GOD);
     return this.isGodNull(await this.godRepository.createGod(god));
   }
 

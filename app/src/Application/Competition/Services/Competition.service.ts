@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ICounterService } from 'src/Application/Utils/Services/Interfaces/ICounter.service';
+import { IHelperService } from 'src/Application/Utils/Services/Interfaces/IHelper.service';
 import { Competition } from 'src/Domain/Competition/Model/Competition';
 import { ICompetitionRepository } from 'src/Domain/Competition/Repositories/ICompetition.repository';
 import { MODELS } from 'src/Utils/Constants/Enum/Models.Enum';
@@ -13,8 +13,8 @@ export class CompetitionService implements ICompetitionService {
   constructor(
     @Inject('ICompetitionRepository')
     private readonly competitionRepository: ICompetitionRepository,
-    @Inject('ICounterService')
-    private readonly counterService: ICounterService
+    @Inject('IHelperService')
+    private readonly helperService: IHelperService
   ) {}
   async findAll(): Promise<CompetitionDto[]> {
     return CompetitionMapper.fromEntityListToDto(
@@ -33,7 +33,7 @@ export class CompetitionService implements ICompetitionService {
   async createCompetition(
     competition: CompetitionCreateDto,
   ): Promise<CompetitionDto> {
-    competition.competitionId = await this.counterService.getNextSequenceValue(MODELS.COMPETITION);
+    competition.competitionId = await this.helperService.getNextSequenceValue(MODELS.COMPETITION);
     return CompetitionMapper.fromEntityToDto(await this.competitionRepository.createCompetition(competition));
   }
 }

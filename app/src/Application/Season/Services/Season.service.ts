@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ICounterService } from 'src/Application/Utils/Services/Interfaces/ICounter.service';
+import { IHelperService } from 'src/Application/Utils/Services/Interfaces/IHelper.service';
 import { Season } from 'src/Domain/Season/Model/Season';
 import { ISeasonRepository } from 'src/Domain/Season/Repositories/ISeason.repository';
 import SeasonDto from '../Dto/Season.dto';
@@ -13,7 +13,7 @@ export class SeasonService implements ISeasonService {
   constructor(
     @Inject('ISeasonRepository')
     private readonly seasonRepository: ISeasonRepository,
-    @Inject('ICounterService') private readonly counterService: ICounterService,
+    @Inject('IHelperService') private readonly helperService: IHelperService,
   ) {}
 
   async findAll(): Promise<SeasonDto[]> {
@@ -29,7 +29,7 @@ export class SeasonService implements ISeasonService {
   }
 
   async createNewSeason(season: SeasonCreateDto): Promise<SeasonDto> {
-    season.season = await this.counterService.getNextSequenceValue(MODELS.SEASON);
+    season.season = await this.helperService.getNextSequenceValue(MODELS.SEASON);
     return SeasonMapper.fromEntityToDto(
       await this.seasonRepository.createNewSeason(season),
     );

@@ -1,4 +1,4 @@
 
-export interface ICounterService {
+export interface IHelperService {
     getNextSequenceValue(model: string): Promise<number>;
 }

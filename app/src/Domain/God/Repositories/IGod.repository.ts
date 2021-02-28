@@ -4,4 +4,5 @@ export interface IGodRepository {
   findAll(): Promise<God[]>;
   findByName(godName: string): Promise<God>;
   createGod(god: God): Promise<God>;
+  findByGodId(godId: number): Promise<God>;
 }

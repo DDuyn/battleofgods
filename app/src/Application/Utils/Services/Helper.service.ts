@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ICounterRepository } from 'src/Domain/Counter/Repositories/ICounter.repository';
-import { ICounterService } from './Interfaces/ICounter.service';
+import { IHelperService } from './Interfaces/IHelper.service';
 
 
 @Injectable()
-export class CounterService implements ICounterService {
+export class HelperService implements IHelperService {
   constructor(
     @Inject('ICounterRepository')
     private readonly counterRepository: ICounterRepository

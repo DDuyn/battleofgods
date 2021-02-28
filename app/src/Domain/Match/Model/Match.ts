@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 import { Competition, ICompetitionEntity } from 'src/Domain/Competition/Model/Competition';
 import { God, IGodEntity } from 'src/Domain/God/Model/God';
 import { Round, IRoundEntity } from 'src/Domain/Round/Model/Round';
@@ -8,7 +8,7 @@ import { Season, ISeasonEntity } from 'src/Domain/Season/Model/Season';
 export type Match = {
     readonly matchId: number;
     readonly firstBattler: God;    
-    readonly secondBatller: God;
+    readonly secondBattler: God;
     readonly competition: Competition;
     readonly round: Round;
     readonly season: Season;  

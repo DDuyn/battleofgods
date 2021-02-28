@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { CounterModule } from '../../Domain/Counter/Counter.module';
-import { CounterService } from './Services/Counter.service';
+import { HelperService } from './Services/Helper.service';
 import { CounterInfrastructureModule } from '../../Infrastructure/Counter/CounterInfrastructure.module';
 
 
@@ -8,14 +8,14 @@ import { CounterInfrastructureModule } from '../../Infrastructure/Counter/Counte
     imports: [CounterModule, CounterInfrastructureModule],
     providers: [
         {
-            provide: 'ICounterService',
-            useClass: CounterService
+            provide: 'IHelperService',
+            useClass: HelperService
         }
     ],
     exports: [
         {
-            provide: 'ICounterService',
-            useClass: CounterService
+            provide: 'IHelperService',
+            useClass: HelperService
         },
     ],
 })

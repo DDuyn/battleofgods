@@ -5,6 +5,7 @@ import { RankingInfrastructureModule } from './Ranking/RankingInfrastructure.mod
 import { RoundInfrastructureModule } from './Round/RoundInfrastructure.module';
 import { SeasonInfrastructureModule } from './Season/SeasonInfrastructure.module';
 import { CounterInfrastructureModule } from './Counter/CounterInfrastructure.module';
+import { MatchInfrastructureModule } from './Match/MatchInfrastructure.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { CounterInfrastructureModule } from './Counter/CounterInfrastructure.mod
     CompetitionInfrastructureModule,
     SeasonInfrastructureModule,
     RoundInfrastructureModule,
-    CounterInfrastructureModule
+    CounterInfrastructureModule,
+    MatchInfrastructureModule
   ],
   exports: [
     GodInfrastructureModule,
@@ -21,7 +23,8 @@ import { CounterInfrastructureModule } from './Counter/CounterInfrastructure.mod
     CompetitionInfrastructureModule,
     SeasonInfrastructureModule,
     RoundInfrastructureModule,
-    CounterInfrastructureModule
+    CounterInfrastructureModule,
+    MatchInfrastructureModule
   ],
 })
 export class InfrastructureModule {}
