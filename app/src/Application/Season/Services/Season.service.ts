@@ -22,9 +22,9 @@ export class SeasonService implements ISeasonService {
     );
   }
 
-  async findBySeason(season: number): Promise<SeasonDto> {
+  async findBySeason(season: number, showId = false): Promise<SeasonDto> {
     return SeasonMapper.fromEntityToDto(
-      await this.seasonRepository.findBySeason(season),
+      await this.seasonRepository.findBySeason(season), showId
     );
   }
 

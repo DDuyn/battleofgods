@@ -3,6 +3,7 @@ import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.servic
 import { ApiTags, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
 import GodDto from 'src/Application/God/Dto/God.dto';
 import GodCreateDto from 'src/Application/God/Dto/GodCreate.dto';
+import { CONSTANTS } from 'src/Utils/Constants/Constants';
 
 @ApiTags('god')
 @Controller('god')
@@ -18,7 +19,7 @@ export class GodController {
   })
   @Get('/')
   async getAllGods(): Promise<GodDto[]> {
-    return await this.godService.findAll(false);
+    return await this.godService.findAll(CONSTANTS.NOTSHOWID);
   }
 
   @ApiParam({ name: 'godName', description: 'Name of God', type: 'string' })

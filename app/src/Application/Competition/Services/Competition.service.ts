@@ -21,7 +21,7 @@ export class CompetitionService implements ICompetitionService {
       await this.competitionRepository.findAll(),
     );
   }
-  async findById(competitionId: number, showId: boolean): Promise<CompetitionDto> {
+  async findById(competitionId: number, showId = false): Promise<CompetitionDto> {
     const competition: Competition = await this.competitionRepository.findById(
       competitionId,
     );

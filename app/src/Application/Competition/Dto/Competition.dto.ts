@@ -1,6 +1,6 @@
-import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-
-export default class CompetitionDto {
+import { ApiProperty } from '@nestjs/swagger';
+import GenericDto from 'src/Application/Generic/Dto/Generic.dto';
+export default class CompetitionDto extends GenericDto {
   @ApiProperty()
   readonly competitionId: number;
   @ApiProperty()
@@ -9,6 +9,4 @@ export default class CompetitionDto {
   readonly name: string;
   @ApiProperty()
   readonly totalCompetitors: number;
-  @ApiHideProperty()
-  _id?: string;
 }

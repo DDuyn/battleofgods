@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-export default class SeasonDto {
+import GenericDto from 'src/Application/Generic/Dto/Generic.dto';
+export default class SeasonDto extends GenericDto {
   @ApiProperty()
   readonly season: number;
   @ApiProperty()

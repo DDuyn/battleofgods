@@ -3,6 +3,7 @@ import { ApiTags, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
 import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
 import CompetitionCreateDto from 'src/Application/Competition/Dto/CompetitionCreate.dto';
 import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetition.service';
+import { CONSTANTS } from 'src/Utils/Constants/Constants';
 
 
 @ApiTags('competition')
@@ -37,7 +38,7 @@ export class CompetitionController {
   async getCompetition(
     @Param('competitionId') competitionId: number,
   ): Promise<CompetitionDto> {
-    return await this.competitionService.findById(competitionId, false);
+    return await this.competitionService.findById(competitionId, CONSTANTS.NOTSHOWID);
   }
 
   @Post('/')

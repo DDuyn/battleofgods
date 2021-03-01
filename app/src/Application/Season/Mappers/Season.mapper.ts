@@ -2,13 +2,14 @@ import { Season } from "src/Domain/Season/Model/Season";
 import SeasonDto from "../Dto/Season.dto";
 
 export class SeasonMapper {
-    public static fromEntityToDto(seasonEntity: Season): SeasonDto {
+    public static fromEntityToDto(seasonEntity: Season, showId = false): SeasonDto {
         const seasonDto: SeasonDto = {
             season: seasonEntity.season,
             competitionPlayed: seasonEntity.competitionPlayed,
             totalCompetition: seasonEntity.totalCompetition,
             isFinished: seasonEntity.isFinished
         }
+        if (showId) seasonDto._id = seasonEntity._id;
         return seasonDto;
     }
 

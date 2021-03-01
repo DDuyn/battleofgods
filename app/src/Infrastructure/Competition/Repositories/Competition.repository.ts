@@ -20,7 +20,7 @@ export class CompetitionRepository implements ICompetitionRepository {
 
   async findById(competitionId: number): Promise<ICompetitionEntity> {
     return await this.competitionModel.findOne({
-      idCompetition: competitionId,
+      competitionId: competitionId,
     });
   }
 

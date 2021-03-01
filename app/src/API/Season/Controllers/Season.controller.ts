@@ -11,6 +11,7 @@ import { ApiTags, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
 import SeasonDto from 'src/Application/Season/Dto/Season.dto';
 import SeasonCreateDto from 'src/Application/Season/Dto/SeasonCreate.dto';
 import { ISeasonService } from 'src/Application/Season/Services/Interfaces/ISeason.service';
+import { CONSTANTS } from 'src/Utils/Constants/Constants';
 
 @ApiTags('season')
 @Controller('season')
@@ -33,7 +34,7 @@ export class SeasonController {
   @ApiResponse({ status: 200, description: 'Return a Season', type: SeasonDto })
   @Get('/:season')
   async getSeason(@Param('season') season: number): Promise<SeasonDto> {
-    return await this.seasonService.findBySeason(season);
+    return await this.seasonService.findBySeason(season, CONSTANTS.NOTSHOWID);
   }
 
   @ApiBody({ description: 'Create new season', type: SeasonCreateDto })

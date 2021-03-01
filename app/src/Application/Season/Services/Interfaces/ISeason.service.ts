@@ -3,7 +3,7 @@ import SeasonCreateDto from "../../Dto/SeasonCreate.dto";
 
 export interface ISeasonService {
     findAll(): Promise<SeasonDto[]>;
-    findBySeason(season: number): Promise<SeasonDto>;
+    findBySeason(season: number, showId: boolean): Promise<SeasonDto>;
     createNewSeason(season: SeasonCreateDto): Promise<SeasonDto>;
     updateSeason(seasonId: number): Promise<SeasonDto>;
 }

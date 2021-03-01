@@ -29,9 +29,9 @@ export class RoundService implements IRoundService {
     );
   }
 
-  async findByRoundId(roundId: number): Promise<RoundDto> {
+  async findByRoundId(roundId: number, showId = false): Promise<RoundDto> {
     const round: Round = await this.roundRepository.findByRoundId(roundId);
-    return RoundMapper.fromEntityToDto(round);
+    return RoundMapper.fromEntityToDto(round, showId);
   }
 
   async createRound(round: RoundCreateDto): Promise<RoundDto> {

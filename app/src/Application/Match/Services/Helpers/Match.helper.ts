@@ -10,6 +10,7 @@ import RoundDto from "src/Application/Round/Dto/Round.dto";
 import SeasonDto from 'src/Application/Season/Dto/Season.dto';
 import { IRoundService } from "src/Application/Round/Services/Interfaces/IRound.service";
 import { ISeasonService } from "src/Application/Season/Services/Interfaces/ISeason.service";
+import { CONSTANTS } from "src/Utils/Constants/Constants";
 
 @Injectable()
 export class MatchHelper implements IHelperService {
@@ -25,19 +26,19 @@ export class MatchHelper implements IHelperService {
         return this.helperService.getNextSequenceValue(model);
     }
     private async getGodBattler(godId: number): Promise<GodDto> {
-        return await this.godService.findByGodId(godId, true);
+        return await this.godService.findByGodId(godId, CONSTANTS.SHOWID);
     }
 
     private async getCompetition(competionId: number): Promise<CompetitionDto> {
-        return await this.competitionService.findById(competionId, true);
+        return await this.competitionService.findById(competionId, CONSTANTS.SHOWID);
     }
 
     private async getRound(roundId: number): Promise<RoundDto> {
-        return await this.roundService.findByRoundId(roundId);
+        return await this.roundService.findByRoundId(roundId, CONSTANTS.SHOWID);
     }
 
     private async getSeason(seasonId: number): Promise<SeasonDto> {
-        return await this.seasonService.findBySeason(seasonId);
+        return await this.seasonService.findBySeason(seasonId, CONSTANTS.SHOWID);
     }
 
     private whoIsWinner(idFirstBattler: number, idSecondBattler: number, idWinner: number): number {

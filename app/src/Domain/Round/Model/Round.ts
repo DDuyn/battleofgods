@@ -13,4 +13,5 @@ export interface IRoundEntity extends Document {
 export type Round = {
   readonly description: string;
   readonly roundId: number;
+  readonly _id?: string;
 };
