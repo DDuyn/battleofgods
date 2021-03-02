@@ -12,4 +12,10 @@ export class HelperService implements IHelperService {
     async getNextSequenceValue(model: string): Promise<number> {
         return await this.counterRepository.getNextSequenceValue(model);
     }
+    isNull<T>(entity: T): boolean {
+      return !entity;
+    }
+    extractElementsUndefined<T>(list: T[]): T[] {
+      return list.filter(x => { return !!x });
+    }
 }

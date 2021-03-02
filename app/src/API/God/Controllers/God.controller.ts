@@ -1,4 +1,4 @@
-import { Controller, Inject, Get, Param, Post, Body } from '@nestjs/common';
+import { Controller, Inject, Get, Param, Post, Body, ExceptionFilter } from '@nestjs/common';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
 import { ApiTags, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
 import GodDto from 'src/Application/God/Dto/God.dto';
@@ -26,7 +26,12 @@ export class GodController {
   @ApiResponse({ status: 200, description: 'Return a God', type: GodDto })
   @Get('/:godName')
   async getGodByName(@Param('godName') godName: string): Promise<GodDto> {
-    return await this.godService.findByName(godName);
+    try{
+      return await this.godService.findByName(godName);
+    } catch(exception) {
+      throw exception;
+    }
+   
   }
 
   @ApiBody({ description: 'God', type: GodCreateDto })

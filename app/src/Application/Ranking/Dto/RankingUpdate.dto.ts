@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiHideProperty } from '@nestjs/swagger';
 export default class RankingUpdateDto {
     @ApiProperty()
     readonly godId: number;
@@ -6,4 +6,6 @@ export default class RankingUpdateDto {
     readonly pointsEarned: number;
     @ApiProperty()
     readonly isWinner: boolean;
+    @ApiHideProperty()
+    readonly _id?: string;
 }

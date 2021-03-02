@@ -13,7 +13,7 @@ import { ISeasonService } from "src/Application/Season/Services/Interfaces/ISeas
 import { CONSTANTS } from "src/Utils/Constants/Constants";
 
 @Injectable()
-export class MatchHelper implements IHelperService {
+export class MatchHelper {
     constructor(
         @Inject('IHelperService') private readonly helperService: IHelperService,
         @Inject('IGodService') private readonly godService: IGodService,
@@ -22,6 +22,9 @@ export class MatchHelper implements IHelperService {
         @Inject('ISeasonService') private readonly seasonService: ISeasonService
 
     ) {}
+    isMatchNull(match: Match): boolean {
+        return this.helperService.isNull(match);
+    }
     getNextSequenceValue(model: string): Promise<number> {
         return this.helperService.getNextSequenceValue(model);
     }
@@ -46,6 +49,7 @@ export class MatchHelper implements IHelperService {
     }
 
     async createEntityMatch(matchDto: MatchCreateDto): Promise<Match> {
+        //TODO: Validaciones crear un Match
         const firstBattler: GodDto = await this.getGodBattler(matchDto.idFirstBattler);
         const secondBattler: GodDto = await this.getGodBattler(matchDto.idSecondBattler);
         const competition: CompetitionDto = await this.getCompetition(matchDto.idCompetition);
