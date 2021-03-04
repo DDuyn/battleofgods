@@ -3,6 +3,7 @@ import { ApiTags, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
 import RoundDto from 'src/Application/Round/Dto/Round.dto';
 import RoundCreateDto from 'src/Application/Round/Dto/RoundCreate.dto';
 import { IRoundService } from 'src/Application/Round/Services/Interfaces/IRound.service';
+import { CONSTANTS } from 'src/Utils/Constants/Constants';
 
 
 @ApiTags('round')
@@ -24,6 +25,7 @@ export class RoundController {
 
   @ApiParam({ name: 'description', type: 'string' })
   @ApiResponse({ status: 200, description: 'Return a Round', type: RoundDto })
+  @ApiResponse({ status: 404, description: 'Round Not found'})
   @Get('/:description')
   async getRoundByDescription(
     @Param('description') roundDescription: string,
@@ -31,7 +33,15 @@ export class RoundController {
     return await this.roundService.findByDescription(roundDescription);
   }
 
-  //TODO: Get By Id
+  @ApiParam({ name: 'idRound', type: 'number' })
+  @ApiResponse({ status: 200, description: 'Return a Round', type: RoundDto })
+  @ApiResponse({ status: 404, description: 'Round Not found'})
+  @Get('/:roundId')
+  async getRoundById(
+    @Param('roundId') roundId: number,
+  ): Promise<RoundDto> {
+    return await this.roundService.findByRoundId(roundId, CONSTANTS.NOTSHOWID);
+  }
 
   @ApiBody({ description: 'Create Round', type: RoundCreateDto })
   @ApiResponse({ status: 200, description: 'Created Rounds', type: RoundDto })
