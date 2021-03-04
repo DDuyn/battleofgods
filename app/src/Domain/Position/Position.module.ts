@@ -8,4 +8,4 @@ import { SeasonModule } from "../Season/Season.module";
     imports: [GodModule, CompetitionModule, RoundModule, SeasonModule]
 
 })
-export class MatchModule {}
+export class PositionModule {}

@@ -181,6 +181,17 @@ Entidad que contendrá las posiciones finales de cada dios en una competición s
 > Esta representación indica la posición final de cada Dios en una competición y temporada
 > y la puntuación que obtiene en esa competición.
 
+### INSCRIPTIONS
+
+---
+
+Entidad que contendrá la información de las competiciones donde ha participado un Dios por temporada.
+
+- Propiedades
+  - **Competition**
+  - **God**
+  - **Season**
+
 ### PROCEDIMIENTO ACTUALIZACIÓN RANKING
 
 ---
