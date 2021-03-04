@@ -19,13 +19,14 @@ export class RankingHelper extends HelperService{
     return this.counterService.getNextSequenceValue(model);
   }
 
-  async createInitialRanking(): Promise<Ranking[]> {
+  async createInitialRanking(rankingActualList: Ranking[]): Promise<Ranking[]> {
     const gods: GodDto[] = await this.godService.findAll(CONSTANTS.SHOWID);
+    const newsGods: GodDto[] = gods.filter(god => !rankingActualList.some(x => x.god.godId === god.godId));
     const rankingCreated: Ranking[] = [];
-    gods.forEach(god => {
+    if(this.isArrayNull(newsGods)) throw new NotFoundException;
+    newsGods.forEach(god => {
       rankingCreated.push({ god: god, points: 0, wins: 0 });
     });
-
     return rankingCreated;
   }
 
