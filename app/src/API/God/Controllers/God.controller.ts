@@ -24,14 +24,17 @@ export class GodController {
 
   @ApiParam({ name: 'godName', description: 'Name of God', type: 'string' })
   @ApiResponse({ status: 200, description: 'Return a God', type: GodDto })
+  @ApiResponse({ status: 404, description: 'God Not Found'})
   @Get('/:godName')
   async getGodByName(@Param('godName') godName: string): Promise<GodDto> {
-    try{
       return await this.godService.findByName(godName);
-    } catch(exception) {
-      throw exception;
-    }
-   
+  }
+
+  @ApiParam({ name: 'godId', description: 'Id of God', type: 'number' })
+  @ApiResponse({ status: 200, description: 'Return a God', type: GodDto })
+  @Get('/:godId')
+  async getGodById(@Param('godId') godId: number): Promise<GodDto> {
+      return await this.godService.findByGodId(godId, CONSTANTS.NOTSHOWID);
   }
 
   @ApiBody({ description: 'God', type: GodCreateDto })
