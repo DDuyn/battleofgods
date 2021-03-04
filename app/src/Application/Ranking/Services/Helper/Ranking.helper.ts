@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
 import GodDto from 'src/Application/God/Dto/God.dto';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
@@ -27,6 +27,17 @@ export class RankingHelper extends HelperService{
     });
 
     return rankingCreated;
+  }
+
+  async getRankingByGod(godId: number): Promise<Ranking> {
+   const godDto: GodDto = await this.godService.findByGodId(godId, CONSTANTS.SHOWID);
+   if (this.isNull(godDto)) throw new NotFoundException;
+   const ranking: Ranking = {
+     god: godDto,
+     points: 0,
+     wins: 0,
+   }
+   return ranking;
   }
 
   private updateRankingOfGod(rankingOfGod: RankingUpdateDto, rankingToUpdate: Ranking): Ranking {

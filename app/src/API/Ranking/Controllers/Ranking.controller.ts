@@ -1,4 +1,4 @@
-import { Controller, Inject, Get, Post, Put, Body, HttpStatus, NotFoundException } from '@nestjs/common';
+import { Controller, Inject, Get, Post, Put, Body, HttpStatus, NotFoundException, Param } from '@nestjs/common';
 import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
 import RankingDto from 'src/Application/Ranking/Dto/Ranking.dto';
 import RankingUpdateDto from 'src/Application/Ranking/Dto/RankingUpdate.dto';
@@ -21,6 +21,13 @@ export class RankingController {
   @Post('/')
   async createRanking(): Promise<RankingDto[]> {
     return await this.rankingService.createRanking();
+  }
+
+  @ApiResponse({ status: 200, description: 'Ranking by God', type: RankingDto})
+  @ApiResponse({ status: 404, description: 'Ranking of God Not Found'})
+  @Get('/:godId')
+  async getRankingByGod(@Param('godId') godId: number): Promise<RankingDto> {
+    return await this.rankingService.findRankingByGod(godId);
   }
 
   @ApiBody({ description: 'Ranking list', type: [RankingUpdateDto] })

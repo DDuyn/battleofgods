@@ -6,4 +6,5 @@ export interface IRankingService {
   findAll(): Promise<RankingDto[]>;
   createRanking(): Promise<RankingDto[]>;
   updateRankingByGod(rankingGod: RankingUpdateDto[]): Promise<HttpStatus>;
+  findRankingByGod(godId: number): Promise<RankingDto>;
 }

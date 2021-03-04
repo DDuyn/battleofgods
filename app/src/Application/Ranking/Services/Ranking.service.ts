@@ -1,5 +1,6 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common/enums';
+import GodDto from 'src/Application/God/Dto/God.dto';
 import { Ranking } from 'src/Domain/Ranking/Model/Ranking';
 import { IRankingRepository } from 'src/Domain/Ranking/Repositories/IRanking.repository';
 import RankingDto from '../Dto/Ranking.dto';
@@ -16,6 +17,13 @@ export class RankingService implements IRankingService {
     @Inject('RankingHelper')
     private readonly rankingHelper: RankingHelper
   ) {}
+
+  async findRankingByGod(godId: number): Promise<RankingDto> {
+    const ranking: Ranking = await this.rankingHelper.getRankingByGod(godId);
+    const rankingGod: Ranking = await this.rankingRepository.findRankingByGod(ranking);
+    if(this.rankingHelper.isNull(rankingGod)) throw new NotFoundException;
+    return RankingMapper.fromEntityToDto(rankingGod);
+  }
 
   async findAll(): Promise<RankingDto[]> {  
     const ranking: Ranking[] = await this.rankingRepository.findAll();

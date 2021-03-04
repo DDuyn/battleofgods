@@ -15,7 +15,8 @@ export interface IRankingEntity extends Document {
 }
 
 export type Ranking = {
+  readonly _id?: string;
   points: number;
-  readonly god: God;
+  god: God;
   wins: number;
 };
