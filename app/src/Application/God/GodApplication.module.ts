@@ -4,9 +4,9 @@ import { GodInfrastructureModule } from 'src/Infrastructure/God/GodInfrastructur
 import { UtilsApplicationModule } from '../Utils/UtilsApplication.module';
 import { GodService } from './Services/God.service';
 import { GodHelper } from './Services/Helper/God.helper';
-
+import { CounterApplicationModule } from '../Counter/CounterApplication.module';
 @Module({
-  imports: [GodModule, GodInfrastructureModule, UtilsApplicationModule],
+  imports: [GodModule, GodInfrastructureModule, UtilsApplicationModule, CounterApplicationModule],
   providers: [
     {
       provide: 'IGodService',

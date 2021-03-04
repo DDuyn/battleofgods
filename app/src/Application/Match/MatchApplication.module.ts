@@ -8,6 +8,7 @@ import { CompetitionApplicationModule } from '../Competition/CompetitionApplicat
 import { SeasonApplicationModule } from '../Season/SeasonApplication.module';
 import { RoundApplicationModule } from '../Round/RoundApplication.module';
 import { MatchHelper } from './Services/Helpers/Match.helper';
+import { CounterApplicationModule } from '../Counter/CounterApplication.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { MatchHelper } from './Services/Helpers/Match.helper';
     CompetitionApplicationModule,
     SeasonApplicationModule,
     RoundApplicationModule,
+    CounterApplicationModule
   ],
   providers: [
     {

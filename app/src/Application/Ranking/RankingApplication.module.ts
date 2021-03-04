@@ -5,9 +5,16 @@ import { RankingService } from './Services/Ranking.service';
 import { GodApplicationModule } from '../God/GodApplication.module';
 import { RankingHelper } from './Services/Helper/Ranking.helper';
 import { UtilsApplicationModule } from '../Utils/UtilsApplication.module';
+import { CounterApplicationModule } from '../Counter/CounterApplication.module';
 
 @Module({
-  imports: [RankingModule, RankingInfrastructureModule, GodApplicationModule, UtilsApplicationModule],
+  imports: [
+    RankingModule,
+    RankingInfrastructureModule,
+    GodApplicationModule,
+    UtilsApplicationModule,
+    CounterApplicationModule,
+  ],
   providers: [
     {
       provide: 'IRankingService',
@@ -15,14 +22,14 @@ import { UtilsApplicationModule } from '../Utils/UtilsApplication.module';
     },
     {
       provide: 'RankingHelper',
-      useClass: RankingHelper
-    }
+      useClass: RankingHelper,
+    },
   ],
   exports: [
     {
       provide: 'IRankingService',
       useClass: RankingService,
-    }
+    },
   ],
 })
 export class RankingApplicationModule {}

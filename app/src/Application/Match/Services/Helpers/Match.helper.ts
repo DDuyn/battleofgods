@@ -1,6 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { IGodService } from "src/Application/God/Services/Interfaces/IGod.service";
-import { IHelperService } from "src/Application/Utils/Services/Interfaces/IHelper.service";
 import GodDto from 'src/Application/God/Dto/God.dto';
 import MatchCreateDto from "../../Dto/MatchCreate.dto";
 import { Match } from "src/Domain/Match/Model/Match";
@@ -11,22 +10,24 @@ import SeasonDto from 'src/Application/Season/Dto/Season.dto';
 import { IRoundService } from "src/Application/Round/Services/Interfaces/IRound.service";
 import { ISeasonService } from "src/Application/Season/Services/Interfaces/ISeason.service";
 import { CONSTANTS } from "src/Utils/Constants/Constants";
+import { HelperService } from "src/Application/Utils/Services/Helper.service";
+import { ICounterService } from "src/Application/Counter/Services/Interfaces/ICounter.service";
 
 @Injectable()
-export class MatchHelper {
+export class MatchHelper extends HelperService {
     constructor(
-        @Inject('IHelperService') private readonly helperService: IHelperService,
+        @Inject('ICounterService') private readonly counterService: ICounterService,
         @Inject('IGodService') private readonly godService: IGodService,
         @Inject('ICompetitionService') private readonly competitionService: ICompetitionService,
         @Inject('IRoundService') private readonly roundService: IRoundService,
         @Inject('ISeasonService') private readonly seasonService: ISeasonService
 
-    ) {}
-    isMatchNull(match: Match): boolean {
-        return this.helperService.isNull(match);
+    ) {
+        super();
     }
+
     getNextSequenceValue(model: string): Promise<number> {
-        return this.helperService.getNextSequenceValue(model);
+        return this.counterService.getNextSequenceValue(model);
     }
     private async getGodBattler(godId: number): Promise<GodDto> {
         return await this.godService.findByGodId(godId, CONSTANTS.SHOWID);

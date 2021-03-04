@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ICounterService } from 'src/Application/Counter/Services/Interfaces/ICounter.service';
 import { HelperService } from 'src/Application/Utils/Services/Helper.service';
 @Injectable()
-export class GodHelper extends HelperService {
+export class CompetitionHelper extends HelperService {
     constructor(
         @Inject('ICounterService') private readonly counterService: ICounterService,
     ) {

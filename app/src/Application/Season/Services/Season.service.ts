@@ -1,5 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { IHelperService } from 'src/Application/Utils/Services/Interfaces/IHelper.service';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Season } from 'src/Domain/Season/Model/Season';
 import { ISeasonRepository } from 'src/Domain/Season/Repositories/ISeason.repository';
 import SeasonDto from '../Dto/Season.dto';
@@ -7,54 +6,41 @@ import SeasonCreateDto from '../Dto/SeasonCreate.dto';
 import { SeasonMapper } from '../Mappers/Season.mapper';
 import { ISeasonService } from './Interfaces/ISeason.service';
 import { MODELS } from '../../../Utils/Constants/Enum/Models.Enum';
+import { SeasonHelper } from './Helper/Season.helper';
 
 @Injectable()
 export class SeasonService implements ISeasonService {
   constructor(
     @Inject('ISeasonRepository')
     private readonly seasonRepository: ISeasonRepository,
-    @Inject('IHelperService') private readonly helperService: IHelperService,
+    @Inject('SeasonHelper') private readonly seasonHelper: SeasonHelper,
   ) {}
 
   async findAll(): Promise<SeasonDto[]> {
-    return SeasonMapper.fromEntityListToDto(
-      await this.seasonRepository.findAll(),
-    );
+    const seasonList: Season[] = await this.findAll();
+    return SeasonMapper.fromEntityListToDto(seasonList);
   }
 
-  async findBySeason(season: number, showId = false): Promise<SeasonDto> {
-    return SeasonMapper.fromEntityToDto(
-      await this.seasonRepository.findBySeason(season), showId
-    );
+  async findBySeason(seasonDto: number, showId = false): Promise<SeasonDto> {
+    const season: Season = await this.findBySeason(seasonDto);
+    if(this.seasonHelper.isNull(season)) throw new NotFoundException;
+    return SeasonMapper.fromEntityToDto(season, showId);
   }
 
-  async createNewSeason(season: SeasonCreateDto): Promise<SeasonDto> {
-    season.season = await this.helperService.getNextSequenceValue(MODELS.SEASON);
-    return SeasonMapper.fromEntityToDto(
-      await this.seasonRepository.createNewSeason(season),
-    );
+  async createNewSeason(seasonDto: SeasonCreateDto): Promise<SeasonDto> {
+    seasonDto.season = await this.seasonHelper.getNextSequenceValue(MODELS.SEASON);
+    const season: Season = await this.seasonRepository.createNewSeason(seasonDto);
+    if(this.seasonHelper.isNull(season)) throw new NotFoundException;
+    return SeasonMapper.fromEntityToDto(season);
   }
 
   async updateSeason(seasonId: number): Promise<SeasonDto> {
     const season: Season = await this.seasonRepository.findBySeason(seasonId);
-    const seasonUpdate: Season = {
-      season: season.season,
-      totalCompetition: season.totalCompetition,
-      competitionPlayed: season.competitionPlayed + 1,
-      isFinished: this.isFinishedSeason(
-        season.competitionPlayed + 1,
-        season.totalCompetition,
-      ),
-    };
-    return SeasonMapper.fromEntityToDto(
-      await this.seasonRepository.updateSeason(seasonUpdate),
-    );
+    const seasonToUpdate: Season = this.seasonHelper.setSeasonToUpdate(season);
+    const seasonUpdated: Season = await this.seasonRepository.updateSeason(seasonToUpdate);
+    if(this.seasonHelper.isNull(seasonUpdated)) throw new NotFoundException;
+    return SeasonMapper.fromEntityToDto(seasonUpdated);
   }
 
-  private isFinishedSeason(
-    competitionPlayed: number,
-    totalCompetition: number,
-  ): boolean {
-    return competitionPlayed === totalCompetition;
-  }
+
 }

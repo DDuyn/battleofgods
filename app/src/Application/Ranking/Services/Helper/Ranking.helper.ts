@@ -1,19 +1,22 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IHelperService } from 'src/Application/Utils/Services/Interfaces/IHelper.service';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
 import GodDto from 'src/Application/God/Dto/God.dto';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
 import { Ranking } from 'src/Domain/Ranking/Model/Ranking';
 import RankingUpdateDto from 'src/Application/Ranking/Dto/RankingUpdate.dto';
+import { HelperService } from 'src/Application/Utils/Services/Helper.service';
+import { ICounterService } from 'src/Application/Counter/Services/Interfaces/ICounter.service';
 
 @Injectable()
-export class RankingHelper {
+export class RankingHelper extends HelperService{
   constructor(
-    @Inject('IHelperService') private readonly helperService: IHelperService,
+    @Inject('ICounterService') private readonly counterService: ICounterService,
     @Inject('IGodService') private readonly godService: IGodService,
-  ) {}
+  ) {
+    super();
+  }
   getNextSequenceValue(model: string): Promise<number> {
-    return this.helperService.getNextSequenceValue(model);
+    return this.counterService.getNextSequenceValue(model);
   }
 
   async createInitialRanking(): Promise<Ranking[]> {
@@ -37,6 +40,6 @@ export class RankingHelper {
       const god = godListToUpdate.find(x => x.godId === godToUpdate.god.godId);
       if (!!god) return this.updateRankingOfGod(god, godToUpdate);
     });
-    return this.helperService.extractElementsUndefined(rankingListToUpdate);
+    return this.extractElementsUndefined(rankingListToUpdate);
   }
 }
