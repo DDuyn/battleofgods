@@ -24,13 +24,13 @@ export class GodService implements IGodService {
 
   async findByName(godName: string): Promise<GodDto> {
     const godEntity: God = await this.godRepository.findByName(godName);
-    if(this.godHelper.isNull(godEntity)) throw new NotFoundException;
+    if (this.godHelper.isNull(godEntity)) throw new NotFoundException();
     return GodMapper.fromDtoToEntity(godEntity);
   }
 
   async findByGodId(godId: number, showId: boolean): Promise<GodDto> {
     const godEntity: God = await this.godRepository.findByGodId(godId);
-    if(this.godHelper.isNull(godEntity)) throw new NotFoundException;
+    if (this.godHelper.isNull(godEntity)) throw new NotFoundException();
     return GodMapper.fromEntityToDto(godEntity, showId);
   }
 
@@ -38,7 +38,7 @@ export class GodService implements IGodService {
     //TODO: Validaciones
     god.godId = await this.godHelper.getNextSequenceValue(MODELS.GOD);
     const godEntity: God = await this.godRepository.createGod(god);
-    if(this.godHelper.isNull(godEntity)) throw new NotFoundException;
+    if (this.godHelper.isNull(godEntity)) throw new NotFoundException();
     return GodMapper.fromDtoToEntity(godEntity);
   }
 }

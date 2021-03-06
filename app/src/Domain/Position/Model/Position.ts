@@ -14,12 +14,12 @@ export type Position = {
     readonly points: number;
 }
 
-export const PositionModel = new Schema ({
-    god: { type: Schema.Types.ObjectId, ref: 'God', required: true, autopopulate: true},
-    competition: { type: Schema.Types.ObjectId, ref: 'Competition', required: true, autopopulate: true},
-    season: { type: Schema.Types.ObjectId, ref: 'Season', required: true, autopopulate: true},
-    round: { type: Schema.Types.ObjectId, ref: 'Round', required: true, autopopulate: true},
-    points: { type: Number, required: true, default: 0}
+export const PositionModel = new Schema({
+    god: { type: Schema.Types.ObjectId, ref: 'God', required: true, autopopulate: true },
+    competition: { type: Schema.Types.ObjectId, ref: 'Competition', required: true, autopopulate: true },
+    season: { type: Schema.Types.ObjectId, ref: 'Season', required: true, autopopulate: true },
+    round: { type: Schema.Types.ObjectId, ref: 'Round', required: true, autopopulate: true },
+    points: { type: Number, required: true, default: 0 }
 });
 
 export interface IPositionEntity extends Document {
