@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { DomainModule } from 'src/Domain/domain.module';
 import { CompetitionApplicationModule } from './Competition/CompetitionApplication.module';
+import { CounterApplicationModule } from './Counter/CounterApplication.module';
 import { GodApplicationModule } from './God/GodApplication.module';
+import { MatchApplicationModule } from './Match/MatchApplication.module';
+import { PositionApplicationModule } from './Position/PositionApplication.module';
 import { RankingApplicationModule } from './Ranking/RankingApplication.module';
 import { RoundApplicationModule } from './Round/RoundApplication.module';
 import { SeasonApplicationModule } from './Season/SeasonApplication.module';
-import { MatchApplicationModule } from './Match/MatchApplication.module';
-import { CounterApplicationModule } from './Counter/CounterApplication.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { CounterApplicationModule } from './Counter/CounterApplication.module';
     SeasonApplicationModule,
     RoundApplicationModule,
     MatchApplicationModule,
-    CounterApplicationModule
+    CounterApplicationModule,
+    PositionApplicationModule,
   ],
   exports: [
     GodApplicationModule,
@@ -26,7 +28,8 @@ import { CounterApplicationModule } from './Counter/CounterApplication.module';
     SeasonApplicationModule,
     RoundApplicationModule,
     MatchApplicationModule,
-    CounterApplicationModule
+    CounterApplicationModule,
+    PositionApplicationModule,
   ],
 })
 export class ApplicationModule {}

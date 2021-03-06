@@ -19,7 +19,7 @@ import { CounterApplicationModule } from '../Counter/CounterApplication.module';
     CompetitionApplicationModule,
     SeasonApplicationModule,
     RoundApplicationModule,
-    CounterApplicationModule
+    CounterApplicationModule,
   ],
   providers: [
     {
@@ -28,14 +28,14 @@ import { CounterApplicationModule } from '../Counter/CounterApplication.module';
     },
     {
       provide: 'MatchHelper',
-      useClass: MatchHelper
-    }
+      useClass: MatchHelper,
+    },
   ],
   exports: [
     {
       provide: 'IMatchService',
       useClass: MatchService,
-    }
+    },
   ],
 })
 export class MatchApplicationModule {}
