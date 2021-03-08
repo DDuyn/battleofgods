@@ -1,8 +1,8 @@
-import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose';
 import { Injectable } from '@nestjs/common';
-import { IPositionRepository } from 'src/Domain/Position/Repositories/IPosition.repository';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { IPositionEntity } from 'src/Domain/Position/Model/Position';
+import { IPositionRepository } from 'src/Domain/Position/Repositories/IPosition.repository';
 
 @Injectable()
 export class PositionRepository implements IPositionRepository {
@@ -11,7 +11,7 @@ export class PositionRepository implements IPositionRepository {
     return await this.positionModel.find();
   }
   async createPosition(position: IPositionEntity): Promise<IPositionEntity> {
-    return await this.positionModel.create({ position });
+    return await this.positionModel.create(position);
   }
   async findByGod(position: IPositionEntity): Promise<IPositionEntity[]> {
     return await this.positionModel.find({ god: position.god._id });

@@ -30,13 +30,8 @@ export class PositionService implements IPositionService {
     return PositionMapper.fromEntityListToDto(positionListByGod);
   }
   async findPositionByGodAndSeason(godId: number, seasonId: number): Promise<PositionDto[]> {
-    const positionByGodAndSeason: Position = await this.positionHelper.configurePositionEntityByGodAndSeason(
-      godId,
-      seasonId,
-    );
-    const positionListByGodAndSeason: Position[] = await this.positionRepository.findByGodAndSeason(
-      positionByGodAndSeason,
-    );
+    const positionByGodAndSeason: Position = await this.positionHelper.configurePositionEntityByGodAndSeason(godId, seasonId);
+    const positionListByGodAndSeason: Position[] = await this.positionRepository.findByGodAndSeason(positionByGodAndSeason);
     if (this.positionHelper.isArrayNull(positionListByGodAndSeason)) throw new NotFoundException();
     return PositionMapper.fromEntityListToDto(positionListByGodAndSeason);
   }
