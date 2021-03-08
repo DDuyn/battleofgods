@@ -11,7 +11,8 @@ import { Position } from 'src/Domain/Position/Model/Position';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
 import { HelperService } from '../../../Utils/Services/Helper.service';
 import PositionCreateDto from '../../Dto/PositionCreate.dto';
-
+import PositionSearchDto from '../../Dto/PositionSearch.dto';
+import { PositionSpecification } from '../Specifications/Position.specification';
 @Injectable()
 export class PositionHelper extends HelperService {
   constructor(
@@ -51,23 +52,21 @@ export class PositionHelper extends HelperService {
     return positionEntity;
   }
 
-  async configurePositionEntityByGod(godId: number): Promise<Position> {
-    const godDto: GodDto = await this.getGod(godId);
-    const positionEntity: Position = {
-      god: godDto,
-    };
-    return positionEntity;
-  }
+  async configurePositionSpecs(searchDto: PositionSearchDto): Promise<Position> {
+    const specification: PositionSpecification = new PositionSpecification(searchDto);
+    const godDto: GodDto = specification.FilterFields.has(specification.GODID) ? await this.getGod(searchDto.godId) : null;
+    const seasonDto: SeasonDto = specification.FilterFields.has(specification.SEASONID) ? await this.getSeason(searchDto.seasonId) : null;
+    const competitionDto: CompetitionDto = specification.FilterFields.has(specification.COMPETITIONID)
+      ? await this.getCompetition(searchDto.competitionId)
+      : null;
+    const roundDto: RoundDto = specification.FilterFields.has(specification.ROUNDID) ? await this.getRound(searchDto.roundId) : null;
 
-  async configurePositionEntityByGodAndSeason(godId: number, seasonId: number): Promise<Position> {
-    const godDto: GodDto = await this.getGod(godId);
-    const seasonDto: SeasonDto = await this.getSeason(seasonId);
     const positionEntity: Position = {
       god: godDto,
       season: seasonDto,
+      competition: competitionDto,
+      round: roundDto,
     };
     return positionEntity;
   }
-
-  //TODO: Specifications for Get
 }

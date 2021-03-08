@@ -1,5 +1,6 @@
-import PositionDto from '../Dto/Position.dto';
 import { Position } from 'src/Domain/Position/Model/Position';
+import PositionDto from '../Dto/Position.dto';
+import PositionSearchDto from '../Dto/PositionSearch.dto';
 
 export class PositionMapper {
   public static fromEntityToDto(positionEntity: Position): PositionDto {
@@ -22,5 +23,20 @@ export class PositionMapper {
       positionDto.push(PositionMapper.fromEntityToDto(position));
     });
     return positionDto;
+  }
+
+  public static configureSearchDto(
+    godId: number = null,
+    competitionId: number = null,
+    seasonId: number = null,
+    roundId: number = null,
+  ): PositionSearchDto {
+    const searchDto: PositionSearchDto = {
+      godId: godId,
+      competitionId: competitionId,
+      seasonId: seasonId,
+      roundId: roundId,
+    };
+    return searchDto;
   }
 }
