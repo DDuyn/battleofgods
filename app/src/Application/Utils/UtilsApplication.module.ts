@@ -1,19 +1,13 @@
-import { Module } from "@nestjs/common";
-import { HelperService } from './Services/Helper.service';
+import { Module } from '@nestjs/common';
 import { CounterApplicationModule } from '../Counter/CounterApplication.module';
+import { HelperService } from './Services/Helper.service';
 @Module({
-    imports: [CounterApplicationModule],
-    providers: [
-        {
-            provide: 'IHelperService',
-            useClass: HelperService
-        }
-    ],
-    exports: [
-        {
-            provide: 'IHelperService',
-            useClass: HelperService
-        }
-    ],
+  imports: [CounterApplicationModule],
+  providers: [
+    {
+      provide: 'IHelperService',
+      useClass: HelperService,
+    },
+  ],
 })
 export class UtilsApplicationModule {}
