@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PositionModel } from 'src/Domain/Position/Model/Position';
+import { UtilsHelperRepository } from '../Utils/Utils.helper';
 import { PositionRepository } from './Repositories/Position.repository';
 
 @Module({
@@ -16,6 +17,10 @@ import { PositionRepository } from './Repositories/Position.repository';
     {
       provide: 'IPositionRepository',
       useClass: PositionRepository,
+    },
+    {
+      provide: 'UtilsHelperRepository',
+      useClass: UtilsHelperRepository,
     },
   ],
   exports: [

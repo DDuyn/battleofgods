@@ -1,3 +1,5 @@
 use('battleofgods')
 
-db.counters.insertOne({_id: 'Position', sequence_value: 0})
+//db.counters.insertOne({_id: 'Position', sequence_value: 0})
+db.counters.insertOne({_id: 'Inscription', sequence_value: 0})
+
