@@ -1,5 +1,6 @@
 import { Inscription } from '../../../Domain/Inscription/Model/Inscription';
 import InscriptionDto from '../Dto/Inscription.dto';
+import InscriptionCreateDto from '../Dto/InscriptionCreate.dto';
 import InscriptionSearchDto from '../Dto/InscriptionSearch.dto';
 
 export class InscriptionMapper {
@@ -20,6 +21,23 @@ export class InscriptionMapper {
       inscriptionDto.push(InscriptionMapper.fromEntityToDto(inscription));
     });
     return inscriptionDto;
+  }
+
+  public static fromDtoToEntity(inscriptionDto: InscriptionCreateDto): Inscription {
+    const inscription: Inscription = {
+      god: inscriptionDto.god,
+      competition: inscriptionDto.competition,
+      season: inscriptionDto.season,
+    };
+    return inscription;
+  }
+
+  public static fromDtoListToEntityList(inscriptionListDto: InscriptionCreateDto[]): Inscription[] {
+    const inscriptionList: Inscription[] = [];
+    inscriptionListDto.forEach(inscriptionDto => {
+      inscriptionList.push(InscriptionMapper.fromDtoToEntity(inscriptionDto));
+    });
+    return inscriptionList;
   }
 
   public static configureSearchDto(godId: number = null, competitionId: number = null, seasonId: number = null): InscriptionSearchDto {

@@ -14,8 +14,8 @@ export class InscriptionRepository implements IInscriptionRepository {
   async findAll(): Promise<IInscriptionEntity[]> {
     return await this.inscriptionModel.find();
   }
-  async createInscription(inscription: IInscriptionEntity): Promise<IInscriptionEntity> {
-    return await this.inscriptionModel.create(inscription);
+  async createInscription(inscriptionList: IInscriptionEntity[]): Promise<IInscriptionEntity[]> {
+    return await this.inscriptionModel.create(inscriptionList);
   }
   async findInscriptionBySpecification(inscription: IInscriptionEntity): Promise<IInscriptionEntity[]> {
     const query = this.utilsHelper.convertEntityToQueryFilter(inscription);

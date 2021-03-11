@@ -41,12 +41,10 @@ export class InscriptionController {
     return await this.inscriptionService.findInscriptionBySpecification(searchDto);
   }
 
-  @ApiBody({ description: 'Position', type: InscriptionCreateDto })
-  @ApiResponse({ status: 200, description: 'Inscription created', type: InscriptionDto })
+  @ApiBody({ description: 'Position', type: [InscriptionCreateDto] })
+  @ApiResponse({ status: 200, description: 'Inscription created', type: [InscriptionDto] })
   @Post('/')
-  async createPosition(@Body() inscription: InscriptionCreateDto): Promise<InscriptionDto> {
-    return await this.inscriptionService.createInscription(inscription);
+  async createInscription(@Body() inscriptionList: InscriptionCreateDto[]): Promise<InscriptionDto[]> {
+    return await this.inscriptionService.createInscription(inscriptionList);
   }
-
-  //TODO: Crear servicio para inserción masiva
 }

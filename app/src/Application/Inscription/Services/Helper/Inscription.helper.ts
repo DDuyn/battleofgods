@@ -1,7 +1,6 @@
 import { Inject } from '@nestjs/common';
 import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
 import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetition.service';
-import { ICounterService } from 'src/Application/Counter/Services/Interfaces/ICounter.service';
 import GodDto from 'src/Application/God/Dto/God.dto';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
 import SeasonDto from 'src/Application/Season/Dto/Season.dto';
@@ -11,19 +10,16 @@ import { Inscription } from 'src/Domain/Inscription/Model/Inscription';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
 import InscriptionCreateDto from '../../Dto/InscriptionCreate.dto';
 import InscriptionSearchDto from '../../Dto/InscriptionSearch.dto';
+import { InscriptionMapper } from '../../Mappers/Inscription.mapper';
 import { InscriptionSpecification } from '../Specifications/Inscription.specification';
 
 export class InscriptionHelper extends HelperService {
   constructor(
-    @Inject('ICounterService') private readonly counterService: ICounterService,
     @Inject('IGodService') private readonly godService: IGodService,
     @Inject('ICompetitionService') private readonly competitionService: ICompetitionService,
     @Inject('ISeasonService') private readonly seasonService: ISeasonService,
   ) {
     super();
-  }
-  getNextSequenceValue(model: string): Promise<number> {
-    return this.counterService.getNextSequenceValue(model);
   }
   private async getGod(godId: number): Promise<GodDto> {
     return await this.godService.findByGodId(godId, CONSTANTS.SHOWID);
@@ -35,18 +31,17 @@ export class InscriptionHelper extends HelperService {
     return await this.seasonService.findBySeason(seasonId, CONSTANTS.SHOWID);
   }
 
-  async createEntityPosition(inscriptionDto: InscriptionCreateDto): Promise<Inscription> {
-    //TODO: Validaciones
-    const godDto: GodDto = await this.getGod(inscriptionDto.godId);
-    const competitionDto: CompetitionDto = await this.getCompetition(inscriptionDto.competitionId);
-    const seasonDto: SeasonDto = await this.getSeason(inscriptionDto.seasonId);
-    const inscriptionEntity: Inscription = {
-      inscriptionId: inscriptionDto.inscriptionId,
-      god: godDto,
-      competition: competitionDto,
-      season: seasonDto,
-    };
-    return inscriptionEntity;
+  async configureInscriptionList(inscriptionListDto: InscriptionCreateDto[]): Promise<Inscription[]> {
+    const inscriptionList: Inscription[] = [];
+    await Promise.all(
+      inscriptionListDto.map(async inscriptionDto => {
+        inscriptionDto.god = await this.getGod(inscriptionDto.godId);
+        inscriptionDto.competition = await this.getCompetition(inscriptionDto.competitionId);
+        inscriptionDto.season = await this.getSeason(inscriptionDto.seasonId);
+        inscriptionList.push(InscriptionMapper.fromDtoToEntity(inscriptionDto));
+      }),
+    );
+    return inscriptionList;
   }
 
   async configurePositionSpecs(searchDto: InscriptionSearchDto): Promise<Inscription> {

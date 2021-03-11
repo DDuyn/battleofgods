@@ -4,6 +4,6 @@ import InscriptionSearchDto from '../../Dto/InscriptionSearch.dto';
 
 export interface IInscriptionService {
   findAll(): Promise<InscriptionDto[]>;
-  createInscription(inscription: InscriptionCreateDto): Promise<InscriptionDto>;
+  createInscription(inscriptionList: InscriptionCreateDto[]): Promise<InscriptionDto[]>;
   findInscriptionBySpecification(searchDto: InscriptionSearchDto): Promise<InscriptionDto[]>;
 }
