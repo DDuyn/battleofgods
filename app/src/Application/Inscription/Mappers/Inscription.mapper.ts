@@ -44,7 +44,7 @@ export class InscriptionMapper {
     const searchDto: InscriptionSearchDto = {
       godId: godId,
       competitionId: competitionId,
-      seasonId: seasonId,
+      season: seasonId,
     };
     return searchDto;
   }

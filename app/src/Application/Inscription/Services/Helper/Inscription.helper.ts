@@ -47,7 +47,7 @@ export class InscriptionHelper extends HelperService {
   async configurePositionSpecs(searchDto: InscriptionSearchDto): Promise<Inscription> {
     const specification: InscriptionSpecification = new InscriptionSpecification(searchDto);
     const godDto: GodDto = specification.FilterFields.has(specification.GODID) ? await this.getGod(searchDto.godId) : null;
-    const seasonDto: SeasonDto = specification.FilterFields.has(specification.SEASONID) ? await this.getSeason(searchDto.seasonId) : null;
+    const seasonDto: SeasonDto = specification.FilterFields.has(specification.SEASONID) ? await this.getSeason(searchDto.season) : null;
     const competitionDto: CompetitionDto = specification.FilterFields.has(specification.COMPETITIONID)
       ? await this.getCompetition(searchDto.competitionId)
       : null;
