@@ -85,6 +85,7 @@ Entidad que contendrá el maestro de las temporadas.
 
 - Propiedades
   - **Código**: Código de la temporada.
+  - **Description**: Descripción de la temporada.
   - **Competitions-Played**: Número de competiciones jugadas.
   - **Total-Competitions**: Total de competiciones de una temporada.
   - **Finalizado**: Indicador del estado de la temporada.
@@ -192,6 +193,52 @@ Entidad que contendrá la información de las competiciones donde ha participado
   - **God**
   - **Season**
 
+### TYPES-COMPETITION
+
+---
+
+Entidad maestra que contendrá el tipo de competición
+
+- Propiedades
+  - **Type**
+
+Tipos de Competición: [The Olympus, International, Master, Regional]
+
+### COMPETITIONS-PLAYED
+
+---
+
+Entidad que contendrá la información de las competiciones de cada Season y si han sido disputadas.
+
+- Propiedades
+  - **Competition**
+  - **Season**
+  - **Order**
+  - **isPlayed**
+
+### POINTS-ROUND-COMPETITION
+
+---
+
+Entidad que contendrá las puntuaciones por Ronda según el tipo de competición
+
+- Propiedades
+  - **TypeCompetition**
+  - **Round**
+  - **Points**
+
+
+
+### REGION-GODS
+
+---
+
+Entidad que contendrá el maestro de Origenes de los Dioses.
+
+- Propiedades
+  - **idOrigen**
+  - **Origen**
+
 ### PROCEDIMIENTO ACTUALIZACIÓN RANKING
 
 ---
@@ -201,5 +248,78 @@ El proceso para actualizar el ranking será el siguiente:
 - Termina una competición
 
   - Se obtiene las posiciones y puntuaciones de todos los dioses para esa competición y temporada.
-
   - Se envia un objeto con un listado de dioses y sus puntuaciones. Luego en el servicio se cálcula dichas puntuaciones y se actualizada cada registro.
+
+### PROCESO GENERACIÓN MATCHES
+
+---
+
+El proceso para generar un MATCH será el siguiente:
+
+- Elegimos la competición donde realizar las inscripciones:
+- Se generá en [FRONT] las eliminatorias. Pulsamos simular una ronda y se generán los MATCH de la Ronda en [BACK] de la competición.
+
+### CONFIGURACIÓN COMPETICIÓN
+
+---
+
+El tipo [Olympus] tendrá un total de 128 participantes y el ganador obtendrá 2000 puntos.
+El tipo [International] tendrá un total de 64 participantes y el ganador obtendrá 1000 puntos.
+El tipo [Master]  tendrá un total de 32 participantes y el ganador obtendrá 500 puntos.
+El tipo [Regional] tendrá un total de 16 participantes y el ganador obtendrá 250 puntos.
+
+Cada temporada contará con un [Olympus], 4 [International], 12 [Master] y 36 [Regional] para cada Origen.
+Calendario de la temporada.
+3 [Regional] -> 1 [Master] -> 3 [Regional] -> 1 [Master] -> 3 [Regional] -> 1 [Master] -> 1 [International]
+3 [Regional] -> 1 [Master] -> 3 [Regional] -> 1 [Master] -> 3 [Regional] -> 1 [Master] -> 1 [International]
+3 [Regional] -> 1 [Master] -> 3 [Regional] -> 1 [Master] -> 3 [Regional] -> 1 [Master] -> 1 [Interantional]
+3 [Regional] -> 1 [Master] -> 3 [Regional] -> 1 [Master] -> 3 [Regional] -> 1 [Master] -> 1 [Interantional]
+1 [Olympus]
+
+[Regional] 36
+[Master] 12
+[International] 4
+[Olympus] 1
+Total de competiciones disputadas por temporada: 53
+
+### CONFIGURACIÓN PUNTOS POR RONDA
+
+---
+
+- [Olympus]
+
+  - Winner: 2000 puntos
+  - Top 2: 1200 puntos
+  - Top 4: 720 puntos
+  - Top 8: 360 puntos
+  - Top 16: 180 puntos
+  - Top 32: 90 puntos
+  - Top 64: 45 puntos
+  - Top 128: 10 puntos
+
+- [International]
+
+  - Winner: 1000 puntos
+  - Top 2: 600 puntos
+  - Top 4: 360 puntos
+  - Top 8: 180 puntos
+  - Top 16: 90 puntos
+  - Top 32: 45 puntos
+  - Top 64: 25 puntos
+
+- [Master]
+
+  - Winner: 500 puntos
+  - Top 2: 300 puntos
+  - Top 4: 150 puntos
+  - Top 8: 90 puntos
+  - Top 16: 45 puntos
+  - Top 32: 15 puntos
+
+- [Regional]
+
+  - Winner: 250 puntos
+  - Top 2: 120 puntos
+  - Top 4: 60 puntos
+  - Top 8: 30 puntos
+  - Top 16: 10 puntos

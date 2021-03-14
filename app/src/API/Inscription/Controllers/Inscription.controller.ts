@@ -25,7 +25,7 @@ export class InscriptionController {
   }
 
   @ApiResponse({ status: 200, description: 'Return all inscription by Season and Competition', type: [InscriptionDto] })
-  @Get('/:seasonId/:competitionId')
+  @Get('/bySeasonAndCompetition/seasonId/:competitionId')
   async getPositionBySeasonAndCompetition(
     @Param('seasonId') seasonId: number,
     @Param('competitionId') competitionId: number,
@@ -35,7 +35,7 @@ export class InscriptionController {
   }
 
   @ApiResponse({ status: 200, description: 'Return all inscription by God and Season', type: [InscriptionDto] })
-  @Get('/:godId/:seasonId')
+  @Get('/byGodAndSeason/:godId/:seasonId')
   async getPositionByGodAndSeason(@Param('godId') godId: number, @Param('seasonId') seasonId: number): Promise<InscriptionDto[]> {
     const searchDto: InscriptionSearchDto = InscriptionMapper.configureSearchDto(godId, null, seasonId);
     return await this.inscriptionService.findInscriptionBySpecification(searchDto);

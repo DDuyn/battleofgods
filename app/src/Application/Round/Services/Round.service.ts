@@ -14,29 +14,23 @@ export class RoundService implements IRoundService {
     @Inject('IRoundRepository')
     private readonly roundRepository: IRoundRepository,
     @Inject('RoundHelper')
-    private readonly roundHelper: RoundHelper
+    private readonly roundHelper: RoundHelper,
   ) {}
 
   async findAll(): Promise<RoundDto[]> {
     const roundList: Round[] = await this.roundRepository.findAll();
+    if (this.roundHelper.isArrayNull(roundList)) throw new NotFoundException();
     return RoundMapper.fromEntityListToDto(roundList);
-  }
-
-  async findByDescription(roundDescription: string): Promise<RoundDto> {
-    const round: Round = await this.findByDescription(roundDescription);
-    if(this.roundHelper.isNull(round)) throw new NotFoundException;
-    return RoundMapper.fromEntityToDto(round);
   }
 
   async findByRoundId(roundId: number, showId = false): Promise<RoundDto> {
     const round: Round = await this.roundRepository.findByRoundId(roundId);
+    if (this.roundHelper.isNull(round)) throw new NotFoundException();
     return RoundMapper.fromEntityToDto(round, showId);
   }
 
   async createRound(round: RoundCreateDto): Promise<RoundDto> {
     round.roundId = await this.roundHelper.getNextSequenceValue(MODELS.ROUND);
-    return RoundMapper.fromEntityToDto(
-      await this.roundRepository.createRound(round),
-    );
+    return RoundMapper.fromEntityToDto(await this.roundRepository.createRound(round));
   }
 }

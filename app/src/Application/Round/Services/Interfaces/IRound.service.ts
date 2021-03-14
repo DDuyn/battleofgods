@@ -3,7 +3,6 @@ import RoundCreateDto from '../../Dto/RoundCreate.dto';
 
 export interface IRoundService {
   findAll(): Promise<RoundDto[]>;
-  findByDescription(roundDescription: string): Promise<RoundDto>;
   findByRoundId(roundId: number, showId: boolean): Promise<RoundDto>;
   createRound(round: RoundCreateDto): Promise<RoundDto>;
 }

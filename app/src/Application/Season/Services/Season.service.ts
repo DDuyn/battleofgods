@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
 import { Season } from 'src/Domain/Season/Model/Season';
 import { ISeasonRepository } from 'src/Domain/Season/Repositories/ISeason.repository';
 import { MODELS } from '../../../Utils/Constants/Enum/Models.Enum';
@@ -36,6 +36,8 @@ export class SeasonService implements ISeasonService {
 
   async updateSeason(seasonId: number): Promise<SeasonDto> {
     const season: Season = await this.seasonRepository.findBySeason(seasonId);
+    //TODO: Validación isFinisehd
+    if (season.isFinished) throw new NotAcceptableException();
     const seasonToUpdate: Season = this.seasonHelper.setSeasonToUpdate(season);
     const seasonUpdated: Season = await this.seasonRepository.updateSeason(seasonToUpdate);
     if (this.seasonHelper.isNull(seasonUpdated)) throw new NotFoundException();

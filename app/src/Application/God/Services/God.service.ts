@@ -1,12 +1,12 @@
-import { Injectable, Inject, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { God } from 'src/Domain/God/Model/God';
 import { IGodRepository } from 'src/Domain/God/Repositories/IGod.repository';
+import { MODELS } from '../../../Utils/Constants/Enum/Models.Enum';
 import GodDto from '../Dto/God.dto';
 import GodCreateDto from '../Dto/GodCreate.dto';
 import { GodMapper } from '../Mappers/God.mapper';
-import { IGodService } from './Interfaces/IGod.service';
-import { MODELS } from '../../../Utils/Constants/Enum/Models.Enum';
 import { GodHelper } from './Helper/God.helper';
+import { IGodService } from './Interfaces/IGod.service';
 
 @Injectable()
 export class GodService implements IGodService {
