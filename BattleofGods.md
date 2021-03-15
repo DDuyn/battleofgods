@@ -107,12 +107,11 @@ Entidad que contendrá el maestro de rondas en una competición
 
 | Código | Descripción |
 | ------ | ----------- |
-| 1      | Winner      |
-| 2      | Top2        |
-| 3      | Top4        |
-| 4      | Top8        |
-| 5      | Top16       |
-| 6      | Top32       |
+| 1      | Top2        |
+| 2      | Top4        |
+| 3      | Top8        |
+| 4      | Top16       |
+| 5      | Top32       |
 
 > Esta es la representación
 > del maestro de rondas
@@ -216,7 +215,7 @@ Entidad que contendrá la información de las competiciones de cada Season y si 
   - **Order**
   - **isPlayed**
 
-### POINTS-ROUND-COMPETITION
+### POINTS-ROUND-TYPE-COMPETITION
 
 ---
 
@@ -226,8 +225,6 @@ Entidad que contendrá las puntuaciones por Ronda según el tipo de competición
   - **TypeCompetition**
   - **Round**
   - **Points**
-
-
 
 ### REGION-GODS
 
@@ -323,3 +320,11 @@ Total de competiciones disputadas por temporada: 53
   - Top 4: 60 puntos
   - Top 8: 30 puntos
   - Top 16: 10 puntos
+
+### CONFIGURACIÓN RONDAS
+
+- [TOP 2, TOP 4, TOP 8, TOP 16, TOP 32, TOP 64, TOP 128]
+
+### CONFIGURACIÓN REGIONES
+
+- [ALL, NORDIC, GREEK, ...]

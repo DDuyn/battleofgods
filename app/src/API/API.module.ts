@@ -5,6 +5,7 @@ import { InscriptionAPIModule } from './Inscription/InscriptionAPI.module';
 import { MatchAPIModule } from './Match/MatchAPI.module';
 import { PositionAPIModule } from './Position/PositionAPI.module';
 import { RankingAPIModule } from './Ranking/RankingAPI.module';
+import { RegionAPIModule } from './Region/RegionAPI.module';
 import { RoundAPIModule } from './Round/RoundAPI.module';
 import { SeasonAPIModule } from './Season/SeasonAPI.module';
 
@@ -18,6 +19,7 @@ import { SeasonAPIModule } from './Season/SeasonAPI.module';
     MatchAPIModule,
     PositionAPIModule,
     InscriptionAPIModule,
+    RegionAPIModule,
   ],
   exports: [
     CompetitionAPIModule,
@@ -28,6 +30,7 @@ import { SeasonAPIModule } from './Season/SeasonAPI.module';
     MatchAPIModule,
     PositionAPIModule,
     InscriptionAPIModule,
+    RegionAPIModule,
   ],
 })
 export class APIModule {}

@@ -6,6 +6,7 @@ import { InscriptionInfrastructureModule } from './Inscription/InscriptionInfras
 import { MatchInfrastructureModule } from './Match/MatchInfrastructure.module';
 import { PositionInfrastructureModule } from './Position/PositionInfrastructure.module';
 import { RankingInfrastructureModule } from './Ranking/RankingInfrastructure.module';
+import { RegionInfrastructureModule } from './Region/RegionInfrastructure.module';
 import { RoundInfrastructureModule } from './Round/RoundInfrastructure.module';
 import { SeasonInfrastructureModule } from './Season/SeasonInfrastructure.module';
 
@@ -20,6 +21,7 @@ import { SeasonInfrastructureModule } from './Season/SeasonInfrastructure.module
     MatchInfrastructureModule,
     PositionInfrastructureModule,
     InscriptionInfrastructureModule,
+    RegionInfrastructureModule,
   ],
   exports: [
     GodInfrastructureModule,
@@ -31,6 +33,7 @@ import { SeasonInfrastructureModule } from './Season/SeasonInfrastructure.module
     MatchInfrastructureModule,
     PositionInfrastructureModule,
     InscriptionInfrastructureModule,
+    RegionInfrastructureModule,
   ],
 })
 export class InfrastructureModule {}

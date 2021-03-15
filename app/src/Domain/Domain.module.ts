@@ -6,6 +6,7 @@ import { InscriptionModule } from './Inscription/Inscription.module';
 import { MatchModule } from './Match/Match.module';
 import { PositionModule } from './Position/Position.module';
 import { RankingModule } from './Ranking/Ranking.module';
+import { RegionModule } from './Region/Region.module';
 import { RoundModule } from './Round/Round.module';
 import { SeasonModule } from './Season/Season.module';
 
@@ -20,6 +21,7 @@ import { SeasonModule } from './Season/Season.module';
     MatchModule,
     PositionModule,
     InscriptionModule,
+    RegionModule,
   ],
   exports: [
     GodModule,
@@ -31,6 +33,7 @@ import { SeasonModule } from './Season/Season.module';
     MatchModule,
     PositionModule,
     InscriptionModule,
+    RegionModule,
   ],
 })
 export class DomainModule {}

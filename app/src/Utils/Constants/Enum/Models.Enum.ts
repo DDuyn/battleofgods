@@ -7,4 +7,5 @@ export const MODELS = {
   SEASON: 'Season',
   POSITION: 'Position',
   INSCRIPTION: 'Inscription',
+  REGION: 'Region',
 };

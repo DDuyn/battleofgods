@@ -7,6 +7,7 @@ import { InscriptionApplicationModule } from './Inscription/InscriptionApplicati
 import { MatchApplicationModule } from './Match/MatchApplication.module';
 import { PositionApplicationModule } from './Position/PositionApplication.module';
 import { RankingApplicationModule } from './Ranking/RankingApplication.module';
+import { RegionApplicationModule } from './Region/RegionApplication.module';
 import { RoundApplicationModule } from './Round/RoundApplication.module';
 import { SeasonApplicationModule } from './Season/SeasonApplication.module';
 
@@ -22,6 +23,7 @@ import { SeasonApplicationModule } from './Season/SeasonApplication.module';
     CounterApplicationModule,
     PositionApplicationModule,
     InscriptionApplicationModule,
+    RegionApplicationModule,
   ],
   exports: [
     GodApplicationModule,
@@ -33,6 +35,7 @@ import { SeasonApplicationModule } from './Season/SeasonApplication.module';
     CounterApplicationModule,
     PositionApplicationModule,
     InscriptionApplicationModule,
+    RegionApplicationModule,
   ],
 })
 export class ApplicationModule {}
