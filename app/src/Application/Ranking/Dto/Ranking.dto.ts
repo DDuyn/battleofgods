@@ -6,6 +6,8 @@ export default class RankingDto extends RelationsDto {
   @ApiProperty()
   readonly godId: number;
   @ApiProperty()
+  readonly godPhoto: string;
+  @ApiProperty()
   points: number;
   @ApiProperty()
   wins: number;

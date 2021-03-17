@@ -6,6 +6,8 @@ export default class InscriptionDto extends RelationsDto {
   @ApiProperty()
   readonly godName: string;
   @ApiProperty()
+  readonly godPhoto: string;
+  @ApiProperty()
   readonly competitionId: number;
   @ApiProperty()
   readonly competitionName: string;

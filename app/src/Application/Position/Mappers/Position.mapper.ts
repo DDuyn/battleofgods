@@ -7,6 +7,7 @@ export class PositionMapper {
     const positionDto: PositionDto = {
       godId: positionEntity.god.godId,
       godName: positionEntity.god.name,
+      godPhoto: positionEntity.god.photo,
       competitionId: positionEntity.competition.competitionId,
       competitionName: positionEntity.competition.name,
       seasonId: positionEntity.season.season,

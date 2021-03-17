@@ -9,6 +9,7 @@ export class InscriptionMapper {
     const inscriptionDto: InscriptionDto = {
       godId: inscriptionEntity.god.godId,
       godName: inscriptionEntity.god.name,
+      godPhoto: inscriptionEntity.god.photo,
       competitionId: inscriptionEntity.competition.competitionId,
       competitionName: inscriptionEntity.competition.name,
       seasonId: inscriptionEntity.season.season,
