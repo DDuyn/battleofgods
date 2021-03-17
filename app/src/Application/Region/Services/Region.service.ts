@@ -18,10 +18,10 @@ export class RegionService implements IRegionService {
     if (this.regionHelper.isArrayNull(regionListEntity)) throw new NotFoundException();
     return RegionMapper.fromEntityListToDtoList(regionListEntity);
   }
-  async findById(regionId: number): Promise<RegionDto> {
+  async findById(regionId: number, showId = false): Promise<RegionDto> {
     const regionEntity: Region = await this.regionRepository.findById(regionId);
     if (this.regionHelper.isNull(regionEntity)) throw new NotFoundException();
-    return RegionMapper.fromEntityToDto(regionEntity);
+    return RegionMapper.fromEntityToDto(regionEntity, showId);
   }
   async createRegion(regionDto: RegionCreateDto): Promise<RegionDto> {
     regionDto.regionId = await this.regionHelper.getNextSequenceValue(MODELS.REGION);

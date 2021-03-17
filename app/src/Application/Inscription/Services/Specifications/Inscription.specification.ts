@@ -1,4 +1,4 @@
-import { GenericSpecification } from '../../../Utils/Specification/Specification.generic';
+import { GenericSpecification } from 'src/Application/Shared/Specification/Specification.generic';
 import InscriptionSearchDto from '../../Dto/InscriptionSearch.dto';
 
 export class InscriptionSpecification extends GenericSpecification {

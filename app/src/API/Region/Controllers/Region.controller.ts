@@ -3,6 +3,7 @@ import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import RegionDto from 'src/Application/Region/Dto/Region.dto';
 import RegionCreateDto from 'src/Application/Region/Dto/RegionCreate.dto';
 import { IRegionService } from 'src/Application/Region/Services/Interfaces/IRegion.service';
+import { CONSTANTS } from '../../../Utils/Constants/Constants';
 
 @ApiTags('region')
 @Controller('region')
@@ -20,7 +21,7 @@ export class RegionController {
   @ApiResponse({ status: 404, description: 'Region Not Found' })
   @Get('/:regionId')
   async getRegionById(@Param('regionId') regionId: number): Promise<RegionDto> {
-    return await this.regionService.findById(regionId);
+    return await this.regionService.findById(regionId, CONSTANTS.NOTSHOWID);
   }
 
   @ApiBody({ description: 'Region', type: RegionCreateDto })

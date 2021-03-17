@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import GenericDto from 'src/Application/Generic/Dto/Generic.dto';
-export default class InscriptionDto extends GenericDto {
+import RelationsDto from 'src/Application/shared/Dto/Relations.dto';
+export default class InscriptionDto extends RelationsDto {
   @ApiProperty()
   readonly godId: number;
   @ApiProperty()

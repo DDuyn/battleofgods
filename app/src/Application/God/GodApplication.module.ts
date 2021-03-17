@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 import { GodModule } from 'src/Domain/God/God.module';
 import { GodInfrastructureModule } from 'src/Infrastructure/God/GodInfrastructure.module';
 import { CounterApplicationModule } from '../Counter/CounterApplication.module';
+import { RegionApplicationModule } from '../Region/RegionApplication.module';
 import { SharedApplicationModule } from '../Shared/SharedApplication.module';
 import { GodService } from './Services/God.service';
 import { GodHelper } from './Services/Helper/God.helper';
 @Module({
-  imports: [GodModule, GodInfrastructureModule, SharedApplicationModule, CounterApplicationModule],
+  imports: [GodModule, GodInfrastructureModule, SharedApplicationModule, CounterApplicationModule, RegionApplicationModule],
   providers: [
     {
       provide: 'IGodService',

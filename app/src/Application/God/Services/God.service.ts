@@ -19,13 +19,14 @@ export class GodService implements IGodService {
 
   async findAll(showId: boolean): Promise<GodDto[]> {
     const godList: God[] = await this.godRepository.findAll();
-    return !!godList ? GodMapper.fromEntityListToDto(godList, showId) : [];
+    if (this.godHelper.isArrayNull(godList)) throw new NotFoundException();
+    return GodMapper.fromEntityListToDto(godList, showId);
   }
 
   async findByName(godName: string): Promise<GodDto> {
     const godEntity: God = await this.godRepository.findByName(godName);
     if (this.godHelper.isNull(godEntity)) throw new NotFoundException();
-    return GodMapper.fromDtoToEntity(godEntity);
+    return GodMapper.fromEntityToDto(godEntity);
   }
 
   async findByGodId(godId: number, showId: boolean): Promise<GodDto> {
@@ -37,8 +38,10 @@ export class GodService implements IGodService {
   async createGod(god: GodCreateDto): Promise<GodDto> {
     //TODO: Validaciones
     god.godId = await this.godHelper.getNextSequenceValue(MODELS.GOD);
-    const godEntity: God = await this.godRepository.createGod(god);
+    god.regionDto = await this.godHelper.getRegionDto(god.regionId);
+    const godToCreate: God = GodMapper.fromDtoToEntity(god);
+    const godEntity: God = await this.godRepository.createGod(godToCreate);
     if (this.godHelper.isNull(godEntity)) throw new NotFoundException();
-    return GodMapper.fromDtoToEntity(godEntity);
+    return GodMapper.fromEntityToDto(godEntity);
   }
 }

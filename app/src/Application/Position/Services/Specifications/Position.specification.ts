@@ -1,4 +1,4 @@
-import { GenericSpecification } from '../../../Utils/Specification/Specification.generic';
+import { GenericSpecification } from 'src/Application/Shared/Specification/Specification.generic';
 import PositionSearchDto from '../../Dto/PositionSearch.dto';
 export class PositionSpecification extends GenericSpecification {
   readonly GODID = 'GODID';

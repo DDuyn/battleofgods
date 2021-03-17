@@ -3,6 +3,7 @@ import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
 import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetition.service';
 import { ICounterService } from 'src/Application/Counter/Services/Interfaces/ICounter.service';
 import GodDto from 'src/Application/God/Dto/God.dto';
+import { GodMapper } from 'src/Application/God/Mappers/God.mapper';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
 import RoundDto from 'src/Application/Round/Dto/Round.dto';
 import { IRoundService } from 'src/Application/Round/Services/Interfaces/IRound.service';
@@ -59,12 +60,12 @@ export class MatchHelper extends UtilsService {
     const winner: GodDto = idWinner === matchDto.idFirstBattler ? firstBattler : secondBattler;
     const matchEntity: Match = {
       matchId: matchDto.matchId,
-      firstBattler: firstBattler,
-      secondBattler: secondBattler,
+      firstBattler: GodMapper.fromDtoToEntity(firstBattler),
+      secondBattler: GodMapper.fromDtoToEntity(secondBattler),
       competition: competition,
       round: round,
       season: season,
-      winner: winner,
+      winner: GodMapper.fromDtoToEntity(winner),
     };
     return matchEntity;
   }

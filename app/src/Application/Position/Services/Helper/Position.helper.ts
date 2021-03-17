@@ -10,6 +10,7 @@ import { ISeasonService } from 'src/Application/Season/Services/Interfaces/ISeas
 import { UtilsService } from 'src/Application/Shared/Services/Utils.service';
 import { Position } from 'src/Domain/Position/Model/Position';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
+import { GodMapper } from '../../../God/Mappers/God.mapper';
 import PositionCreateDto from '../../Dto/PositionCreate.dto';
 import PositionSearchDto from '../../Dto/PositionSearch.dto';
 import { PositionSpecification } from '../Specifications/Position.specification';
@@ -43,7 +44,7 @@ export class PositionHelper extends UtilsService {
     const roundDto: RoundDto = await this.getRound(positionDto.roundId);
     const seasonDto: SeasonDto = await this.getSeason(positionDto.seasonId);
     const positionEntity: Position = {
-      god: godDto,
+      god: GodMapper.fromDtoToEntity(godDto),
       competition: competitionDto,
       round: roundDto,
       season: seasonDto,
@@ -62,7 +63,7 @@ export class PositionHelper extends UtilsService {
     const roundDto: RoundDto = specification.FilterFields.has(specification.ROUNDID) ? await this.getRound(searchDto.roundId) : null;
 
     const positionEntity: Position = {
-      god: godDto,
+      god: GodMapper.fromDtoToEntity(godDto),
       season: seasonDto,
       competition: competitionDto,
       round: roundDto,

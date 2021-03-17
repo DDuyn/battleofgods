@@ -2,6 +2,7 @@ import { Inject } from '@nestjs/common';
 import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
 import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetition.service';
 import GodDto from 'src/Application/God/Dto/God.dto';
+import { GodMapper } from 'src/Application/God/Mappers/God.mapper';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
 import SeasonDto from 'src/Application/Season/Dto/Season.dto';
 import { ISeasonService } from 'src/Application/Season/Services/Interfaces/ISeason.service';
@@ -35,9 +36,9 @@ export class InscriptionHelper extends UtilsService {
     const inscriptionList: Inscription[] = [];
     await Promise.all(
       inscriptionListDto.map(async inscriptionDto => {
-        inscriptionDto.god = await this.getGod(inscriptionDto.godId);
-        inscriptionDto.competition = await this.getCompetition(inscriptionDto.competitionId);
-        inscriptionDto.season = await this.getSeason(inscriptionDto.seasonId);
+        inscriptionDto.godDto = await this.getGod(inscriptionDto.godId);
+        inscriptionDto.competitionDto = await this.getCompetition(inscriptionDto.competitionId);
+        inscriptionDto.seasonDto = await this.getSeason(inscriptionDto.seasonId);
         inscriptionList.push(InscriptionMapper.fromDtoToEntity(inscriptionDto));
       }),
     );
@@ -53,7 +54,7 @@ export class InscriptionHelper extends UtilsService {
       : null;
 
     const inscriptionEntity: Inscription = {
-      god: godDto,
+      god: GodMapper.fromDtoToEntity(godDto),
       season: seasonDto,
       competition: competitionDto,
     };

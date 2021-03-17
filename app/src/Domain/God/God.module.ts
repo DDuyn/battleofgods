@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
+import { RegionModule } from '../Region/Region.module';
 
 @Module({
-  exports: [GodModule],
+  imports: [RegionModule],
 })
 export class GodModule {}

@@ -6,6 +6,7 @@ import RankingUpdateDto from 'src/Application/Ranking/Dto/RankingUpdate.dto';
 import { UtilsService } from 'src/Application/Shared/Services/Utils.service';
 import { Ranking } from 'src/Domain/Ranking/Model/Ranking';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
+import { GodMapper } from '../../../God/Mappers/God.mapper';
 
 @Injectable()
 export class RankingHelper extends UtilsService {
@@ -25,7 +26,7 @@ export class RankingHelper extends UtilsService {
     const rankingCreated: Ranking[] = [];
     if (this.isArrayNull(newsGods)) throw new NotFoundException();
     newsGods.forEach(god => {
-      rankingCreated.push({ god: god, points: 0, wins: 0 });
+      rankingCreated.push({ god: GodMapper.fromDtoToEntity(god), points: 0, wins: 0 });
     });
     return rankingCreated;
   }
@@ -34,7 +35,7 @@ export class RankingHelper extends UtilsService {
     const godDto: GodDto = await this.godService.findByGodId(godId, CONSTANTS.SHOWID);
     if (this.isNull(godDto)) throw new NotFoundException();
     const ranking: Ranking = {
-      god: godDto,
+      god: GodMapper.fromDtoToEntity(godDto),
       points: 0,
       wins: 0,
     };

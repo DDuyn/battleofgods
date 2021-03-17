@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import GenericDto from 'src/Application/Generic/Dto/Generic.dto';
+import RelationsDto from 'src/Application/shared/Dto/Relations.dto';
 
-export default class MatchDto extends GenericDto {
+export default class MatchDto extends RelationsDto {
   @ApiProperty()
   readonly matchId: number;
   @ApiProperty()

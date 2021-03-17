@@ -1,4 +1,5 @@
 import { Inscription } from '../../../Domain/Inscription/Model/Inscription';
+import { GodMapper } from '../../God/Mappers/God.mapper';
 import InscriptionDto from '../Dto/Inscription.dto';
 import InscriptionCreateDto from '../Dto/InscriptionCreate.dto';
 import InscriptionSearchDto from '../Dto/InscriptionSearch.dto';
@@ -25,9 +26,9 @@ export class InscriptionMapper {
 
   public static fromDtoToEntity(inscriptionDto: InscriptionCreateDto): Inscription {
     const inscription: Inscription = {
-      god: inscriptionDto.god,
-      competition: inscriptionDto.competition,
-      season: inscriptionDto.season,
+      god: GodMapper.fromDtoToEntity(inscriptionDto.godDto),
+      competition: inscriptionDto.competitionDto,
+      season: inscriptionDto.seasonDto,
     };
     return inscription;
   }
