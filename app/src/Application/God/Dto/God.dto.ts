@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import GodRelationDto from './GodRelation.dto';
+
 export default class GodDto extends GodRelationDto {
   @ApiProperty()
   readonly godId: number;
