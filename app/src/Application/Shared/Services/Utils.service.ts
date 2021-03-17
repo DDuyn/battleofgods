@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { IHelperService } from './Interfaces/IHelper.service';
 @Injectable()
-export class HelperService implements IHelperService {
+export class UtilsService implements UtilsService {
   isArrayNull<T>(entityList: T[]): boolean {
     return entityList.length === 0;
   }

@@ -5,7 +5,7 @@ import { CompetitionApplicationModule } from '../Competition/CompetitionApplicat
 import { GodApplicationModule } from '../God/GodApplication.module';
 import { RoundApplicationModule } from '../Round/RoundApplication.module';
 import { SeasonApplicationModule } from '../Season/SeasonApplication.module';
-import { UtilsApplicationModule } from '../Utils/UtilsApplication.module';
+import { SharedApplicationModule } from '../Shared/SharedApplication.module';
 import { PositionHelper } from './Services/Helper/Position.helper';
 import { PositionService } from './Services/Position.service';
 
@@ -13,7 +13,7 @@ import { PositionService } from './Services/Position.service';
   imports: [
     PositionModule,
     PositionInfrastructureModule,
-    UtilsApplicationModule,
+    SharedApplicationModule,
     GodApplicationModule,
     CompetitionApplicationModule,
     SeasonApplicationModule,

@@ -1,14 +1,14 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
-import GodDto from 'src/Application/God/Dto/God.dto';
-import { CONSTANTS } from 'src/Utils/Constants/Constants';
-import { Ranking } from 'src/Domain/Ranking/Model/Ranking';
-import RankingUpdateDto from 'src/Application/Ranking/Dto/RankingUpdate.dto';
-import { HelperService } from 'src/Application/Utils/Services/Helper.service';
 import { ICounterService } from 'src/Application/Counter/Services/Interfaces/ICounter.service';
+import GodDto from 'src/Application/God/Dto/God.dto';
+import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
+import RankingUpdateDto from 'src/Application/Ranking/Dto/RankingUpdate.dto';
+import { UtilsService } from 'src/Application/Shared/Services/Utils.service';
+import { Ranking } from 'src/Domain/Ranking/Model/Ranking';
+import { CONSTANTS } from 'src/Utils/Constants/Constants';
 
 @Injectable()
-export class RankingHelper extends HelperService{
+export class RankingHelper extends UtilsService {
   constructor(
     @Inject('ICounterService') private readonly counterService: ICounterService,
     @Inject('IGodService') private readonly godService: IGodService,
@@ -23,7 +23,7 @@ export class RankingHelper extends HelperService{
     const gods: GodDto[] = await this.godService.findAll(CONSTANTS.SHOWID);
     const newsGods: GodDto[] = gods.filter(god => !rankingActualList.some(x => x.god.godId === god.godId));
     const rankingCreated: Ranking[] = [];
-    if(this.isArrayNull(newsGods)) throw new NotFoundException;
+    if (this.isArrayNull(newsGods)) throw new NotFoundException();
     newsGods.forEach(god => {
       rankingCreated.push({ god: god, points: 0, wins: 0 });
     });
@@ -31,14 +31,14 @@ export class RankingHelper extends HelperService{
   }
 
   async getRankingByGod(godId: number): Promise<Ranking> {
-   const godDto: GodDto = await this.godService.findByGodId(godId, CONSTANTS.SHOWID);
-   if (this.isNull(godDto)) throw new NotFoundException;
-   const ranking: Ranking = {
-     god: godDto,
-     points: 0,
-     wins: 0,
-   }
-   return ranking;
+    const godDto: GodDto = await this.godService.findByGodId(godId, CONSTANTS.SHOWID);
+    if (this.isNull(godDto)) throw new NotFoundException();
+    const ranking: Ranking = {
+      god: godDto,
+      points: 0,
+      wins: 0,
+    };
+    return ranking;
   }
 
   private updateRankingOfGod(rankingOfGod: RankingUpdateDto, rankingToUpdate: Ranking): Ranking {

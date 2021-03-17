@@ -1,20 +1,20 @@
 import { Module } from '@nestjs/common';
 import { MatchModule } from 'src/Domain/Match/Match.module';
 import { MatchInfrastructureModule } from 'src/Infrastructure/Match/MatchInfrastructure.module';
-import { GodApplicationModule } from '../God/GodApplication.module';
-import { UtilsApplicationModule } from '../Utils/UtilsApplication.module';
-import { MatchService } from './Services/Match.service';
 import { CompetitionApplicationModule } from '../Competition/CompetitionApplication.module';
-import { SeasonApplicationModule } from '../Season/SeasonApplication.module';
-import { RoundApplicationModule } from '../Round/RoundApplication.module';
-import { MatchHelper } from './Services/Helpers/Match.helper';
 import { CounterApplicationModule } from '../Counter/CounterApplication.module';
+import { GodApplicationModule } from '../God/GodApplication.module';
+import { RoundApplicationModule } from '../Round/RoundApplication.module';
+import { SeasonApplicationModule } from '../Season/SeasonApplication.module';
+import { SharedApplicationModule } from '../Shared/SharedApplication.module';
+import { MatchHelper } from './Services/Helpers/Match.helper';
+import { MatchService } from './Services/Match.service';
 
 @Module({
   imports: [
     MatchModule,
     MatchInfrastructureModule,
-    UtilsApplicationModule,
+    SharedApplicationModule,
     GodApplicationModule,
     CompetitionApplicationModule,
     SeasonApplicationModule,

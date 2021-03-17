@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { CompetitionModule } from 'src/Domain/Competition/Competition.module';
 import { CompetitionInfrastructureModule } from 'src/Infrastructure/Competition/CompetitionInfrastructure.module';
-import { UtilsApplicationModule } from '../Utils/UtilsApplication.module';
-import { CompetitionService } from './Services/Competition.service';
 import { CounterApplicationModule } from '../Counter/CounterApplication.module';
+import { SharedApplicationModule } from '../Shared/SharedApplication.module';
+import { CompetitionService } from './Services/Competition.service';
 import { CompetitionHelper } from './Services/Helper/Competition.helper';
 
 @Module({
-  imports: [CompetitionModule, CompetitionInfrastructureModule, UtilsApplicationModule, CounterApplicationModule],
+  imports: [CompetitionModule, CompetitionInfrastructureModule, SharedApplicationModule, CounterApplicationModule],
   providers: [
     {
       provide: 'ICompetitionService',
@@ -15,8 +15,8 @@ import { CompetitionHelper } from './Services/Helper/Competition.helper';
     },
     {
       provide: 'CompetitionHelper',
-      useClass: CompetitionHelper
-    }
+      useClass: CompetitionHelper,
+    },
   ],
   exports: [
     {

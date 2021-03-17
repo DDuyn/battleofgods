@@ -5,7 +5,7 @@ import { CompetitionApplicationModule } from '../Competition/CompetitionApplicat
 import { CounterApplicationModule } from '../Counter/CounterApplication.module';
 import { GodApplicationModule } from '../God/GodApplication.module';
 import { SeasonApplicationModule } from '../Season/SeasonApplication.module';
-import { UtilsApplicationModule } from '../Utils/UtilsApplication.module';
+import { SharedApplicationModule } from '../Shared/SharedApplication.module';
 import { InscriptionHelper } from './Services/Helper/Inscription.helper';
 import { InscriptionService } from './Services/Inscription.service';
 
@@ -13,7 +13,7 @@ import { InscriptionService } from './Services/Inscription.service';
   imports: [
     InscriptionModule,
     InscriptionInfrastructureModule,
-    UtilsApplicationModule,
+    SharedApplicationModule,
     GodApplicationModule,
     CompetitionApplicationModule,
     SeasonApplicationModule,

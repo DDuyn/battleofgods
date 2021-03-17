@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { GodModule } from 'src/Domain/God/God.module';
 import { GodInfrastructureModule } from 'src/Infrastructure/God/GodInfrastructure.module';
-import { UtilsApplicationModule } from '../Utils/UtilsApplication.module';
+import { CounterApplicationModule } from '../Counter/CounterApplication.module';
+import { SharedApplicationModule } from '../Shared/SharedApplication.module';
 import { GodService } from './Services/God.service';
 import { GodHelper } from './Services/Helper/God.helper';
-import { CounterApplicationModule } from '../Counter/CounterApplication.module';
 @Module({
-  imports: [GodModule, GodInfrastructureModule, UtilsApplicationModule, CounterApplicationModule],
+  imports: [GodModule, GodInfrastructureModule, SharedApplicationModule, CounterApplicationModule],
   providers: [
     {
       provide: 'IGodService',
@@ -14,8 +14,8 @@ import { CounterApplicationModule } from '../Counter/CounterApplication.module';
     },
     {
       provide: 'GodHelper',
-      useClass: GodHelper
-    }
+      useClass: GodHelper,
+    },
   ],
   exports: [
     {

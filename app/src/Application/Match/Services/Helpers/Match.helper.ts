@@ -8,13 +8,13 @@ import RoundDto from 'src/Application/Round/Dto/Round.dto';
 import { IRoundService } from 'src/Application/Round/Services/Interfaces/IRound.service';
 import SeasonDto from 'src/Application/Season/Dto/Season.dto';
 import { ISeasonService } from 'src/Application/Season/Services/Interfaces/ISeason.service';
-import { HelperService } from 'src/Application/Utils/Services/Helper.service';
+import { UtilsService } from 'src/Application/Shared/Services/Utils.service';
 import { Match } from 'src/Domain/Match/Model/Match';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
 import MatchCreateDto from '../../Dto/MatchCreate.dto';
 
 @Injectable()
-export class MatchHelper extends HelperService {
+export class MatchHelper extends UtilsService {
   constructor(
     @Inject('ICounterService') private readonly counterService: ICounterService,
     @Inject('IGodService') private readonly godService: IGodService,

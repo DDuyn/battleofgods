@@ -5,7 +5,7 @@ import GodDto from 'src/Application/God/Dto/God.dto';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
 import SeasonDto from 'src/Application/Season/Dto/Season.dto';
 import { ISeasonService } from 'src/Application/Season/Services/Interfaces/ISeason.service';
-import { HelperService } from 'src/Application/Utils/Services/Helper.service';
+import { UtilsService } from 'src/Application/Shared/Services/Utils.service';
 import { Inscription } from 'src/Domain/Inscription/Model/Inscription';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
 import InscriptionCreateDto from '../../Dto/InscriptionCreate.dto';
@@ -13,7 +13,7 @@ import InscriptionSearchDto from '../../Dto/InscriptionSearch.dto';
 import { InscriptionMapper } from '../../Mappers/Inscription.mapper';
 import { InscriptionSpecification } from '../Specifications/Inscription.specification';
 
-export class InscriptionHelper extends HelperService {
+export class InscriptionHelper extends UtilsService {
   constructor(
     @Inject('IGodService') private readonly godService: IGodService,
     @Inject('ICompetitionService') private readonly competitionService: ICompetitionService,

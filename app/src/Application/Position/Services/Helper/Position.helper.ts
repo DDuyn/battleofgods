@@ -7,14 +7,14 @@ import RoundDto from 'src/Application/Round/Dto/Round.dto';
 import { IRoundService } from 'src/Application/Round/Services/Interfaces/IRound.service';
 import SeasonDto from 'src/Application/Season/Dto/Season.dto';
 import { ISeasonService } from 'src/Application/Season/Services/Interfaces/ISeason.service';
+import { UtilsService } from 'src/Application/Shared/Services/Utils.service';
 import { Position } from 'src/Domain/Position/Model/Position';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
-import { HelperService } from '../../../Utils/Services/Helper.service';
 import PositionCreateDto from '../../Dto/PositionCreate.dto';
 import PositionSearchDto from '../../Dto/PositionSearch.dto';
 import { PositionSpecification } from '../Specifications/Position.specification';
 @Injectable()
-export class PositionHelper extends HelperService {
+export class PositionHelper extends UtilsService {
   constructor(
     @Inject('IGodService') private readonly godService: IGodService,
     @Inject('ICompetitionService') private readonly competitionService: ICompetitionService,
