@@ -42,6 +42,14 @@ export class RankingHelper extends UtilsService {
     return ranking;
   }
 
+  getRankingByRegion(regionId: number, rankingList: Ranking[]): Ranking[] {
+    const rankingFiltered: Ranking[] = rankingList.map(ranking => {
+      if (ranking.god.origen.regionId === regionId) return ranking;
+    });
+
+    return this.extractElementsUndefined(rankingFiltered);
+  }
+
   private updateRankingOfGod(rankingOfGod: RankingUpdateDto, rankingToUpdate: Ranking): Ranking {
     rankingToUpdate.wins += rankingOfGod.isWinner ? CONSTANTS.NUMBER_ONE : CONSTANTS.NUMBER_ZERO;
     rankingToUpdate.points += rankingOfGod.pointsEarned;

@@ -14,17 +14,24 @@ export class RankingService implements IRankingService {
     @Inject('IRankingRepository')
     private readonly rankingRepository: IRankingRepository,
     @Inject('RankingHelper')
-    private readonly rankingHelper: RankingHelper
+    private readonly rankingHelper: RankingHelper,
   ) {}
 
   async findRankingByGod(godId: number): Promise<RankingDto> {
     const ranking: Ranking = await this.rankingHelper.getRankingByGod(godId);
     const rankingGod: Ranking = await this.rankingRepository.findRankingByGod(ranking);
-    if(this.rankingHelper.isNull(rankingGod)) throw new NotFoundException;
+    if (this.rankingHelper.isNull(rankingGod)) throw new NotFoundException();
     return RankingMapper.fromEntityToDto(rankingGod);
   }
 
-  async findAll(): Promise<RankingDto[]> {  
+  async findRankingByRegion(regionId: number): Promise<RankingDto[]> {
+    const rankingList: Ranking[] = await this.rankingRepository.findAll();
+    const rankingListByRegion: Ranking[] = this.rankingHelper.getRankingByRegion(regionId, rankingList);
+    if (this.rankingHelper.isArrayNull(rankingListByRegion)) throw new NotFoundException();
+    return RankingMapper.fromEntityListToDto(rankingListByRegion);
+  }
+
+  async findAll(): Promise<RankingDto[]> {
     const ranking: Ranking[] = await this.rankingRepository.findAll();
     return RankingMapper.fromEntityListToDto(ranking);
   }
@@ -32,19 +39,19 @@ export class RankingService implements IRankingService {
   async createRanking(): Promise<RankingDto[]> {
     const rankingActualList: Ranking[] = await this.rankingRepository.findAll();
     const ranking: Ranking[] = await this.rankingHelper.createInitialRanking(rankingActualList);
-    const rankingListCreated: Ranking[] = await this.rankingRepository.createRanking(ranking); 
+    const rankingListCreated: Ranking[] = await this.rankingRepository.createRanking(ranking);
     return RankingMapper.fromEntityListToDto(rankingListCreated);
   }
 
   async updateRankingByGod(rankingGod: RankingUpdateDto[]): Promise<HttpStatus> {
-    try {    
+    try {
       let rankingToUpdateList: Ranking[] = await this.rankingRepository.findAll();
       rankingToUpdateList = this.rankingHelper.getGodsToUpdate(rankingToUpdateList, rankingGod);
       rankingToUpdateList.forEach(async ranking => {
-       if (!!ranking) await this.rankingRepository.updateRankingByGod(ranking);      
+        if (!!ranking) await this.rankingRepository.updateRankingByGod(ranking);
       });
       return HttpStatus.OK;
-    } catch (error) {    
+    } catch (error) {
       return HttpStatus.NOT_FOUND;
     }
   }

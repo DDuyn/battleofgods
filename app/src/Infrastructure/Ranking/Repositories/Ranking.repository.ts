@@ -6,33 +6,23 @@ import { IRankingRepository } from 'src/Domain/Ranking/Repositories/IRanking.rep
 
 @Injectable()
 export class RankingRepository implements IRankingRepository {
-  constructor(
-    @InjectModel('Ranking') private rankingModel: Model<IRankingEntity>,
-  ) {}
+  constructor(@InjectModel('Ranking') private rankingModel: Model<IRankingEntity>) {}
   async findRankingByGod(ranking: IRankingEntity): Promise<IRankingEntity> {
     return await this.rankingModel.findOne({ god: ranking.god._id });
   }
 
   async findAll(): Promise<IRankingEntity[]> {
-    return await this.rankingModel
-      .find()
-      .sort({ points: 'desc', wins: 'desc', god: 'asc' });
+    return await this.rankingModel.find().sort({ points: 'desc', wins: 'desc', god: 'asc' });
   }
 
-  async createRanking(
-    listRanking: IRankingEntity[],
-  ): Promise<IRankingEntity[]> {
+  async createRanking(listRanking: IRankingEntity[]): Promise<IRankingEntity[]> {
     return await this.rankingModel.create(listRanking);
   }
 
-  async updateRankingByGod(
-    rankingGod: IRankingEntity,
-  ): Promise<IRankingEntity> {
-    return await this.rankingModel
-      .findOneAndUpdate({ god: rankingGod.god._id }, rankingGod, { new: true })
-      .catch(err => {
-        console.error('Error:', err);
-        return null;
-      });
+  async updateRankingByGod(rankingGod: IRankingEntity): Promise<IRankingEntity> {
+    return await this.rankingModel.findOneAndUpdate({ god: rankingGod.god._id }, rankingGod, { new: true }).catch(err => {
+      console.error('Error:', err);
+      return null;
+    });
   }
 }

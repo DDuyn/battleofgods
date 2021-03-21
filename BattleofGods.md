@@ -69,6 +69,7 @@ Entidad que contendrá el maestro de las competiciones.
 - Propiedades
   - **Código**: Código de la competición.
   - **Descripción**: Descripción de la competición
+  - **Filter**: Campo que determina si es para todas las regiones o que región corresponde.
 
 | Código | Descripcion   |
 | ------ | ------------- |
@@ -278,6 +279,7 @@ Calendario de la temporada.
 [International] 4
 [Olympus] 1
 Total de competiciones disputadas por temporada: 53
+Total de competiciones creadas: (36*8(Regiones)) + 12 + 4 + 1 = 305 competiciones.
 
 ### CONFIGURACIÓN PUNTOS POR RONDA
 
@@ -327,4 +329,8 @@ Total de competiciones disputadas por temporada: 53
 
 ### CONFIGURACIÓN REGIONES
 
-- [ALL, NORDIC, GREEK, ...]
+- [ALL, NORDIC, GREEK, HINDU, ROMAIN, EGYPTIAN, JAPAN, CHINESE, AFRICAAN]
+  
+### CONFIGURACIÓN DIOSES
+
+- Crear 32 dioses por región, hace un total de 256 Dioses.
