@@ -9,6 +9,7 @@ import { RankingInfrastructureModule } from './Ranking/RankingInfrastructure.mod
 import { RegionInfrastructureModule } from './Region/RegionInfrastructure.module';
 import { RoundInfrastructureModule } from './Round/RoundInfrastructure.module';
 import { SeasonInfrastructureModule } from './Season/SeasonInfrastructure.module';
+import { TypeCompetitionInfrastructureModule } from './TypeCompetition/TypeCompetitionInfrastructure.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { SeasonInfrastructureModule } from './Season/SeasonInfrastructure.module
     PositionInfrastructureModule,
     InscriptionInfrastructureModule,
     RegionInfrastructureModule,
+    TypeCompetitionInfrastructureModule,
   ],
   exports: [
     GodInfrastructureModule,
@@ -34,6 +36,7 @@ import { SeasonInfrastructureModule } from './Season/SeasonInfrastructure.module
     PositionInfrastructureModule,
     InscriptionInfrastructureModule,
     RegionInfrastructureModule,
+    TypeCompetitionInfrastructureModule,
   ],
 })
 export class InfrastructureModule {}

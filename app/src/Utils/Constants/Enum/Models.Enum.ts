@@ -8,4 +8,5 @@ export const MODELS = {
   POSITION: 'Position',
   INSCRIPTION: 'Inscription',
   REGION: 'Region',
+  TYPECOMPETITION: 'TypeCompetition',
 };

@@ -10,6 +10,7 @@ import { RankingApplicationModule } from './Ranking/RankingApplication.module';
 import { RegionApplicationModule } from './Region/RegionApplication.module';
 import { RoundApplicationModule } from './Round/RoundApplication.module';
 import { SeasonApplicationModule } from './Season/SeasonApplication.module';
+import { TypeCompetitionApplicationModule } from './TypeCompetition/TypeCompetitionApplication.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { SeasonApplicationModule } from './Season/SeasonApplication.module';
     PositionApplicationModule,
     InscriptionApplicationModule,
     RegionApplicationModule,
+    TypeCompetitionApplicationModule,
   ],
   exports: [
     GodApplicationModule,
@@ -36,6 +38,7 @@ import { SeasonApplicationModule } from './Season/SeasonApplication.module';
     PositionApplicationModule,
     InscriptionApplicationModule,
     RegionApplicationModule,
+    TypeCompetitionApplicationModule,
   ],
 })
 export class ApplicationModule {}

@@ -9,6 +9,7 @@ import { RankingModule } from './Ranking/Ranking.module';
 import { RegionModule } from './Region/Region.module';
 import { RoundModule } from './Round/Round.module';
 import { SeasonModule } from './Season/Season.module';
+import { TypeCompetitionModule } from './TypeCompetition/TypeCompetition.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { SeasonModule } from './Season/Season.module';
     PositionModule,
     InscriptionModule,
     RegionModule,
+    TypeCompetitionModule,
   ],
   exports: [
     GodModule,
@@ -34,6 +36,7 @@ import { SeasonModule } from './Season/Season.module';
     PositionModule,
     InscriptionModule,
     RegionModule,
+    TypeCompetitionModule,
   ],
 })
 export class DomainModule {}
