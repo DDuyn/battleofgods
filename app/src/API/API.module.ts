@@ -8,6 +8,7 @@ import { RankingAPIModule } from './Ranking/RankingAPI.module';
 import { RegionAPIModule } from './Region/RegionAPI.module';
 import { RoundAPIModule } from './Round/RoundAPI.module';
 import { SeasonAPIModule } from './Season/SeasonAPI.module';
+import { TypeCompetitionAPIModule } from './TypeCompetition/TypeCompetitionAPI.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { SeasonAPIModule } from './Season/SeasonAPI.module';
     PositionAPIModule,
     InscriptionAPIModule,
     RegionAPIModule,
+    TypeCompetitionAPIModule,
   ],
   exports: [
     CompetitionAPIModule,
@@ -31,6 +33,7 @@ import { SeasonAPIModule } from './Season/SeasonAPI.module';
     PositionAPIModule,
     InscriptionAPIModule,
     RegionAPIModule,
+    TypeCompetitionAPIModule,
   ],
 })
 export class APIModule {}

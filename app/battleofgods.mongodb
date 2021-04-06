@@ -1,9 +1,9 @@
 use('battleofgods')
 
-//db.counters.insertOne({_id: 'Region', sequence_value: 0})
+//db.counters.insertOne({_id: 'TypeCompetition', sequence_value: 0})
 //db.counters.insertOne({_id: 'Inscription', sequence_value: 0})
 //db.counters.deleteOne({_id: 'Inscription'})
-//db.counters.find()
+db.counters.find()
 
 
 

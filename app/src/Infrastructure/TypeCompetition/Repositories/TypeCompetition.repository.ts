@@ -16,4 +16,7 @@ export class TypeCompetitionRepository implements ITypeCompetitionRepository {
   async create(typeCompetition: TypeCompetition): Promise<TypeCompetition> {
     return await this.typeCompetitionModel.create(typeCompetition);
   }
+  async update(typeCompetitionId: number, typeCompetition: TypeCompetition): Promise<TypeCompetition> {
+    return await this.typeCompetitionModel.findOneAndUpdate({ typeCompetitionId: typeCompetitionId }, typeCompetition, { new: true });
+  }
 }

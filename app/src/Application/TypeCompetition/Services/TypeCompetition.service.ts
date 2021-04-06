@@ -4,6 +4,7 @@ import { ITypeCompetitionRepository } from 'src/Domain/TypeCompetition/Repositor
 import { MODELS } from 'src/Utils/Constants/Enum/Models.Enum';
 import TypeCompetitionDto from '../Dto/TypeCompetition.dto';
 import TypeCompetitionCreateDto from '../Dto/TypeCompetitionCreate.dto';
+import TypeCompetitionUpdateDto from '../Dto/TypeCompetitionUpdate.dto';
 import { TypeCompetitionMapper } from '../Mappers/TypeCompetition.mapper';
 import { TypeCompetitionHelper } from './Helper/TypeCompetition.helper';
 import { ITypeCompetitionService } from './Interface/ITypeCompetition.service';
@@ -29,5 +30,15 @@ export class TypeCompetitionService implements ITypeCompetitionService {
     const typeCompetitionEntity: TypeCompetition = await this.typeCompetitionRepository.create(typeCompetitionDto);
     if (this.typeCompetitionHelper.isNull(typeCompetitionEntity)) throw new NotFoundException();
     return TypeCompetitionMapper.fromEntityToDto(typeCompetitionEntity);
+  }
+  async update(typeCompetitionId: number, typeCompetitionDto: TypeCompetitionUpdateDto): Promise<TypeCompetitionDto> {
+    const typeCompetition: TypeCompetition = await this.typeCompetitionRepository.findById(typeCompetitionId);
+    const typeCompetitionToUpdate: TypeCompetition = this.typeCompetitionHelper.modifyDescription(
+      typeCompetition,
+      typeCompetitionDto.description,
+    );
+    const typeCompetitionUpdated: TypeCompetition = await this.typeCompetitionRepository.update(typeCompetitionId, typeCompetitionToUpdate);
+    if (this.typeCompetitionHelper.isNull(typeCompetitionUpdated)) throw new NotFoundException();
+    return TypeCompetitionMapper.fromEntityToDto(typeCompetitionUpdated);
   }
 }
