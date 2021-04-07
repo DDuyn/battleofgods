@@ -5,6 +5,7 @@ import RegionDto from 'src/Application/Region/Dto/Region.dto';
 import RoundDto from 'src/Application/Round/Dto/Round.dto';
 import SeasonDto from 'src/Application/Season/Dto/Season.dto';
 import GenericDto from 'src/Application/shared/Dto/Generic.dto';
+import TypeCompetitionDto from 'src/Application/TypeCompetition/Dto/TypeCompetition.dto';
 
 export default class RelationsDto extends GenericDto {
   @ApiHideProperty()
@@ -17,4 +18,6 @@ export default class RelationsDto extends GenericDto {
   roundDto?: RoundDto;
   @ApiHideProperty()
   godDto?: GodDto;
+  @ApiHideProperty()
+  typeCompetitionDto?: TypeCompetitionDto;
 }

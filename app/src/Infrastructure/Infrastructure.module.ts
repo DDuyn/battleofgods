@@ -4,6 +4,7 @@ import { CounterInfrastructureModule } from './Counter/CounterInfrastructure.mod
 import { GodInfrastructureModule } from './God/GodInfrastructure.module';
 import { InscriptionInfrastructureModule } from './Inscription/InscriptionInfrastructure.module';
 import { MatchInfrastructureModule } from './Match/MatchInfrastructure.module';
+import { PointsInfrastructureModule } from './Points/PointsInfrastructure.module';
 import { PositionInfrastructureModule } from './Position/PositionInfrastructure.module';
 import { RankingInfrastructureModule } from './Ranking/RankingInfrastructure.module';
 import { RegionInfrastructureModule } from './Region/RegionInfrastructure.module';
@@ -24,6 +25,7 @@ import { TypeCompetitionInfrastructureModule } from './TypeCompetition/TypeCompe
     InscriptionInfrastructureModule,
     RegionInfrastructureModule,
     TypeCompetitionInfrastructureModule,
+    PointsInfrastructureModule,
   ],
   exports: [
     GodInfrastructureModule,
@@ -37,6 +39,7 @@ import { TypeCompetitionInfrastructureModule } from './TypeCompetition/TypeCompe
     InscriptionInfrastructureModule,
     RegionInfrastructureModule,
     TypeCompetitionInfrastructureModule,
+    PointsInfrastructureModule,
   ],
 })
 export class InfrastructureModule {}

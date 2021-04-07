@@ -5,6 +5,7 @@ import { CounterApplicationModule } from './Counter/CounterApplication.module';
 import { GodApplicationModule } from './God/GodApplication.module';
 import { InscriptionApplicationModule } from './Inscription/InscriptionApplication.module';
 import { MatchApplicationModule } from './Match/MatchApplication.module';
+import { PointsApplicationModule } from './Points/PointsApplication.module';
 import { PositionApplicationModule } from './Position/PositionApplication.module';
 import { RankingApplicationModule } from './Ranking/RankingApplication.module';
 import { RegionApplicationModule } from './Region/RegionApplication.module';
@@ -26,6 +27,7 @@ import { TypeCompetitionApplicationModule } from './TypeCompetition/TypeCompetit
     InscriptionApplicationModule,
     RegionApplicationModule,
     TypeCompetitionApplicationModule,
+    PointsApplicationModule,
   ],
   exports: [
     GodApplicationModule,
@@ -39,6 +41,7 @@ import { TypeCompetitionApplicationModule } from './TypeCompetition/TypeCompetit
     InscriptionApplicationModule,
     RegionApplicationModule,
     TypeCompetitionApplicationModule,
+    PointsApplicationModule,
   ],
 })
 export class ApplicationModule {}

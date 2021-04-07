@@ -3,6 +3,7 @@ import { CompetitionAPIModule } from './Competition/CompetitionAPI.module';
 import { GodAPIModule } from './God/GodAPI.module';
 import { InscriptionAPIModule } from './Inscription/InscriptionAPI.module';
 import { MatchAPIModule } from './Match/MatchAPI.module';
+import { PointsApiModule } from './Points/PointsAPI.module';
 import { PositionAPIModule } from './Position/PositionAPI.module';
 import { RankingAPIModule } from './Ranking/RankingAPI.module';
 import { RegionAPIModule } from './Region/RegionAPI.module';
@@ -22,6 +23,7 @@ import { TypeCompetitionAPIModule } from './TypeCompetition/TypeCompetitionAPI.m
     InscriptionAPIModule,
     RegionAPIModule,
     TypeCompetitionAPIModule,
+    PointsApiModule,
   ],
   exports: [
     CompetitionAPIModule,
@@ -34,6 +36,7 @@ import { TypeCompetitionAPIModule } from './TypeCompetition/TypeCompetitionAPI.m
     InscriptionAPIModule,
     RegionAPIModule,
     TypeCompetitionAPIModule,
+    PointsApiModule,
   ],
 })
 export class APIModule {}

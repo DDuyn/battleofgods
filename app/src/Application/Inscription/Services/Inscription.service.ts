@@ -26,7 +26,7 @@ export class InscriptionService implements IInscriptionService {
   }
 
   async findInscriptionBySpecification(searchDto: InscriptionSearchDto): Promise<InscriptionDto[]> {
-    const inscriptionSpecs: Inscription = await this.inscriptionHelper.configurePositionSpecs(searchDto);
+    const inscriptionSpecs: Inscription = await this.inscriptionHelper.configureInscriptionSpecs(searchDto);
     const inscriptionList: Inscription[] = await this.inscriptionRepository.findInscriptionBySpecification(inscriptionSpecs);
     return InscriptionMapper.fromEntityListToDto(inscriptionList);
   }
