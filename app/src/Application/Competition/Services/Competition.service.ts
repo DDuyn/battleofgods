@@ -4,6 +4,7 @@ import { ICompetitionRepository } from 'src/Domain/Competition/Repositories/ICom
 import { MODELS } from 'src/Utils/Constants/Enum/Models.Enum';
 import CompetitionDto from '../Dto/Competition.dto';
 import CompetitionCreateDto from '../Dto/CompetitionCreate.dto';
+import CompetitionUpdateDto from '../Dto/CompetitionUpdate.dto';
 import { CompetitionMapper } from '../Mappers/Competition.mapper';
 import { CompetitionHelper } from './Helper/Competition.helper';
 import { ICompetitionService } from './Interfaces/ICompetition.service';
@@ -33,5 +34,13 @@ export class CompetitionService implements ICompetitionService {
     const competitionCreated: Competition = await this.competitionRepository.createCompetition(competitionToCreate);
     if (this.competitionHelper.isNull(competitionCreated)) throw new NotFoundException();
     return CompetitionMapper.fromEntityToDto(competitionCreated);
+  }
+
+  async updateCompetition(competitionId: number, competitionDto: CompetitionUpdateDto): Promise<CompetitionDto> {
+    const competition: Competition = await this.competitionRepository.findById(competitionId);
+    const competitionToModify: Competition = this.competitionHelper.modifyCompetition(competition, competitionDto);
+    const competitionModified: Competition = await this.competitionRepository.updateCompetition(competitionId, competitionToModify);
+    if (this.competitionHelper.isNull(competitionModified)) throw new NotFoundException();
+    return CompetitionMapper.fromEntityToDto(competitionModified);
   }
 }

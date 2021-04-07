@@ -11,7 +11,10 @@ export class CompetitionRepository implements ICompetitionRepository {
   ) {}
 
   async findLastCompetition(): Promise<ICompetitionEntity> {
-    return await this.competitionModel.findOne().sort({ idCompetition: 'desc' }).limit(1);
+    return await this.competitionModel
+      .findOne()
+      .sort({ idCompetition: 'desc' })
+      .limit(1);
   }
 
   async findAll(): Promise<ICompetitionEntity[]> {
@@ -24,9 +27,11 @@ export class CompetitionRepository implements ICompetitionRepository {
     });
   }
 
-  async createCompetition(
-    competition: ICompetitionEntity,
-  ): Promise<ICompetitionEntity> {  
+  async createCompetition(competition: ICompetitionEntity): Promise<ICompetitionEntity> {
     return await this.competitionModel.create(competition);
+  }
+
+  async updateCompetition(competitionId: number, competition: ICompetitionEntity): Promise<ICompetitionEntity> {
+    return await this.competitionModel.findOneAndUpdate({ competitionId: competitionId }, competition, { new: true });
   }
 }

@@ -1,10 +1,10 @@
-import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
-import { ApiTags, ApiParam, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { Body, Controller, Get, Inject, Param, Post, Put } from '@nestjs/common';
+import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
 import CompetitionCreateDto from 'src/Application/Competition/Dto/CompetitionCreate.dto';
+import CompetitionUpdateDto from 'src/Application/Competition/Dto/CompetitionUpdate.dto';
 import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetition.service';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
-
 
 @ApiTags('competition')
 @Controller('competition')
@@ -35,9 +35,7 @@ export class CompetitionController {
     type: CompetitionDto,
   })
   @Get('/:competitionId')
-  async getCompetition(
-    @Param('competitionId') competitionId: number,
-  ): Promise<CompetitionDto> {
+  async getCompetition(@Param('competitionId') competitionId: number): Promise<CompetitionDto> {
     return await this.competitionService.findById(competitionId, CONSTANTS.NOTSHOWID);
   }
 
@@ -51,10 +49,25 @@ export class CompetitionController {
     description: 'A competition',
     type: CompetitionCreateDto,
   })
-  async createCompetition(
-    @Body() competition: CompetitionCreateDto,
-  ): Promise<CompetitionDto> {
+  async createCompetition(@Body() competition: CompetitionCreateDto): Promise<CompetitionDto> {
     return this.competitionService.createCompetition(competition);
+  }
+
+  @Put('/:competitionId')
+  @ApiResponse({
+    status: 200,
+    description: 'Update competition',
+    type: CompetitionDto,
+  })
+  @ApiBody({
+    description: 'Competition to update',
+    type: CompetitionUpdateDto,
+  })
+  async updateCompetition(
+    @Param('competitionId') competitionId: number,
+    @Body() competitionDto: CompetitionUpdateDto,
+  ): Promise<CompetitionDto> {
+    return this.competitionService.updateCompetition(+competitionId, competitionDto);
   }
 
   // TODO: Obtener estadísticas totales de una competición

@@ -14,4 +14,6 @@ export default class CompetitionDto extends CompetitionRelationDto {
   readonly typeCompetitionId: number;
   @ApiProperty()
   readonly totalCompetitors: number;
+  @ApiProperty()
+  readonly isPlayed: boolean;
 }

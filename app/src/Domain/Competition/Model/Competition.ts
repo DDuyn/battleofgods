@@ -7,6 +7,7 @@ export type Competition = {
   readonly name: string;
   readonly description: string;
   readonly typeCompetition: TypeCompetition;
+  readonly isPlayed: boolean;
 };
 
 export const CompetitionModel = new Schema({
@@ -14,12 +15,13 @@ export const CompetitionModel = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   typeCompetition: { type: Schema.Types.ObjectId, ref: 'TypeCompetition', required: true, autopopulate: true },
+  isPlayed: { type: Boolean, required: true, default: false },
 });
 
 export interface ICompetitionEntity extends Document {
   readonly competitionId: number;
   readonly name: string;
   readonly description: string;
-  readonly totalCompetitors: number;
   readonly typeCompetition: ITypeCompetitionEntity;
+  readonly isPlayed: boolean;
 }

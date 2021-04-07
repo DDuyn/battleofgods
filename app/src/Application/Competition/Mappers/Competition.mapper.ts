@@ -11,6 +11,7 @@ export class CompetitionMapper {
       typeCompetition: competitionEntity.typeCompetition.name,
       totalCompetitors: competitionEntity.typeCompetition.totalCompetitors,
       typeCompetitionId: competitionEntity.typeCompetition.typeCompetitionId,
+      isPlayed: competitionEntity.isPlayed,
     };
     if (showId) competitionDto._id = competitionEntity._id;
     return competitionDto;
@@ -30,6 +31,7 @@ export class CompetitionMapper {
       name: competitionDto.name,
       description: competitionDto.description,
       typeCompetition: competitionDto.typeCompetitionDto,
+      isPlayed: competitionDto.isPlayed,
       _id: competitionDto._id,
     };
     return competition;

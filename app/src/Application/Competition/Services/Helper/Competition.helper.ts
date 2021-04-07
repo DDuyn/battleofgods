@@ -3,7 +3,9 @@ import { ICounterService } from 'src/Application/Counter/Services/Interfaces/ICo
 import { UtilsService } from 'src/Application/Shared/Services/Utils.service';
 import TypeCompetitionDto from 'src/Application/TypeCompetition/Dto/TypeCompetition.dto';
 import { ITypeCompetitionService } from 'src/Application/TypeCompetition/Services/Interface/ITypeCompetition.service';
+import { Competition } from 'src/Domain/Competition/Model/Competition';
 import { CONSTANTS } from 'src/Utils/Constants/Constants';
+import CompetitionUpdateDto from '../../Dto/CompetitionUpdate.dto';
 @Injectable()
 export class CompetitionHelper extends UtilsService {
   constructor(
@@ -17,5 +19,16 @@ export class CompetitionHelper extends UtilsService {
   }
   async getTypeCompetitionDto(typeCompetitionId: number): Promise<TypeCompetitionDto> {
     return await this.typeCompetitionService.findById(typeCompetitionId, CONSTANTS.SHOWID);
+  }
+
+  modifyCompetition(competitionOrigin: Competition, competitionDto: CompetitionUpdateDto): Competition {
+    const competitioEntity: Competition = {
+      competitionId: competitionOrigin.competitionId,
+      name: competitionDto.name,
+      typeCompetition: competitionOrigin.typeCompetition,
+      description: competitionDto.description,
+      isPlayed: competitionDto.isPlayed,
+    };
+    return competitioEntity;
   }
 }
