@@ -1,5 +1,6 @@
 import { Inject } from '@nestjs/common';
 import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
+import { CompetitionMapper } from 'src/Application/Competition/Mappers/Competition.mapper';
 import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetition.service';
 import GodDto from 'src/Application/God/Dto/God.dto';
 import { GodMapper } from 'src/Application/God/Mappers/God.mapper';
@@ -56,7 +57,7 @@ export class InscriptionHelper extends UtilsService {
     const inscriptionEntity: Inscription = {
       god: GodMapper.fromDtoToEntity(godDto),
       season: seasonDto,
-      competition: competitionDto,
+      competition: CompetitionMapper.fromDtoToEntity(competitionDto),
     };
     return inscriptionEntity;
   }

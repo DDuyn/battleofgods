@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
+import { CompetitionMapper } from 'src/Application/Competition/Mappers/Competition.mapper';
 import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetition.service';
 import GodDto from 'src/Application/God/Dto/God.dto';
 import { IGodService } from 'src/Application/God/Services/Interfaces/IGod.service';
@@ -40,17 +41,16 @@ export class PositionHelper extends UtilsService {
   async createEntityPosition(positionDto: PositionCreateDto): Promise<Position> {
     //TODO: Validaciones
     const godDto: GodDto = await this.getGod(positionDto.godId);
-    const competitionDto: CompetitionDto = await this.getCompetition(positionDto.competitionId);
     const roundDto: RoundDto = await this.getRound(positionDto.roundId);
+    const competitionDto: CompetitionDto = await this.getCompetition(positionDto.competitionId);
     const seasonDto: SeasonDto = await this.getSeason(positionDto.seasonId);
-    const positionEntity: Position = {
-      god: GodMapper.fromDtoToEntity(godDto),
+    return this.configEntityPosition({
+      god: godDto,
       competition: competitionDto,
-      round: roundDto,
       season: seasonDto,
+      round: roundDto,
       points: positionDto.points,
-    };
-    return positionEntity;
+    });
   }
 
   async configurePositionSpecs(searchDto: PositionSearchDto): Promise<Position> {
@@ -62,11 +62,22 @@ export class PositionHelper extends UtilsService {
       : null;
     const roundDto: RoundDto = specification.FilterFields.has(specification.ROUNDID) ? await this.getRound(searchDto.roundId) : null;
 
+    return this.configEntityPosition({ god: godDto, competition: competitionDto, season: seasonDto, round: roundDto });
+  }
+
+  private configEntityPosition(relations: {
+    god: GodDto;
+    competition: CompetitionDto;
+    season: SeasonDto;
+    round: RoundDto;
+    points?: number;
+  }): Position {
     const positionEntity: Position = {
-      god: GodMapper.fromDtoToEntity(godDto),
-      season: seasonDto,
-      competition: competitionDto,
-      round: roundDto,
+      god: !!relations.god ? GodMapper.fromDtoToEntity(relations.god) : null,
+      competition: !!relations.competition ? CompetitionMapper.fromDtoToEntity(relations.competition) : null,
+      round: relations.round,
+      season: relations.season,
+      points: !!relations.points ? relations.points : null,
     };
     return positionEntity;
   }

@@ -1,3 +1,4 @@
+import { CompetitionMapper } from 'src/Application/Competition/Mappers/Competition.mapper';
 import { Inscription } from '../../../Domain/Inscription/Model/Inscription';
 import { GodMapper } from '../../God/Mappers/God.mapper';
 import InscriptionDto from '../Dto/Inscription.dto';
@@ -28,7 +29,7 @@ export class InscriptionMapper {
   public static fromDtoToEntity(inscriptionDto: InscriptionCreateDto): Inscription {
     const inscription: Inscription = {
       god: GodMapper.fromDtoToEntity(inscriptionDto.godDto),
-      competition: inscriptionDto.competitionDto,
+      competition: CompetitionMapper.fromDtoToEntity(inscriptionDto.competitionDto),
       season: inscriptionDto.seasonDto,
     };
     return inscription;

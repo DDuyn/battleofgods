@@ -14,7 +14,7 @@ export class CompetitionService implements ICompetitionService {
     @Inject('ICompetitionRepository')
     private readonly competitionRepository: ICompetitionRepository,
     @Inject('CompetitionHelper')
-    private readonly competitionHelper: CompetitionHelper
+    private readonly competitionHelper: CompetitionHelper,
   ) {}
   async findAll(): Promise<CompetitionDto[]> {
     const competitionList: Competition[] = await this.competitionRepository.findAll();
@@ -22,16 +22,16 @@ export class CompetitionService implements ICompetitionService {
   }
   async findById(competitionId: number, showId = false): Promise<CompetitionDto> {
     const competition: Competition = await this.competitionRepository.findById(competitionId);
-    if(this.competitionHelper.isNull(competition)) throw new NotFoundException;
+    if (this.competitionHelper.isNull(competition)) throw new NotFoundException();
     return CompetitionMapper.fromEntityToDto(competition, showId);
   }
 
-  async createCompetition(
-    competition: CompetitionCreateDto,
-  ): Promise<CompetitionDto> {
+  async createCompetition(competition: CompetitionCreateDto): Promise<CompetitionDto> {
     competition.competitionId = await this.competitionHelper.getNextSequenceValue(MODELS.COMPETITION);
-    const competitionCreated: Competition = await this.competitionRepository.createCompetition(competition);
-    if(this.competitionHelper.isNull(competitionCreated)) throw new NotFoundException;
+    competition.typeCompetitionDto = await this.competitionHelper.getTypeCompetitionDto(competition.typeCompetitionId);
+    const competitionToCreate: Competition = CompetitionMapper.fromDtoToEntity(competition);
+    const competitionCreated: Competition = await this.competitionRepository.createCompetition(competitionToCreate);
+    if (this.competitionHelper.isNull(competitionCreated)) throw new NotFoundException();
     return CompetitionMapper.fromEntityToDto(competitionCreated);
   }
 }

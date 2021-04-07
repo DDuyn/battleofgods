@@ -7,6 +7,7 @@ export class TypeCompetitionMapper {
       typeCompetitionId: typeCompetitionEntity.typeCompetitionId,
       name: typeCompetitionEntity.name,
       description: typeCompetitionEntity.description,
+      totalCompetitors: typeCompetitionEntity.totalCompetitors,
     };
     if (showId) typeCompetitionDto._id = typeCompetitionEntity._id;
     return typeCompetitionDto;

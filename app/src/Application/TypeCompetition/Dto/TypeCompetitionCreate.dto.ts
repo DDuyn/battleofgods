@@ -7,4 +7,6 @@ export default class TypeCompetitionCreateDto {
   readonly description: string;
   @ApiHideProperty()
   typeCompetitionId: number;
+  @ApiProperty()
+  readonly totalCompetitors: number;
 }

@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
+import { CompetitionMapper } from 'src/Application/Competition/Mappers/Competition.mapper';
 import { ICompetitionService } from 'src/Application/Competition/Services/Interfaces/ICompetition.service';
 import { ICounterService } from 'src/Application/Counter/Services/Interfaces/ICounter.service';
 import GodDto from 'src/Application/God/Dto/God.dto';
@@ -62,7 +63,7 @@ export class MatchHelper extends UtilsService {
       matchId: matchDto.matchId,
       firstBattler: GodMapper.fromDtoToEntity(firstBattler),
       secondBattler: GodMapper.fromDtoToEntity(secondBattler),
-      competition: competition,
+      competition: CompetitionMapper.fromDtoToEntity(competition),
       round: round,
       season: season,
       winner: GodMapper.fromDtoToEntity(winner),

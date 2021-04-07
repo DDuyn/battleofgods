@@ -17,6 +17,7 @@ export class TypeCompetitionHelper extends UtilsService {
       typeCompetitionId: typeCompetitionOrigin.typeCompetitionId,
       name: typeCompetitionOrigin.name,
       description: description,
+      totalCompetitors: typeCompetitionOrigin.totalCompetitors,
     };
     return typeCompetitionModified;
   }

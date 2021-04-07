@@ -8,4 +8,6 @@ export default class TypeCompetitionDto extends GenericDto {
   readonly name: string;
   @ApiProperty()
   readonly description: string;
+  @ApiProperty()
+  readonly totalCompetitors: number;
 }
