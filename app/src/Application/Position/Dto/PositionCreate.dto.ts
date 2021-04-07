@@ -11,4 +11,6 @@ export default class PositionCreateDto {
   readonly roundId: number;
   @ApiProperty()
   readonly points: number;
+  @ApiProperty({ default: false })
+  readonly isWinner: boolean;
 }

@@ -12,6 +12,10 @@ export default class PositionDto extends RelationsDto {
   @ApiProperty()
   readonly competitionName: string;
   @ApiProperty()
+  readonly typeCompetitionId: number;
+  @ApiProperty()
+  readonly typeCompetition: string;
+  @ApiProperty()
   readonly seasonId: number;
   @ApiProperty()
   readonly roundId: number;
@@ -19,4 +23,6 @@ export default class PositionDto extends RelationsDto {
   readonly roundName: string;
   @ApiProperty()
   readonly points: number;
+  @ApiProperty()
+  readonly isWinner: boolean;
 }

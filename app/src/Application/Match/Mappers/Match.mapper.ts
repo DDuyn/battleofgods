@@ -13,6 +13,8 @@ export class MatchMapper {
       secondBattlerPhoto: matchEntity.secondBattler.photo,
       idCompetition: matchEntity.competition.competitionId,
       competition: matchEntity.competition.name,
+      typeCompetition: matchEntity.competition.typeCompetition.name,
+      typeCompetitionId: matchEntity.competition.typeCompetition.typeCompetitionId,
       idRound: matchEntity.round.roundId,
       round: matchEntity.round.description,
       idSeason: matchEntity.season.season,

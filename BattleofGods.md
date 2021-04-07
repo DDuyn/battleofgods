@@ -204,18 +204,6 @@ Entidad maestra que contendrá el tipo de competición
 
 Tipos de Competición: [The Olympus, International, Master, Regional]
 
-### COMPETITIONS-PLAYED
-
----
-
-Entidad que contendrá la información de las competiciones de cada Season y si han sido disputadas.
-
-- Propiedades
-  - **Competition**
-  - **Season**
-  - **Order**
-  - **isPlayed**
-
 ### POINTS-ROUND-TYPE-COMPETITION
 
 ---

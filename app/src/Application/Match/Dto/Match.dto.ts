@@ -21,6 +21,10 @@ export default class MatchDto extends RelationsDto {
   @ApiProperty()
   readonly competition: string;
   @ApiProperty()
+  readonly typeCompetitionId: number;
+  @ApiProperty()
+  readonly typeCompetition: string;
+  @ApiProperty()
   readonly idRound: number;
   @ApiProperty()
   readonly round: string;

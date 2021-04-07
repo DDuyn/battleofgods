@@ -11,6 +11,7 @@ export type Position = {
   readonly season?: Season;
   readonly round?: Round;
   readonly points?: number;
+  readonly isWinner?: boolean;
 };
 
 export const PositionModel = new Schema({
@@ -19,6 +20,7 @@ export const PositionModel = new Schema({
   season: { type: Schema.Types.ObjectId, ref: 'Season', required: true, autopopulate: true },
   round: { type: Schema.Types.ObjectId, ref: 'Round', required: true, autopopulate: true },
   points: { type: Number, required: true, default: 0 },
+  isWinner: { type: Boolean, required: true, default: false },
 });
 
 export interface IPositionEntity extends Document {
@@ -27,4 +29,5 @@ export interface IPositionEntity extends Document {
   readonly season: ISeasonEntity;
   readonly round: IRoundEntity;
   readonly points: number;
+  readonly isWinner: boolean;
 }

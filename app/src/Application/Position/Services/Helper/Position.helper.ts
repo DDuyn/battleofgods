@@ -50,6 +50,7 @@ export class PositionHelper extends UtilsService {
       season: seasonDto,
       round: roundDto,
       points: positionDto.points,
+      isWinner: positionDto.isWinner,
     });
   }
 
@@ -71,6 +72,7 @@ export class PositionHelper extends UtilsService {
     season: SeasonDto;
     round: RoundDto;
     points?: number;
+    isWinner?: boolean;
   }): Position {
     const positionEntity: Position = {
       god: !!relations.god ? GodMapper.fromDtoToEntity(relations.god) : null,
@@ -78,6 +80,7 @@ export class PositionHelper extends UtilsService {
       round: relations.round,
       season: relations.season,
       points: !!relations.points ? relations.points : null,
+      isWinner: !!relations.isWinner ? relations.isWinner : null,
     };
     return positionEntity;
   }

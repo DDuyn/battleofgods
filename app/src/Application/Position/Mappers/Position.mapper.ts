@@ -10,10 +10,13 @@ export class PositionMapper {
       godPhoto: positionEntity.god.photo,
       competitionId: positionEntity.competition.competitionId,
       competitionName: positionEntity.competition.name,
+      typeCompetition: positionEntity.competition.typeCompetition.name,
+      typeCompetitionId: positionEntity.competition.typeCompetition.typeCompetitionId,
       seasonId: positionEntity.season.season,
       roundId: positionEntity.round.roundId,
       roundName: positionEntity.round.description,
       points: positionEntity.points,
+      isWinner: positionEntity.isWinner,
     };
 
     return positionDto;
