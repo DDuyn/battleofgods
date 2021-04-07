@@ -1,7 +1,8 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { HttpStatus, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Competition } from 'src/Domain/Competition/Model/Competition';
 import { ICompetitionRepository } from 'src/Domain/Competition/Repositories/ICompetition.repository';
-import { MODELS } from 'src/Utils/Constants/Enum/Models.Enum';
+import { Models } from 'src/Utils/Constants/Enum/Models.Enum';
+import { CONSTANTS } from '../../../Utils/Constants/Constants';
 import CompetitionDto from '../Dto/Competition.dto';
 import CompetitionCreateDto from '../Dto/CompetitionCreate.dto';
 import CompetitionUpdateDto from '../Dto/CompetitionUpdate.dto';
@@ -28,7 +29,7 @@ export class CompetitionService implements ICompetitionService {
   }
 
   async createCompetition(competition: CompetitionCreateDto): Promise<CompetitionDto> {
-    competition.competitionId = await this.competitionHelper.getNextSequenceValue(MODELS.COMPETITION);
+    competition.competitionId = await this.competitionHelper.getNextSequenceValue(Models.COMPETITION);
     competition.typeCompetitionDto = await this.competitionHelper.getTypeCompetitionDto(competition.typeCompetitionId);
     const competitionToCreate: Competition = CompetitionMapper.fromDtoToEntity(competition);
     const competitionCreated: Competition = await this.competitionRepository.createCompetition(competitionToCreate);
@@ -42,5 +43,12 @@ export class CompetitionService implements ICompetitionService {
     const competitionModified: Competition = await this.competitionRepository.updateCompetition(competitionId, competitionToModify);
     if (this.competitionHelper.isNull(competitionModified)) throw new NotFoundException();
     return CompetitionMapper.fromEntityToDto(competitionModified);
+  }
+
+  async resetAllCompetitions(): Promise<HttpStatus> {
+    const totalCompetitionsModified: number = await this.competitionRepository.resetCompetitions();
+    if (totalCompetitionsModified === CONSTANTS.NUMBER_ZERO) throw new NotFoundException();
+
+    return HttpStatus.OK;
   }
 }

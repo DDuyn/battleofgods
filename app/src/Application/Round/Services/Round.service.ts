@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Round } from 'src/Domain/Round/Model/Round';
 import { IRoundRepository } from 'src/Domain/Round/Repositories/IRound.repository';
-import { MODELS } from 'src/Utils/Constants/Enum/Models.Enum';
+import { Models } from 'src/Utils/Constants/Enum/Models.Enum';
 import RoundDto from '../Dto/Round.dto';
 import RoundCreateDto from '../Dto/RoundCreate.dto';
 import { RoundMapper } from '../Mappers/Round.mapper';
@@ -30,7 +30,7 @@ export class RoundService implements IRoundService {
   }
 
   async createRound(round: RoundCreateDto): Promise<RoundDto> {
-    round.roundId = await this.roundHelper.getNextSequenceValue(MODELS.ROUND);
+    round.roundId = await this.roundHelper.getNextSequenceValue(Models.ROUND);
     return RoundMapper.fromEntityToDto(await this.roundRepository.createRound(round));
   }
 }

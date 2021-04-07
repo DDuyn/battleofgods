@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Inject, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Inject, Param, Post, Put } from '@nestjs/common';
 import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import CompetitionDto from 'src/Application/Competition/Dto/Competition.dto';
 import CompetitionCreateDto from 'src/Application/Competition/Dto/CompetitionCreate.dto';
@@ -68,6 +68,16 @@ export class CompetitionController {
     @Body() competitionDto: CompetitionUpdateDto,
   ): Promise<CompetitionDto> {
     return this.competitionService.updateCompetition(+competitionId, competitionDto);
+  }
+
+  @Put('/')
+  @ApiResponse({
+    status: 200,
+    description: 'Set false the competitions',
+    type: HttpStatus.OK.toString(),
+  })
+  async resetAllCompetitions(): Promise<HttpStatus> {
+    return this.competitionService.resetAllCompetitions();
   }
 
   // TODO: Obtener estadísticas totales de una competición

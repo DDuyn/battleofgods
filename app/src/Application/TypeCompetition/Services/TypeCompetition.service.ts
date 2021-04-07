@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { TypeCompetition } from 'src/Domain/TypeCompetition/Model/TypeCompetition';
 import { ITypeCompetitionRepository } from 'src/Domain/TypeCompetition/Repositories/ITypeCompetition.repository';
-import { MODELS } from 'src/Utils/Constants/Enum/Models.Enum';
+import { Models } from 'src/Utils/Constants/Enum/Models.Enum';
 import TypeCompetitionDto from '../Dto/TypeCompetition.dto';
 import TypeCompetitionCreateDto from '../Dto/TypeCompetitionCreate.dto';
 import TypeCompetitionUpdateDto from '../Dto/TypeCompetitionUpdate.dto';
@@ -26,7 +26,7 @@ export class TypeCompetitionService implements ITypeCompetitionService {
     return TypeCompetitionMapper.fromEntityToDto(typeCompetition, showId);
   }
   async create(typeCompetitionDto: TypeCompetitionCreateDto): Promise<TypeCompetitionDto> {
-    typeCompetitionDto.typeCompetitionId = await this.typeCompetitionHelper.getNextSequenceValue(MODELS.TYPECOMPETITION);
+    typeCompetitionDto.typeCompetitionId = await this.typeCompetitionHelper.getNextSequenceValue(Models.TYPECOMPETITION);
     const typeCompetitionEntity: TypeCompetition = await this.typeCompetitionRepository.create(typeCompetitionDto);
     if (this.typeCompetitionHelper.isNull(typeCompetitionEntity)) throw new NotFoundException();
     return TypeCompetitionMapper.fromEntityToDto(typeCompetitionEntity);

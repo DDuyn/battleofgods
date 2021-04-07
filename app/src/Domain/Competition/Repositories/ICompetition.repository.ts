@@ -6,4 +6,5 @@ export interface ICompetitionRepository {
   createCompetition(competition: Competition): Promise<Competition>;
   findLastCompetition(): Promise<Competition>;
   updateCompetition(competitionId: number, competition: Competition): Promise<Competition>;
+  resetCompetitions(): Promise<number>;
 }

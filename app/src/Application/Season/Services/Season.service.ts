@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
 import { Season } from 'src/Domain/Season/Model/Season';
 import { ISeasonRepository } from 'src/Domain/Season/Repositories/ISeason.repository';
-import { MODELS } from '../../../Utils/Constants/Enum/Models.Enum';
+import { Models } from '../../../Utils/Constants/Enum/Models.Enum';
 import SeasonDto from '../Dto/Season.dto';
 import SeasonCreateDto from '../Dto/SeasonCreate.dto';
 import { SeasonMapper } from '../Mappers/Season.mapper';
@@ -28,7 +28,7 @@ export class SeasonService implements ISeasonService {
   }
 
   async createNewSeason(seasonDto: SeasonCreateDto): Promise<SeasonDto> {
-    seasonDto.season = await this.seasonHelper.getNextSequenceValue(MODELS.SEASON);
+    seasonDto.season = await this.seasonHelper.getNextSequenceValue(Models.SEASON);
     const season: Season = await this.seasonRepository.createNewSeason(seasonDto);
     if (this.seasonHelper.isNull(season)) throw new NotFoundException();
     return SeasonMapper.fromEntityToDto(season);

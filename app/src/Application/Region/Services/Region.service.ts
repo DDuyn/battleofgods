@@ -1,7 +1,7 @@
 import { Inject, NotFoundException } from '@nestjs/common';
 import { Region } from 'src/Domain/Region/Model/Region';
 import { IRegionRepository } from 'src/Domain/Region/Repositories/IRegion.repository';
-import { MODELS } from 'src/Utils/Constants/Enum/Models.Enum';
+import { Models } from 'src/Utils/Constants/Enum/Models.Enum';
 import RegionDto from '../Dto/Region.dto';
 import RegionCreateDto from '../Dto/RegionCreate.dto';
 import { RegionMapper } from '../Mappers/Region.mapper';
@@ -24,7 +24,7 @@ export class RegionService implements IRegionService {
     return RegionMapper.fromEntityToDto(regionEntity, showId);
   }
   async createRegion(regionDto: RegionCreateDto): Promise<RegionDto> {
-    regionDto.regionId = await this.regionHelper.getNextSequenceValue(MODELS.REGION);
+    regionDto.regionId = await this.regionHelper.getNextSequenceValue(Models.REGION);
     const regionEntity: Region = await this.regionRepository.createRegion(regionDto);
     if (this.regionHelper.isNull(regionEntity)) throw new NotFoundException();
     return RegionMapper.fromEntityToDto(regionEntity);

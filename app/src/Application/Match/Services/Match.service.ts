@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Match } from 'src/Domain/Match/Model/Match';
 import { IMatchRepository } from 'src/Domain/Match/Repositorires/IMatch.repository';
-import { MODELS } from '../../../Utils/Constants/Enum/Models.Enum';
+import { Models } from '../../../Utils/Constants/Enum/Models.Enum';
 import MatchDto from '../Dto/Match.dto';
 import MatchCreateDto from '../Dto/MatchCreate.dto';
 import { MatchMapper } from '../Mappers/Match.mapper';
@@ -25,7 +25,7 @@ export class MatchService implements IMatchService {
     return MatchMapper.fromEntityToDto(match);
   }
   async createMatch(matchDto: MatchCreateDto): Promise<MatchDto> {
-    matchDto.matchId = await this.matchHelper.getNextSequenceValue(MODELS.MATCH);
+    matchDto.matchId = await this.matchHelper.getNextSequenceValue(Models.MATCH);
     const matchEntity = await this.matchHelper.createEntityMatch(matchDto);
     const matchCreated: Match = await this.matchRepository.createMatch(matchEntity);
     return MatchMapper.fromEntityToDto(matchCreated);

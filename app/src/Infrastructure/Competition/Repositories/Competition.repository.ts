@@ -34,4 +34,11 @@ export class CompetitionRepository implements ICompetitionRepository {
   async updateCompetition(competitionId: number, competition: ICompetitionEntity): Promise<ICompetitionEntity> {
     return await this.competitionModel.findOneAndUpdate({ competitionId: competitionId }, competition, { new: true });
   }
+
+  async resetCompetitions(): Promise<number> {
+    return await this.competitionModel.updateMany({ isPlayed: true }, { isPlayed: false }).then(result => {
+      const { nModified } = result;
+      return nModified;
+    });
+  }
 }
